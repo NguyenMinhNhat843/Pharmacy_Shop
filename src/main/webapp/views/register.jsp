@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Cusana</title>
+    <title>Sign Up - Cusana</title>
     <style>
         body {
             display: flex;
@@ -16,7 +16,7 @@
             margin: 0;
             background-color: #f5f5f5;
         }
-        .login-container {
+        .signup-container {
             width: 100%;
             max-width: 400px;
             padding: 20px;
@@ -60,18 +60,6 @@
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-        .options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 20px;
-        }
-        .options a {
-            color: #666;
-            text-decoration: none;
-        }
         .btn {
             width: 100%;
             padding: 10px;
@@ -81,6 +69,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 15px;
         }
         .btn:hover {
             background-color: #555;
@@ -119,25 +108,29 @@
             margin-right: 8px;
             vertical-align: middle;
         }
-        .register-link {
+        .signin-link {
             margin-top: 20px;
             font-size: 14px;
         }
-        .register-link a {
+        .signin-link a {
             color: #333;
             text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
+    <div class="signup-container">
         <div class="logo">
             <img src="${pageContext.request.contextPath}/image/logo.png" alt="Logo"> <!-- Replace with actual logo path -->
         </div>
-        <div class="title">Welcome Back to Cusana</div>
-        <div class="subtitle">Enter your username and password to continue.</div>
+        <div class="title">Create Your Cusana Account</div>
+        <div class="subtitle">Sign up to access comprehensive CRM features</div>
         
         <form>
+            <div class="input-group">
+                <label for="name" style="font-weight: bold;">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
             <div class="input-group">
                 <label for="email" style="font-weight: bold;">Email</label>
                 <input type="email" id="email" placeholder="Enter your email address" required>
@@ -146,22 +139,22 @@
                 <label for="password" style="font-weight: bold;">Password</label>
                 <input type="password" id="password" placeholder="Enter your password" required>
             </div>
-            <div class="options">
-                <label><input type="checkbox"> Remember me</label>
-                <a href="#" style="font-weight: bold;">Forgot password</a>
+            <div class="input-group">
+                <label for="repeat-password" style="font-weight: bold;">Repeat Password</label>
+                <input type="password" id="repeat-password" placeholder="Enter your password" required>
             </div>
-            <button type="submit" class="btn">Sign In</button>
+            <button type="submit" class="btn">Sign Up</button>
         </form>
         
-        <div class="separator">Or login with</div>
+        <div class="separator">Or Sign Up with</div>
         
         <div class="social-login">
             <button><img src="${pageContext.request.contextPath}/image/google-icon.png" alt="Google"> Google</button> <!-- Replace with actual Google icon path -->
             <button><img src="${pageContext.request.contextPath}/image/apple-icon.png" alt="Apple"> Apple</button> <!-- Replace with actual Apple icon path -->
         </div>
         
-        <div class="register-link">
-            Don’t have an account? <a href="#" style="font-weight: bold;">Register</a>
+        <div class="signin-link">
+            Already have an account? <a href="#" style="font-weight: bold;">Sign In</a>
         </div>
     </div>
 </body>
