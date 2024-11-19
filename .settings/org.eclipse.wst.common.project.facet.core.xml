@@ -3,6 +3,6 @@
   <runtime name="Apache Tomcat v10.1"/>
   <fixed facet="jst.web"/>
   <fixed facet="java"/>
-  <installed facet="java" version="18"/>
   <installed facet="jst.web" version="6.0"/>
+  <installed facet="java" version="18"/>
 </faceted-project>

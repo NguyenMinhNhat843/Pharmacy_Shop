@@ -155,21 +155,77 @@
 		</div>
 		
 		<!-- banner best selling -->
-		<div class="container pt-5 pb-5">
-			<div class="row">			
-				<div class="col w-100 h-100 rounded" style="height: 200px">
-					<img class="w-100 h-100 rounded" src="../images/landing_banner.jpg" alt="banner" />				
+		<div class="d-flex justify-content-between container py-5" style="height: 700px">
+			<div class="banner_best_seller h-100 me-4 rounded d-flex align-items-center ps-5" style="width: 60%">
+				<div class="">
+					<p class="text-white btn btn-success rounded-pill fw-bold">25% OFF</p>
+					<p class="fs-2 fw-bold">Black Garlic Oil</p>
+					<p class="fw-light">Strongest and Thicker Hair</p>
+					<p class="fw-bold fs-2">$37.00 <span class="fw-light fs-6">Including Tax</span></p>
+				</div>			
+			</div>
+			<div class="d-flex flex-column justify-content-between h-100" style="width: 40%">
+				<div class="banner_best_seller w-100 h-50 mb-2 rounded d-flex align-items-center ps-5">
+					<div class="">
+						<p class="text-white btn btn-success rounded-pill fw-bold">25% OFF</p>
+						<p class="fs-2 fw-bold">Black Garlic Oil</p>
+						<p class="fw-light">Strongest and Thicker Hair</p>
+						<p class="fw-bold fs-2">$37.00 <span class="fw-light fs-6">Including Tax</span></p>
+					</div>		
 				</div>
-				<div class="col " style="height: 200px">
-					<div class="row h-100 rounded">
-						<img class="h-100 rounded" src="../images/landing_banner.jpg" alt="banner" />				
-					</div>
-					<div class="row h-100 rounded">
-						<img class="h-100 rounded" src="../images/landing_banner.jpg" alt="banner" />			
-					</div>				
-				</div>
+				<div class="banner_best_seller w-100 h-50 mt-2 rounded d-flex align-items-center ps-5">
+					<div class="">
+						<p class="text-white btn btn-success rounded-pill fw-bold">25% OFF</p>
+						<p class="fs-2 fw-bold">Black Garlic Oil</p>
+						<p class="fw-light">Strongest and Thicker Hair</p>
+						<p class="fw-bold fs-2">$37.00 <span class="fw-light fs-6">Including Tax</span></p>
+					</div>		
+				</div>				
 			</div>
 		</div>
+		
+		<!-- best offer for you -->
+		<div class="container">
+			<div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
+				<p>Đơn hàng tốt nhất cho bạn</p>
+				<a href="#">View All</a>
+			</div>
+			
+			<!-- product card -->
+			<div class="row gap-2">
+				<%
+					for(int i = 0; i < 4; ++i) {
+				%>
+					<div class="mt-3 card product_card col">
+						<img class="card-img-top" src="../images/landing_banner.jpg" alt="logo" />
+						<div class="card-body">
+							<div class="rating_block">
+								<%
+									for(int j = 0; j < 5; ++j) {
+								%>
+										<i class="fa-solid fa-star"></i>							
+								<%
+									}
+								%>
+							</div>
+							<p>Sửa rửa mặt oxy</p>
+							<div class="d-flex justify-content-between align-items-center">
+								<p>143.000đ</p>
+								<a 
+									href="#" class="bg-success d-flex justify-content-center align-items-center" 
+									style="display: block; width: 40px; height: 40px; border-radius: 50%">
+									<i class="fa-solid fa-cart-shopping text-white"></i>										
+								</a>
+							</div>
+						</div>
+					</div>
+				<%
+					}
+				%>
+			</div>	
+		</div>
+		
+		
 	</div>
 </body>
 </html>

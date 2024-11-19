@@ -35,4 +35,11 @@
 	.product_card {
 		padding: 0;
 	}
+	
+	/* banner best seller */
+	.banner_best_seller {
+		background-image: url('../images/landing_banner.jpg');
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 </style>
