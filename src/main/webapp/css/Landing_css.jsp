@@ -33,7 +33,7 @@
 	}
 	
 	.banner2 {
-		background-image: url('../images/product/p_nivea.png');
+		background-image: url('../images/p/p_nivea.png');
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 		width: 30%;

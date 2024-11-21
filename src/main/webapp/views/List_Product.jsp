@@ -11,6 +11,11 @@
 <title>Sản Phẩm Theo Danh Mục </title>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link
+href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+<%@ include file="../css/Landing_css.jsp" %>
+<%@ include file="../css/boostrap_css.jsp" %>
 </head>
 <style>
 body {
@@ -325,6 +330,7 @@ body {
 }
 </style>
 <body>
+<%@ include file="../includes/Header.jsp" %>
 	<div class="container">
 		<div class="breadcrumb">
 			<a href="#">Trang chủ</a> &gt; <span>Thực phẩm chức năng</span>
@@ -570,6 +576,6 @@ body {
 		</div>
 	</div>
 
-
+<%@ include file="../includes/Footer.jsp" %>
 </body>
 </html>
