@@ -79,7 +79,7 @@
 </head>
 <body>
     <div class="forgot-password-container">
-        <a href="#" class="back-link">&larr; Back</a>
+        <a href="./Login.jsp" class="back-link">&larr; Back</a>
         <div class="title">Forgot Password</div>
         <div class="subtitle">No worries! Enter your email address below, and we'll send you a link to reset your password.</div>
         

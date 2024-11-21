@@ -7,11 +7,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
 	<title>Cart</title>
+	<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<%@ include file="../css/Landing_css.jsp" %>
+	<%@ include file="../css/boostrap_css.jsp" %>
 	<style>
             body {
                 font-family: Arial, sans-serif;
                 margin: 0;
-                padding: 20px;
                 background-color: #f5f5f5;
             }
 
@@ -223,12 +228,11 @@
                 border-radius: 5px;
                 font-size: 14px;
             }
-
-
         </style>
 </head>
 <body>
-<div class="cart-container">
+<%@ include file="../includes/Header.jsp" %>
+<div class="cart-container my-5">
     <h2>Giỏ hàng (1)</h2>
     <div class="cart-content">
         <!-- Cột giỏ hàng và quà tặng -->
@@ -309,7 +313,10 @@
             </div>
             <button class="buy-button">Mua ngay</button>
         </div>
+        
     </div>
 </div>
+<!-- Footer -->
+<%@ include file="../includes/Footer.jsp" %>
 </body>
 </html>

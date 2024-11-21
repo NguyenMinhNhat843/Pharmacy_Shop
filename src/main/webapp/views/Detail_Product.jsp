@@ -6,14 +6,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Detail Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<%@ include file="../css/Landing_css.jsp" %>
+	<%@ include file="../css/boostrap_css.jsp" %>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
             margin: 0;
-            padding: 20px;
         }
-        .container {
+        .container_css {
             max-width: 1200px;
             margin: 0 auto;
             background-color: #fff;
@@ -92,7 +94,7 @@
             padding: 20px;
             border-radius: 8px;
         }
-        .btn {
+        .btn_css {
             display: block;
             width: 100%;
             padding: 10px;
@@ -105,7 +107,7 @@
             margin-top: 15px;
             font-size: 16px;
         }
-        .btn:hover {
+        .btn_css:hover {
             background-color: #555;
         }
 
@@ -208,8 +210,8 @@
     </style>
 </head>
 <body>
-
-<div class="container">
+<%@ include file="../includes/Header.jsp" %>
+<div class="container_css my-5">
     <!-- Product Header Section -->
     <div class="product-header">
         <!-- Image Gallery -->
@@ -226,7 +228,7 @@
             <div class="product-price" id="product-price">367,500 ₫</div>
             <div class="discount-price" id="discount-price">735,000 ₫</div>
             <p id="product-status">In Stock</p>
-            <button class="btn" onclick="addToCart()">Add to Cart</button>
+            <button class="btn_css" onclick="addToCart()">Add to Cart</button>
         </div>
 
         <!-- Sidebar for Additional Options -->
@@ -234,8 +236,8 @@
             <h4>Order Options</h4>
             <label for="quantity">Quantity:</label>
             <input type="number" id="quantity" min="1" value="1" style="width: 60px; margin-bottom: 20px;">
-            <button class="btn">Buy Now</button>
-            <button class="btn">Add to Cart</button>
+            <button class="btn_css">Buy Now</button>
+            <button class="btn_css">Add to Cart</button>
             <div style="margin-top: 15px;">
                 <p>Shipping options:</p>
                 <ul>
@@ -285,6 +287,7 @@
                 <div class="qa-time">14:11 08-10-2024</div>
             </div>
         </div>
+    </div>
 
     <!-- Similar Products Carousel -->
     <div class="carousel-section">
@@ -318,6 +321,8 @@
     </div>
 </div>
 
+<!-- Footer -->
+<%@ include file="../includes/Footer.jsp" %>
 <script>
     function loadProductData() {
         // Placeholder data
@@ -360,6 +365,5 @@
 
     window.onload = loadProductData;
 </script>
-
 </body>
 </html>
