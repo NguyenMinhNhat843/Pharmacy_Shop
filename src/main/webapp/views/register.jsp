@@ -154,7 +154,7 @@
         </div>
         
         <div class="signin-link">
-            Already have an account? <a href="#" style="font-weight: bold;">Sign In</a>
+            Already have an account? <a href="./Login.jsp" style="font-weight: bold;">Sign In</a>
         </div>
     </div>
 </body>

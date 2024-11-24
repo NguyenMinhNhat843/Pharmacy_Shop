@@ -148,7 +148,7 @@
             </div>
             <div class="options">
                 <label><input type="checkbox"> Remember me</label>
-                <a href="#" style="font-weight: bold;">Forgot password</a>
+                <a href="./ForgotPassword_1.jsp" style="font-weight: bold;">Forgot password</a>
             </div>
             <button type="submit" class="btn">Sign In</button>
         </form>
@@ -161,7 +161,7 @@
         </div>
         
         <div class="register-link">
-            Don’t have an account? <a href="#" style="font-weight: bold;">Register</a>
+            Don’t have an account? <a href="./register.jsp" style="font-weight: bold;">Register</a>
         </div>
     </div>
 </body>
