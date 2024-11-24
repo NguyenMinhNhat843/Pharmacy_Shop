@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
       pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-=======
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
->>>>>>> 21cbc0265d366c28378ab5f28852915397c5b3a4
 
 <div class="bg-success p-5 d-flex justify-content-center">
 	<div class="row gap-2 container text-white">
