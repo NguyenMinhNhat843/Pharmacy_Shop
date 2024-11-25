@@ -1,6 +1,5 @@
 package com.pharmacy.pharmacy_shop.impl;
 
-import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.reposities.SanPhamRepo;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SanPhamImpl implements SanPhamService {
@@ -25,9 +25,11 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public SanPham getSanPhamById(int id) {
-        return null;
+    public SanPham getSanPhamById(String id) {
+        return sanPhamRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + id));
     }
+
 
     @Override
     public void addSanPham(SanPham sanPham) {
