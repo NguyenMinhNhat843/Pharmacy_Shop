@@ -42,15 +42,25 @@ public class SanPhamController {
     }
 
     @GetMapping("/type/filter")
-    public String filterProducts(@RequestParam(value = "giaMin", defaultValue = "0") int giaMin,
-                                 @RequestParam(value = "giaMax", defaultValue = "10000000") int giaMax,
+    public String filterProducts(@RequestParam(value = "giaMin", required = false) Integer  giaMin,
+                                 @RequestParam(value = "giaMax", required = false) Integer  giaMax,
                                  @RequestParam(value = "priceRange", required = false) String priceRange,
                                  Model model) {
-        List<SanPham> filteredProducts = sanPhamService.filterProducts(giaMin, giaMax,  Collections.singletonList(priceRange));
+
+
+        // Sử dụng giá trị mặc định nếu giaMin hoặc giaMax là null
+        // Giá trị mặc định dùng cho xử lý logic
+        int filterGiaMin = (giaMin != null) ? giaMin : 0;
+        int filterGiaMax = (giaMax != null) ? giaMax : 10000000;
+        // Sử dụng giá trị mặc định nếu minPrice hoặc maxPrice là null
+
+        List<SanPham> filteredProducts = sanPhamService.filterProducts(filterGiaMin , filterGiaMax  ,  Collections.singletonList(priceRange));
+        // Giữ lại giá trị của các filter đã chọn
         model.addAttribute("products", filteredProducts);
+        model.addAttribute("priceRange", priceRange);
+        model.addAttribute("giaMin", giaMin);
+        model.addAttribute("giaMax", giaMax);
+      //  model.addAttribute("priceRange", priceRange);
         return "ListProduct";
-
-
-
     }
 }

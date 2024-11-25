@@ -122,27 +122,27 @@
                     <aside class="filter-sidebar">
                         <div class="header-sort">
                             <h2 style="padding-top: 15px">Bộ lọc</h2>
-                            <a href="#" class="clear-filter">Thiết lập lại</a>
+                            <a href="#" class="clear-filter" onclick="resetForm(event)">Thiết lập lại</a>
                         </div>
-
-                        <form method="get" action="/home/type/filter">
+                        <form method="get" action="/home/type/filter" id="filterForm">
                             <!-- Khoảng giá -->
                             <div class="filter-section">
                                 <div class="rentPrice">
                                     <label>Khoảng giá</label>
                                 </div>
-                                <input type="number" name="minPrice" placeholder="Tối thiểu" class="price-input" min="0">
-                                <input type="number" name="maxPrice" placeholder="Tối đa" class="price-input" min="0">
+                                <input type="number" name="giaMin" placeholder="Tối thiểu" class="price-input" min="0"  th:value="${giaMin != null ? giaMin : ''}">
+                                <input type="number" name="giaMax" placeholder="Tối đa" class="price-input" min="0"     th:value="${giaMax != null ? giaMax : ''}">
+
                                 <button type="submit" class="apply-btn">Áp dụng</button>
                             </div>
 
                             <!-- Các checkbox lựa chọn theo khoảng giá -->
                             <div class="filter-section">
                                 <div class="checkbox-group">
-                                    <label><input type="checkbox" name="priceRange" value="under100000"     > Dưới 100.000 đ</label>
-                                    <label><input type="checkbox" name="priceRange" value="100000-300000"> 100.000 đ - 300.000 đ</label>
-                                    <label><input type="checkbox" name="priceRange" value="300000-500000"> 300.000 đ - 500.000 đ</label>
-                                    <label><input type="checkbox" name="priceRange" value="over500000"> Trên 500.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="under100000"  th:checked="${priceRange != null && priceRange.contains('under100000')}"> Dưới 100.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="100000-300000" th:checked="${priceRange != null && priceRange.contains('100000-300000')}"> 100.000 đ - 300.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="300000-500000" th:checked="${priceRange != null && priceRange.contains('300000-500000')}"> 300.000 đ - 500.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="over500000" th:checked="${priceRange != null && priceRange.contains('over500000')}" > Trên 500.000 đ</label>
                                 </div>
                             </div>
                         </form>
@@ -214,5 +214,21 @@
         </div>
     </div>
 </div>
+<script>
+    // Hàm reset toàn bộ form
+    function resetForm(event) {
+        event.preventDefault(); // Ngăn chặn điều hướng liên kết
+        const form = document.getElementById('filterForm'); // Lấy form
+        form.reset(); // Đặt lại tất cả giá trị mặc định của form
+
+        // Đảm bảo xóa giá trị ở các input tùy chỉnh (nếu có)
+        document.querySelector('input[name="giaMin"]').value = '';
+        document.querySelector('input[name="giaMax"]').value = '';
+
+        // Bỏ chọn tất cả các checkbox
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => checkbox.checked = false);
+    }
+</script>
 </body>
 </html>
