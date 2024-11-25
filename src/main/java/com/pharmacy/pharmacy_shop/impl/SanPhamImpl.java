@@ -38,4 +38,9 @@ public class SanPhamImpl implements SanPhamService {
     public void deleteSanPham(SanPham sanPham) {
 
     }
+
+    @Override
+    public List<SanPham> getSanPhamByType(String type) {
+        return sanPhamRepo.getSanPhamByType(type);
+    }
 }

@@ -15,16 +15,22 @@ public class SanPham {
     @Id
     private String id;
 
+    @Column(nullable = false, name = "tenSanPham")
     private String tenSanPham;
 
+    @Column(name = "giaBan")
     private Float giaBan;
 
+    @Column(nullable = false, name = "image")
     private String image;
 
+    @Column(nullable = false,name = "soLuong")
     private Integer soLuong;
 
+    @Column(nullable = false, name = "soLuongDaBan")
     private Integer soLuongDaBan;
 
+    @Column(nullable = false, name = "soLuongConLai")
     private Integer soLuongConLai;
 
     @ManyToOne

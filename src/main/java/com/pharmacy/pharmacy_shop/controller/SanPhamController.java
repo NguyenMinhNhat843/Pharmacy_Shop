@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -23,5 +24,12 @@ public class SanPhamController {
         System.out.println(sanphams);
         model.addAttribute("sanphams", sanphams);
         return "test";
+    }
+
+    @GetMapping("/type")
+    public String getProductsByType(@RequestParam("type") String typeId, Model model) {
+        List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
+        model.addAttribute("products", products);
+        return "ListProduct";
     }
 }
