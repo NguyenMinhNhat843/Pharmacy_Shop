@@ -1,11 +1,8 @@
-CREATE DATABASE QuanLyBanHang;
 DROP DATABASE  IF EXISTS QuanLyBanHang;
+CREATE DATABASE QuanLyBanHang;
 USE QuanLyBanHang;
 
 -- Bảng Account
-
--- Bảng Account
-DROP TABLE IF EXISTS Account;
 CREATE TABLE Account (
     id NVARCHAR(50) PRIMARY KEY,
     username NVARCHAR(100) NOT NULL,
@@ -14,7 +11,6 @@ CREATE TABLE Account (
 );
 
 -- Bảng Phiếu Thông Tin 
-DROP TABLE IF EXISTS PhieuThongTin;
 CREATE TABLE PhieuThongTin (
     id NVARCHAR(50) PRIMARY KEY,
     firstName NVARCHAR(100) NOT NULL,
@@ -27,6 +23,16 @@ CREATE TABLE PhieuThongTin (
     FOREIGN KEY (accountId) REFERENCES Account(id) ON DELETE SET NULL
 );
 
+-- Bảng Khuyến Mãi
+CREATE TABLE KhuyenMai (
+    id NVARCHAR(50) PRIMARY KEY,
+    name NVARCHAR(100) NOT NULL,
+    moTa NVARCHAR(MAX),
+    ngayBatDau DATE NOT NULL,
+    ngayKetThuc DATE NOT NULL,
+    trangThai NVARCHAR(20) NOT NULL CHECK (trangThai IN (N'đang có', N'hết hạn', N'sắp có')),
+    dieuKienApDung FLOAT NOT NULL
+);
 
 -- Bảng Sản Phẩm
 DROP TABLE IF EXISTS SanPham;
@@ -46,21 +52,6 @@ CREATE TABLE SanPham (
     idKhuyenMai NVARCHAR(50), 
     FOREIGN KEY (idKhuyenMai) REFERENCES KhuyenMai(id) ON DELETE SET NULL
 );
-
--- Bảng Khuyến Mãi
-
-DROP TABLE IF EXISTS KhuyenMai;
-CREATE TABLE KhuyenMai (
-    id NVARCHAR(50) PRIMARY KEY,
-    name NVARCHAR(100) NOT NULL,
-    moTa NVARCHAR(MAX),
-    ngayBatDau DATE NOT NULL,
-    ngayKetThuc DATE NOT NULL,
-    trangThai NVARCHAR(20) NOT NULL CHECK (trangThai IN (N'đang có', N'hết hạn', N'sắp có')),
-    dieuKienApDung FLOAT NOT NULL
-);
-
-
 
 -- Bảng Đơn Hàng
 DROP TABLE IF EXISTS DonHang;
@@ -85,7 +76,6 @@ CREATE TABLE ChiTietDonHang (
     FOREIGN KEY (idDonHang) REFERENCES DonHang(id),
     FOREIGN KEY (idSanPham) REFERENCES SanPham(id)
 );
---Bảng  Account
 
 INSERT INTO Account (id, username, password, type) 
 VALUES
