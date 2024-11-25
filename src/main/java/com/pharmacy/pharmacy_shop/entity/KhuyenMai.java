@@ -5,41 +5,31 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "khuyen_mai")
+@Table(name = "khuyenMai")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class KhuyenMai {
-
     @Id
-    @Column(length = 50)
     private String id;
 
-    @NotBlank
-    @Column(nullable = false, length = 100)
     private String name;
 
     @Column(columnDefinition = "TEXT")
     private String moTa;
 
-    @NotNull
-    @Column(nullable = false)
-    private LocalDate ngayBatDau;
+    private LocalDateTime ngayBatDau;
 
-    @NotNull
-    @Column(nullable = false)
-    private LocalDate ngayKetThuc;
+    private LocalDateTime ngayKetThuc;
 
-    @NotBlank
-    @Column(nullable = false, length = 20)
-    private String trangThai; // 'đang có', 'hết hạn', 'sắp có'
+    private Float phanTramGiamGia;
 
-    @NotNull
-    @Column(nullable = false)
-    private Float dieuKienApDung;
+    private Float giaTriGiamToiThieu;
 }
+
 

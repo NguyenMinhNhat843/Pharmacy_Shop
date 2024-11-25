@@ -6,22 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
-
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name = "GioHang")
-public class GioHang {
+@Table(name = "Sanpham_Khuyenmai")
+public class SanPhamKhuyenMai {
     @Id
-    private String id;
+    @ManyToOne
+    @JoinColumn(name = "idSanPham")
+    private SanPham sanPham;
 
     @ManyToOne
-    @JoinColumn(name = "idPhieuThongTin")
-    private PhieuThongTin phieuThongTin;
-
-    private LocalDateTime ngayTao;
+    @JoinColumn(name = "idKhuyenMai")
+    private KhuyenMai khuyenMai;
 }
 

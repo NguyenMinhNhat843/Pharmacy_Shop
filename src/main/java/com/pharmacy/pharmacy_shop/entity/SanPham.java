@@ -5,42 +5,32 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 
 @Entity
-@Table(name = "sanpham")
+@Table(name = "SanPham")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class SanPham {
-
     @Id
-    @Column(length = 50)
     private String id;
 
-    @NotBlank
-    @Column(nullable = false, length = 255)
     private String tenSanPham;
 
-    @NotNull
-    @Column(nullable = false)
-    @Min(0)
-    private Double giaBan;
+    private Float giaBan;
 
-    @Column(length = 255)
     private String image;
 
-    @NotBlank
-    @Column(nullable = false, length = 50)
-    private String type; // 'thực phẩm chức năng', ...
+    private Integer soLuong;
 
-    @Min(0)
-    private Integer soLuongDaBan = 0;
+    private Integer soLuongDaBan;
 
-    @Min(0)
-    private Integer soLuongConLai = 0;
+    private Integer soLuongConLai;
 
     @ManyToOne
-    @JoinColumn(name = "idKhuyenMai")
-    private KhuyenMai khuyenMai;
+    @JoinColumn(name = "Type")
+    private LoaiSanPham type;
+
+    // Getters and setters
 }
 

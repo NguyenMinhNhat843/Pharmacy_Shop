@@ -4,34 +4,34 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "donhang")
+@Table(name = "DonHang")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class DonHang {
-
     @Id
-    @Column(length = 50)
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "idSanPham", nullable = false)
+    @JoinColumn(name = "idSanPham")
     private SanPham sanPham;
 
     @ManyToOne
-    @JoinColumn(name = "idPhieuThongTin", foreignKey = @ForeignKey(name = "FK_PHIEUTHONGTIN"))
+    @JoinColumn(name = "idPhieuThongTin")
     private PhieuThongTin phieuThongTin;
 
-    @NotNull
     @Column(nullable = false)
-    @FutureOrPresent(message = "Ngày đặt không được nhỏ hơn ngày hiện tại")
-    private LocalDate ngayDat;
-
-    @Column(length = 100)
     private String phuongThucThanhToan;
+
+    private LocalDateTime ngayTaoHoaDon;
+
+    private BigDecimal tongTien;
 }
+

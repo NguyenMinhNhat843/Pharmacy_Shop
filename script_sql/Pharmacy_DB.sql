@@ -1,5 +1,5 @@
-﻿CREATE DATABASE Pharmacy;
-DROP DATABASE IF EXISTS Pharmacy;
+﻿DROP DATABASE IF EXISTS Pharmacy;
+CREATE DATABASE Pharmacy;
 USE Pharmacy;
 
 -- Bảng Account
@@ -308,10 +308,6 @@ VALUES
 ('DH028', 'SP028', 'PT003', N'Thanh toán qua ví điện tử', '2024-12-07', 250.00),
 ('DH029', 'SP029', 'PT004', N'Thanh toán khi nhận hàng', '2024-12-08', 100.00),
 ('DH030', 'SP030', 'PT005', N'Thanh toán qua thẻ', '2024-12-09', 700.00);
-
-
-SELECT id FROM DonHang;
-
 
 INSERT INTO ChiTietDonHang (idDonHang, idSanPham, soLuong, thanhTien)
 VALUES
