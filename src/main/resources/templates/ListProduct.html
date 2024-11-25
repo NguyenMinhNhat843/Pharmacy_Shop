@@ -16,8 +16,8 @@
         <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
             <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
         </a>
-        <form class="d-flex flex-grow-1">
-            <input type="text" class="form-control me-2" placeholder="Search..."/>
+        <form class="d-flex flex-grow-1"action="/home/type/search" method="get">
+            <input type="text" class="form-control me-2" placeholder="Search..." name="keyword"/>
             <input class="btn btn-outline-success" type="submit" value="Search"/>
         </form>
         <div class="d-flex w-[20]">
@@ -125,22 +125,27 @@
                             <a href="#" class="clear-filter">Thiết lập lại</a>
                         </div>
 
-                        <div class="filter-section">
-                            <div class="rentPrice">
-                                <label>Khoảng giá</label>
+                        <form method="get" action="/home/type/filter">
+                            <!-- Khoảng giá -->
+                            <div class="filter-section">
+                                <div class="rentPrice">
+                                    <label>Khoảng giá</label>
+                                </div>
+                                <input type="number" name="minPrice" placeholder="Tối thiểu" class="price-input" min="0">
+                                <input type="number" name="maxPrice" placeholder="Tối đa" class="price-input" min="0">
+                                <button type="submit" class="apply-btn">Áp dụng</button>
                             </div>
-                            <input type="number" placeholder="Tối thiểu" class="price-input" min="0">
-                            <input type="number" placeholder="Tối đa" class="price-input" min="0">
-                            <button class="apply-btn">Áp dụng</button>
-                        </div>
-                        <div class="filter-section">
-                            <div class="checkbox-group">
-                                <label><input type="checkbox"> Dưới 100.000 đ</label> <label><input
-                                    type="checkbox"> 100.000 đ - 300.000 đ</label> <label><input
-                                    type="checkbox"> 300.000 đ - 500.000 đ</label> <label><input
-                                    type="checkbox"> Trên 500.000 d</label>
+
+                            <!-- Các checkbox lựa chọn theo khoảng giá -->
+                            <div class="filter-section">
+                                <div class="checkbox-group">
+                                    <label><input type="checkbox" name="priceRange" value="under100000"     > Dưới 100.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="100000-300000"> 100.000 đ - 300.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="300000-500000"> 300.000 đ - 500.000 đ</label>
+                                    <label><input type="checkbox" name="priceRange" value="over500000"> Trên 500.000 đ</label>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </aside>
                 </aside>
             </div>

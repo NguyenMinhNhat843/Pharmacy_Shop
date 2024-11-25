@@ -15,8 +15,21 @@ public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
 
     @Query(value = "select t.* from SanPham as t where t.Type = :type", nativeQuery = true)
     List<SanPham> getSanPhamByType(String type);
-    
+
     // Lấy sản phẩm bán chạy
     @Query("SELECT sp FROM SanPham sp ORDER BY sp.soLuongDaBan DESC")
     List<SanPham> findAllOrderBySoLuongDaBanDesc();
+
+    // Lấy sản phẩm theo ten
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham LIKE %:tenSanPham%")
+    List<SanPham> findAllByTenSanPham(String tenSanPham);
+
+    // Lấy sản phẩm theo khoảng giá được chọn
+    @Query("SELECT sp FROM SanPham sp WHERE sp.giaBan BETWEEN :giaMin AND :giaMax " +
+            "AND (:priceRange IS NULL OR " +
+            "(sp.giaBan < 100 AND :priceRange LIKE 'under100000') OR " +
+            "(sp.giaBan BETWEEN 100 AND 300 AND :priceRange LIKE '100000-300000') OR " +
+            "(sp.giaBan BETWEEN 300 AND 500 AND :priceRange LIKE '300000-500000') OR " +
+            "(sp.giaBan > 500 AND :priceRange LIKE 'over500000'))")
+    List<SanPham> findAllByGiaBanBetweenAndPriceRange(int giaMin, int giaMax, String priceRange);
 }

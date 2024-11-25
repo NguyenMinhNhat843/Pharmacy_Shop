@@ -48,4 +48,14 @@ public class SanPhamImpl implements SanPhamService {
     public List<SanPham> getSanPhamByType(String type) {
         return sanPhamRepo.getSanPhamByType(type);
     }
+
+    @Override
+    public List<SanPham> getSanPhamByTen(String tenSanPham) {
+        return sanPhamRepo.findAllByTenSanPham(tenSanPham);
+    }
+
+    @Override
+    public List<SanPham> filterProducts(Integer minPrice, Integer maxPrice, List<String> priceRange) {
+        return sanPhamRepo.findAllByGiaBanBetweenAndPriceRange(minPrice, maxPrice, priceRange.get(0));
+    }
 }

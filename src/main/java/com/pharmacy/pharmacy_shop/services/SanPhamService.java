@@ -17,5 +17,10 @@ public interface SanPhamService {
     public void updateSanPham(SanPham sanPham);
     public void deleteSanPham(SanPham sanPham);
     public List<SanPham> getSanPhamByType(String type);
+    public List<SanPham> getSanPhamByTen(String tenSanPham);
+
+    public List<SanPham> filterProducts(Integer minPrice, Integer maxPrice, List<String> priceRange);
+
+
 
 }
