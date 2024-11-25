@@ -1,5 +1,5 @@
-﻿DROP DATABASE IF EXISTS Pharmacy;
-CREATE DATABASE Pharmacy;
+﻿CREATE DATABASE Pharmacy;
+DROP DATABASE IF EXISTS Pharmacy;
 USE Pharmacy;
 
 -- Bảng Account
@@ -178,7 +178,15 @@ VALUES
 (N'TP001', N'Thực phẩm chức năng'),
 (N'TP002', N'Thuốc không kê đơn'),
 (N'TP003', N'Dụng cụ y tế'),
-(N'TP004', N'Sản phẩm chăm sóc sức khỏe');
+(N'TP004', N'Sản phẩm chăm sóc sức khỏe'),
+(N'TP005', N'Tiểu đường'),
+(N'TP006', N'Tim mạch'),
+(N'TP007', N'Xương khớp'),
+(N'TP008', N'Thuốc kê đơn'),
+(N'TP009', N'Thuốc cho bé'),
+(N'TP010', N'Mẹ và Bé');
+
+
 
 INSERT INTO SanPham (id, tenSanPham, giaBan, image, soLuong, soLuongDaBan, soLuongConLai, Type) 
 VALUES 
@@ -191,7 +199,7 @@ VALUES
 ('SP007', N'Kem dưỡng da trắng hồng tinh khiết ban đêm Ponds (50g)', 175.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P03354.png', 700, 400, 300, N'TP004'),
 ('SP008', N'Nước uống Kolmar Tinh Nghệ Condition Curcumin Fast giúp giảm viêm loét dạ dày (100ml)', 320.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P18158_1.jpg', 300, 180, 120, N'TP001'),
 ('SP009', N'Bột uống FERROLIP bổ sung sắt (Hộp 20 gói)', 230.000, 'https://production-cdn.pharmacity.io/digital/768x7…om/images/ecommerce/20240528064014-0-P28033_1.jpg', 900, 600, 300, N'TP001'),
-('SP010', N'Siro ho Annatop Pro giảm ho, giảm tiết đàm cho trẻ (Chai 120ml)', 75.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P17654.png', 1400, 900, 500, N'TP002'),
+('SP010', N'Siro ho Annatop Pro giảm ho, giảm tiết đàm cho trẻ (Chai 120ml)', 75.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P17654.png', 1400, 900, 500, N'TP009'),
 ('SP011', N'Thuốc xịt mũi Mucome trị sung huyết mũi, nghẹt mũi, sổ mũi, hắt hơi (chai 10ml)', 120.000, 'https://production-cdn.pharmacity.io/digital/768x7…_1.png?versionId=BdHAnOxdM.XOm3GvxHBdcd5GmxF8qgvC', 1200, 800, 400, N'TP002'),
 ('SP012', N'Viên uống Body Slim Premium hỗ trợ giảm cân (Hộp 30 viên)', 299.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P24856_1.jpg', 450, 150, 300, N'TP001'),
 ('SP013', N'Dung dịch vệ sinh phụ nữ Dạ Hương', 120.000, 'https://production-cdn.pharmacity.io/digital/1080x1080/plain/e-com/images/ecommerce/P04087_11.jpg', 600, 500, 100, N'TP004'),
@@ -225,14 +233,47 @@ VALUES
 ('SP041', N'Biovagen Welkids Multivitamin ADKE bổ sung vitamin A, D3, K2, E cho trẻ (Chai 10ml)', 385.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240930044533-1-P26082_1.jpg', 100, 50, 50, N'TP004'),
 ('SP042', N'Bột Charz giúp bù nước và chất điện giải hương cam (Hộp 30 gói)', 266.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P16544.png', 80, 40, 40, N'TP004'),
 ('SP043', N'Cốm Probiotics Lactomin Plus Novarex bổ sung vi khuẩn có ích, giúp cân bằng hệ vi sinh đường ruột (30 gói)', 187.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240906030301-0-P00280_1.jpg', 120, 30, 30, N'TP004'),
-('SP044', N'Trà Linh Chi Ladophar hỗ trợ tăng cường chức năng gan (Hộp 34g)', 84.800, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P26373_1.jpg', 150, 100, 100, N'TP001'),
-('SP045', N'Bột PROANTIOBIOPLUS hỗ trợ làm giảm các triệu chứng rối loạn tiêu hóa', 490.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P17599.png', 70, 25, 25, N'TP001'),
-('SP046', N'Bột hòa tan Infogos 3g IAP chứa chất xơ hỗ trợ chống táo bón (30 gói)', 120.000, 'https://cdn.nhathuoclongchau.com.vn/unsafe/375x0/filters:quality(90)/https://cms-prod.s3-sgn09.fptcloud.com/DSC_06443_52db564d3c.jpg', 50, 35, 35, N'TP001'),
-('SP047', N'Bột pha uống Enzymax Kids giúp bé tăng cường hấp thu dinh dưỡng (30 gói)', 1200.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P27310_1.jpg', 30, 10, 10, N'TP001'),
-('SP048', N'Nước uống NUCOS Collagen 7000mg & 300mg C hỗ trợ chống lão hóa, đẹp da (Hộp 10 chai x 30ml)', 1190.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/product/20241031102105-0-P28150_1.jpg', 40, 10, 10, N'TP004'),
+('SP044', N'Trà Linh Chi Ladophar hỗ trợ tăng cường chức năng gan (Hộp 34g)', 84.800, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P26373_1.jpg', 150, 100, 50, N'TP001'),
+('SP045', N'Bột PROANTIOBIOPLUS hỗ trợ làm giảm các triệu chứng rối loạn tiêu hóa', 490.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P17599.png', 70, 25, 45, N'TP001'),
+('SP046', N'Bột hòa tan Infogos 3g IAP chứa chất xơ hỗ trợ chống táo bón (30 gói)', 120.000, 'https://cdn.nhathuoclongchau.com.vn/unsafe/375x0/filters:quality(90)/https://cms-prod.s3-sgn09.fptcloud.com/DSC_06443_52db564d3c.jpg', 50, 15, 35, N'TP001'),
+('SP047', N'Bột pha uống Enzymax Kids giúp bé tăng cường hấp thu dinh dưỡng (30 gói)', 1200.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P27310_1.jpg', 120, 50, 70, N'TP001'),
+('SP048', N'Nước uống NUCOS Collagen 7000mg & 300mg C hỗ trợ chống lão hóa, đẹp da (Hộp 10 chai x 30ml)', 1190.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/product/20241031102105-0-P28150_1.jpg', 40, 10, 30, N'TP004'),
 ('SP049', N'Viên uống Faroson Glutamax 1000 giúp làm tăng độ đàn hồi cho da, giảm lão hóa da (30 Viên)', 1215.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P23631.png', 20, 10, 10, N'TP004'),
-('SP050', N'Viên uống Kolmar Condition Woman Giúp bổ sung collagen cho da (Hộp 90 viên)', 490.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240930044533-1-P17358_1.png', 60, 10, 10, N'TP004');
-
+('SP050', N'Viên uống Kolmar Condition Woman Giúp bổ sung collagen cho da (Hộp 90 viên)', 490.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240930044533-1-P17358_1.png', 60, 20, 40, N'TP004'),
+('SP051', N'Dung Dịch Rơ Miệng DENICOL 20% Hỗ Trợ Tình Trạng Sưng Lợi, Lỡ Miệng (15ml)', 20.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20241107092030-0-P00599_1.png', 60, 30, 30, N'TP010'),
+('SP052', N'Dầu Mát-Xa Và Dưỡng Ẩm JOHNSON BABY OIL (200ml)', 92.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240830061738-1-P00169_1.png', 80, 30, 50, N'TP010'),
+('SP053', N'Dầu gội trẻ em dạng sữa Cetaphil Baby Gentle Wash & Shampoo (200ml)', 172.000, 'https://production-cdn.pharmacity.io/digital/320x320/plain/e-com/images/ecommerce/P09428_3.jpg', 150, 70, 80, N'TP010'),
+('SP054', N'Kem dưỡng da cho da khô và nhạy cảm Aveeno Baby Soothing Relief Moisture Cream (227g)', 320.000 , 'https://production-cdn.pharmacity.io/digital/144x144/plain/e-com/images/ecommerce/20240630025001-1-P23164_1.jpg', 155, 25, 130, N'TP010'),
+('SP055', N'Khăn hạ sốt Dr Papie 0+ (Hộp 5 túi x 5 khăn)', 150.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20241107092037-0-P21345_1.png', 250, 50, 200, N'TP010'),
+('SP056', N'Bột pha tiêm Solu-Medrol 40mg trị viêm thấp khớp, hen suyễn, lupus ban đỏ hệ thống (1 lọ x 1ml)', 50.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240731062325-1-P04813_1.png', 250, 50, 200, N'TP008'),
+('SP057', N'Bột pha dung dịch uống Basocholine 500mg điều trị các rối loạn trí nhớ và hành vi (20 gói x 2g)', 150.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P15674_1n.jpg', 250, 50, 200, N'TP008'),
+('SP058', N'Bột pha uống Cefdinir 125mg S.Pharm kháng sinh điều trị nhiễm khuẩn (30 gói x 1,5g)', 363.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P26151_1.jpg', 300, 55, 245, N'TP008'),
+('SP059', N'Bột pha uống Efodyl Sac 250mg điều trị nhiễm khuẩn (20 gói x 3g)', 65.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P26148_1.jpg', 155, 55, 100, N'TP008'),
+('SP060', N'Bột hít phân liều Trelegy Ellipta GSK điều trị bệnh phổi tắc nghẽn mạn tính (30 liều hít)', 790.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/product/20240807083751-0-P27974_1.jpg', 130, 30, 100, N'TP008'),
+('SP061', N'Đường ăn kiêng MAISUGAR dành cho người ăn kiêng, người bệnh tiểu đường hộp (50 gói x 2g)', 55.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240830061738-1-P00169_1.png', 80, 30, 50, N'TP005'),
+('SP062', N'Trà LAVA dây thìa canh dùng cho người bệnh tiểu đường (5g x 30 túi‎)', 49.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P26370_1.jpg', 99, 29, 70, N'TP005'),
+('SP063', N'Viên uống Boni Diabet hỗ trợ phòng ngừa biến chứng tiểu đường (Hộp 60 viên)', 405.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P24936_1.jpg', 80, 30, 50, N'TP005'),
+('SP064', N'Sữa bột dinh dưỡng GLUVITA GOLD cung cấp dinh dưỡng cho người bệnh tiểu đường (900g)', 496.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20241107092038-0-P19017_1.png', 100, 30, 70, N'TP005'),
+('SP065', N'Hỗn dịch tiêm Mixtard 30 100IU/ml insulin trị đái tháo đường 0', 250.000, 'https://production-cdn.pharmacity.io/digital/320x320/plain/e-com/images/ecommerce/P04237_1.jpg', 80, 27, 53, N'TP005'),
+('SP066', N'Viên nén bao đường Cynaphytol giải độc gan, thông mật, lợi tiểu, nhuận tràng (10 vỉ x 10 viên)', 4.500, 'https://production-cdn.pharmacity.io/digital/144x144/plain/e-com/images/ecommerce/20241107092038-0-P15285_1.png', 300, 22, 178, N'TP005'),
+('SP067', N'Viên uống Blackmores Cholesterol Health hỗ trợ giảm cholesterol (Hộp 60 viên)',548.100 , 'https://production-cdn.pharmacity.io/digital/144x144/plain/e-com/images/product/20240716103455-0-P24909.png', 250, 30, 220, N'TP006'),
+('SP068', N'Viên uống Blackmores CoQ10 150mg hỗ trợ bảo vệ tim mạch (Chai 30 viên)', 436.800 , 'https://production-cdn.pharmacity.io/digital/144x144/plain/e-com/images/product/20240716103701-0-P14461_8.png', 150, 30, 120, N'TP006'),
+('SP069', N'Viên uống Botania BoniVein hỗ trợ tăng sức bền của tĩnh mạch (30 viên)', 250.000 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20241107092037-0-P11969_1.png', 250, 130, 120, N'TP006'),
+('SP070', N'Viên uống Costar Garlic Oil tinh dầu tỏi hỗ trợ tăng cường đề kháng (Lọ 60 viên)',190.900 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P24263.png', 100, 50, 50, N'TP006'),
+('SP071', N'Viên uống DHG NattoEnzym 1000 DHG hỗ trợ giảm nguy cơ tắc nghẽn mạch máu (Chai 60 viên)', 360.000 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P18477_1.jpg', 50, 12, 38, N'TP006'),
+('SP072', N'Viên uống Ecogreen Faz hỗ trợ giảm mỡ máu (Hộp 30 viên)', 300.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240510100134-0-P24934_1.jpg', 250, 38, 212, N'TP006'),
+('SP073', N'Viên bổ sung khoáng chất Solgar Calcium Magnesium Plus Zinc giúp xương chắc khỏe (Chai 100 viên)', 648.000 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P18053.png', 300, 50, 250, N'TP007'),
+('SP074', N'Viên khớp Tâm Bình hỗ trợ giảm thoái hóa khớp, viêm khớp (Hộp 60 viên)', 96.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P00809.png', 100, 40, 60, N'TP007'),
+('SP075', N'Viên sủi KUDOS Bone bổ sung Calcium D3 K2 hỗ trợ chắc khỏe xương (Tuýp 20 viên)',90.400 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/product/20240819033140-0-P25907.png', 150, 40, 110, N'TP007'),
+('SP076', N'Viên sủi Pharmacity Calcium + Vitamin D3 hỗ trợ xương chắc khỏe (Tuýp 20 viên)', 92.000 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P25837.png', 250, 32, 218, N'TP007'),
+('SP077', N'Viên uống JEX Ecogreen hỗ trợ giảm đau trong thoái hoá khớp, viêm khớp ( Hộp 30 viên)', 350.000, 'https://production-cdn.pharmacity.io/digital/320x320/plain/e-com/images/ecommerce/P22686.png', 500, 250, 250, N'TP007'),
+('SP078', N'Viên uống ALPHA Green Sun Carlotta hỗ trợ xương khớp (Hộp 2 vỉ x 15 viên)', 360.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P26033_1.jpg', 300, 180, 120, N'TP007'),
+('SP079', N'Dung Dịch Rơ Miệng DENICOL 20% Hỗ Trợ Tình Trạng Sưng Lợi, Lỡ Miệng (15ml)', 20.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20241107092030-0-P00599_1.png', 100, 30, 70, N'TP009'),
+('SP080', N'Gạc rơ lưỡi trẻ em Pharmacity (5 cái/hộp)', 5.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P11718.png', 150, 120, 30, N'TP009'),
+('SP081', N'Kem bôi dịu da cho bé dịu mẩn ngứa, ngừa thâm sẹo Kutieskin (30g)', 96.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P21378.png', 250, 50, 200, N'TP009'),
+('SP082', N'Khăn hạ sốt Dr Papie 0+ (Hộp 5 túi x 5 khăn)', 150.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20241107092037-0-P21345_1.png', 300, 180, 120, N'TP009'),
+('SP083', N'Khăn ướt BOBBY không mùi cho bé (Gói 100 miếng)', 47.400 , 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P13804.png', 180, 20, 160, N'TP009'),
+('SP084', N'Khăn ướt dịu nhẹ Pharmacity Love Babe không mùi cho bé (80 tờ/gói)', 360.000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/P14567.png', 300, 180, 120, N'TP009');
 
 
 
@@ -308,6 +349,10 @@ VALUES
 ('DH028', 'SP028', 'PT003', N'Thanh toán qua ví điện tử', '2024-12-07', 250.00),
 ('DH029', 'SP029', 'PT004', N'Thanh toán khi nhận hàng', '2024-12-08', 100.00),
 ('DH030', 'SP030', 'PT005', N'Thanh toán qua thẻ', '2024-12-09', 700.00);
+
+
+SELECT id FROM DonHang;
+
 
 INSERT INTO ChiTietDonHang (idDonHang, idSanPham, soLuong, thanhTien)
 VALUES
