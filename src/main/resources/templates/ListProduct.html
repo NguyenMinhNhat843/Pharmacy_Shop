@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/list_product.css">
+    <link rel="stylesheet" href="../static/index.css">
+</head>
+<body>
+<!-- Header section -->
+<div class="container-fluid bg-body-tertiary">
+    <nav class="container d-flex py-2 align-items-center">
+        <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
+            <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
+        </a>
+        <form class="d-flex flex-grow-1">
+            <input type="text" class="form-control me-2" placeholder="Search..."/>
+            <input class="btn btn-outline-success" type="submit" value="Search"/>
+        </form>
+        <div class="d-flex w-[20]">
+            <a class="nav-link ps-3" href="./Login.html">Đăng nhập</a>
+            <div class="d-flex justify-content-center align-items-center ps-3">
+                <i class="fa-solid fa-cart-shopping pe-1"></i>
+                <a class="nav-link" href="./Cart.html">Giỏ hàng</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Danh muc section -->
+<div class="w-100 py-3 bg-success text-white">
+    <div class="container d-flex ">
+        <a href="#" class="nav-link pe-3">Thuốc xương khớp</a>
+        <a href="#" class="nav-link pe-3">Thuốc tim mạch</a>
+        <a href="#" class="nav-link pe-3">Thuốc Cho bé</a>
+        <a href="#" class="nav-link pe-3">Thực phẩm bổ sung</a>
+        <a href="#" class="nav-link pe-3">Dụng cụ y tế</a>
+    </div>
+</div>
+
+<!-- Body        -->
+<div class="container">
+    <div class="breadcrumb">
+        <a href="#">Trang chủ</a> &gt; <span>Thực phẩm chức năng</span>
+    </div>
+    <h2>Thực phẩm chức năng</h2>
+    <div class="categories">
+        <a href="#" class="grid_link"> <img
+                src="../images/List_Product/ForChildren.png"
+                alt="Thực phẩm chức năng 1">
+            <p>Dành cho trẻ em</p>
+        </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/BeautiCare.jpg"
+            alt="Thực phẩm chức năng 2">
+        <p>Chăm sóc sắc đẹp</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/HeartCare.jpg"
+            alt="Thực phẩm chức năng 3">
+        <p>Chăm sóc tim mạch</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/RespiratoryGroup.jpg"
+            alt="Thực phẩm chức năng 4">
+        <p>Nhóm hô hấp</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/TaiMuiHong.jpg"
+            alt="Thực phẩm chức năng 5">
+        <p>Nhóm Tai/Mũi/Họng</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/vitami.jpg" alt="Thực phẩm chức năng 6">
+        <p>Vitamin và Khoáng Chất</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/SupportsSexPhysiology.jpg"
+            alt="Thực phẩm chức năng 7">
+        <p>Hỗ trợ sinh lý nam nữ</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/LiverCare.jpg"
+            alt="Thực phẩm chức năng 8">
+        <p>Chăm sóc gan</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/NeurologicalCare.jpg"
+            alt="Thực phẩm chức năng 9">
+        <p>Nhóm thần kinh</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/loseweight.jpg"
+            alt="Thực phẩm chức năng 10">
+        <p>Giảm cân</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/BloodSugar.jpg"
+            alt="Thực phẩm chức năng 11">
+        <p>Nhóm đường huyết</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/BoneJointCare.jpg"
+            alt="Thực phẩm chức năng 12">
+        <p>Nhóm cơ xương khớp</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/StomachCare.jpg"
+            alt="Thực phẩm chức năng 13">
+        <p>Nhóm dạ dày</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/KidneyCare.jpg"
+            alt="Thực phẩm chức năng 14">
+        <p>Nhóm thận tiết niệu</p>
+    </a> <a href="#" class="grid_link"> <img
+            src="../images/List_Product/WomenCare.jpg"
+            alt="Thực phẩm chức năng 15">
+        <p>Dành cho phụ nữ mang thai</p>
+    </a>
+    </div>
+    <div class="main_section">
+        <div>
+            <aside>
+                <aside class="filter-sidebar">
+                    <div class="header-sort">
+                        <h2>Bộ lọc</h2>
+                        <a href="#" class="clear-filter">Thiết lập lại</a>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="rentPrice">
+                            <label>Khoảng giá</label>
+                        </div>
+                        <input type="number"
+                               placeholder="Tối thiểu" class="price-input"> <input
+                            type="number" placeholder="Tối đa" class="price-input">
+                        <button class="apply-btn">Áp dụng</button>
+                    </div>
+                    <div class="filter-section">
+                        <div class="checkbox-group">
+                            <label><input type="checkbox"> Dưới 100.000 đ</label> <label><input
+                                type="checkbox"> 100.000 đ - 300.000 đ</label> <label><input
+                                type="checkbox"> 300.000 đ - 500.000 đ</label> <label><input
+                                type="checkbox"> Trên 500.000 d</label>
+                        </div>
+                    </div>
+                    <!-- Brand Filter -->
+                    <div class="filter-section">
+                        <label>Thương hiệu</label> <input type="text"
+                                                          placeholder="Nhập tên thương hiệu" class="brand-input">
+                        <div class="checkbox-group brand-list">
+                            <label><input type="checkbox"> 6 Enzymes IP</label> <label><input
+                                type="checkbox"> 82X</label> <label><input
+                                type="checkbox"> Aan Pharma</label> <label><input
+                                type="checkbox"> Abbott</label> <label><input
+                                type="checkbox"> Abipha</label> <label><input
+                                type="checkbox" class="hidden-brand"> Brand X</label> <label><input
+                                type="checkbox" class="hidden-brand"> Brand Y</label> <label><input
+                                type="checkbox" class="hidden-brand"> Brand Z</label> <label><input
+                                type="checkbox" class="hidden-brand"> Brand A</label> <label><input
+                                type="checkbox" class="hidden-brand"> Brand B</label> <label><input
+                                type="checkbox" class="hidden-brand"> Brand C</label>
+                        </div>
+                        <div class="viewmore-filter">
+                            <a href="#" class="show-more">Xem thêm</a>
+                        </div>
+                    </div>
+                </aside>
+        </div>
+        <div class="product_list_main">
+            <main class="product-grid">
+                <div class="sort-options">
+                    <label class="labelSort">Sắp xếp theo:</label>
+                    <button class="sort-btn">Giá giảm dần</button>
+                    <button class="sort-btn">Giá tăng dần</button>
+                </div>
+                <div class="products">
+                    <a href="#" class="product-card"> <img
+                            src="../images/Product/botChart.jpg" alt="Product Image">
+                        <h3 class="product-title">Bột Charz giúp bù nước và chất
+                            điện giải hương cam (Hộp 30 gói)</h3>
+                        <del class="price"></del>
+                        <p class="price">183.000 đ/Hộp</p>
+                        <div class="span-text">
+                            <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>38.9k</span>
+                            <span>|</span> <span>Đã bán 6.7k</span>
+                        </div>
+                        <button class="buy-btn">Chọn sản phẩm</button>
+                    </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/BotProanti.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột PROANTIOBIOPLUS hỗ trợ làm
+                        giảm các triệu chứng rối loạn tiêu hóa</h3>
+                    <del class="price">
+                        <span class="old-price">490.000 đ</span>
+                    </del>
+                    <p class="price">343.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>32.7k</span>
+                        <span>|</span> <span>Đã bán 7.4k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/BotHoaTanIsogos.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột hòa tan Infogos bổ sung chất
+                        xơ, hỗ trợ giảm nguy cơ táo bón (Hộp 30 gói x 3g)</h3>
+                    <del
+                            class="price"></del>
+                    <p class="price">117.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>37.6k</span>
+                        <span>|</span> <span>Đã bán 7.4k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/enzymaxKid.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột pha uống Enzymax Kids giúp bé
+                        tăng cường hấp thu dinh dưỡng (30 gói)</h3>
+                    <del class="price">
+
+                    </del>
+                    <p class="price">360.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>32.5k</span>
+                        <span>|</span> <span>Đã bán 6.0k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/lactomin.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột pha uống Lactomin Plus bổ sung
+                        vi khuẩn có ích & hỗ trợ phòng ngừa rối loạn tiêu hóa (30
+                        gói/hộp)</h3>
+                    <del class="price"></del>
+                    <p class="price">174.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>18.6k</span>
+                        <span>|</span> <span>Đã bán 2.1k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/vuongnaokhang.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột pha uống giúp hoạt huyết, tăng
+                        cường vi chất não cho trẻ Vương Não Khang (Hộp 30 gói)</h3>
+                    <del
+                            class="price"></del>
+                    <p class="price">215.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>38.4k</span>
+                        <span>|</span> <span>Đã bán 5.1k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/edoz.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột sủi bọt Edoz DHG hỗ trợ giảm
+                        triệu chứng khó tiêu, đầy hơi (Hộp 24 gói x 2g)</h3>
+                    <del
+                            class="price"></del>
+                    <p class="price">30.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>33.4k</span>
+                        <span>|</span> <span>Đã bán 6.2k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/probio.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột uống Kolmar Condition Probio
+                        Cumin Hỗ trợ tiêu hóa (Hộp 30 gói)</h3>
+                    <del class="price">
+                        <span class="old-price">240.000 đ</span>
+                    </del>
+                    <p class="price">204.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>37.7k</span>
+                        <span>|</span> <span>Đã bán 7.2k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/ferrolip.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột uống FERROLIP bổ sung sắt (Hộp
+                        20 gói)</h3>
+                    <del class="price"></del>
+                    <p class="price">360.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>32.7k</span>
+                        <span>|</span> <span>Đã bán 7.4k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a> <a href="#" class="product-card"> <img
+                        src="../images/Product/healthaid.jpg" alt="Product Image">
+                    <h3 class="product-title">Bột uống Health Aid Bifina R bổ
+                        sung men vi sinh giảm rối loạn tiêu hóa, đại tràng (60 gói)</h3>
+                    <del
+                            class="price"></del>
+                    <p class="price">1.000.000 đ/Hộp</p>
+                    <div class="span-text">
+                        <span class="heart-icon"><i class="fas fa-heart"></i></span> <span>38.1k</span>
+                        <span>|</span> <span>Đã bán 5.1k</span>
+                    </div>
+                    <button class="buy-btn">Chọn sản phẩm</button>
+                </a>
+                </div>
+                <div class="load-more">
+                    <button class="view-more-btn">Xem thêm</button>
+                </div>
+            </main>
+        </div>
+    </div>
+</div>
+<!--    Footer    -->
+<div class="bg-success p-5 d-flex justify-content-center">
+    <div class="row gap-2 container text-white">
+        <div class="col">
+            <img src="../image/10.png" alt="logo" class="pb-2"/>
+            <p>123 Gò Vấp, đường Nguyễn Minh Nhật</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">0123456789</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">abc@gmail.com</a></p>
+        </div>
+        <div class="col">
+            <p class="fw-bold">Liên kết nhanh</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Home</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">About</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Services</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Carees</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Contact</a></p>
+        </div>
+        <div class="col">
+            <p class="fw-bold">Services</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Medical</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Operation</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Laboratary</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">ICU</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Patient Ward</a></p>
+        </div>
+        <div class="col">
+            <p class="fw-bold">Social Link</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">FaceBook</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Instagram</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Twitter</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">youtube</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Pinterest</a></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
