@@ -25,14 +25,14 @@ a {
 }
 
 .banner {
-    background-image: url('./images_product/vuongnaokhang.jpg');
+    background-image: url('/images_other/banner_main.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 400px;
 }
 
 .banner2 {
-    background-image: url('./images_product/vuongnaokhang.jpg');
+    background-image: url('/images_other/banner_1.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
     width: 30%;
@@ -47,7 +47,7 @@ a {
 
 /* banner best seller */
 .banner_best_seller {
-    background-image: url('./images_product/vuongnaokhang.jpg');
+    background-image: url('/images_other/banner_1.png');
     background-repeat: no-repeat;
     background-size: cover;
 }

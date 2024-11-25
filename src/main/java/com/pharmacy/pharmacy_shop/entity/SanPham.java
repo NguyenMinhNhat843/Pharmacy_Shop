@@ -4,13 +4,13 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
-@Entity
-@Table(name = "SanPham")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Entity
+@Table(name = "SanPham")
 public class SanPham {
     @Id
     private String id;

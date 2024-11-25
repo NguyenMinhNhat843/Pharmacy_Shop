@@ -10,8 +10,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+
 public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
 
     @Query(value = "select t.* from SanPham as t where t.Type = :type", nativeQuery = true)
     List<SanPham> getSanPhamByType(String type);
+    
+    // Lấy sản phẩm bán chạy
+    @Query("SELECT sp FROM SanPham sp ORDER BY sp.soLuongDaBan DESC")
+    List<SanPham> findAllOrderBySoLuongDaBanDesc();
 }

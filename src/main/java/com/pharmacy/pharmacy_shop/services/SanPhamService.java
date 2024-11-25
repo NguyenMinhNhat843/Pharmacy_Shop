@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 public interface SanPhamService {
     public List<SanPham> getAllSanPham();
+    public List<SanPham> getSanPhamBanChay();
     public SanPham getSanPhamById(int id);
     public void addSanPham(SanPham sanPham);
     public void updateSanPham(SanPham sanPham);
