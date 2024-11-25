@@ -20,6 +20,11 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
+    public List<SanPham> getSanPhamBanChay() {
+        return sanPhamRepo.findAllOrderBySoLuongDaBanDesc();
+    }
+
+    @Override
     public SanPham getSanPhamById(int id) {
         return null;
     }

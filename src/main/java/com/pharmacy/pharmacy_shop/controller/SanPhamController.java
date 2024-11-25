@@ -19,9 +19,9 @@ public class SanPhamController {
     @GetMapping("")
     public String loadSanPham(Model model) {
         System.out.println("SanPhamController");
-        List<SanPham> sanphams = sanPhamService.getAllSanPham().subList(0, 4);
+        List<SanPham> sanphams = sanPhamService.getSanPhamBanChay().subList(0, 4);
         System.out.println(sanphams);
         model.addAttribute("sanphams", sanphams);
-        return "test";
+        return "index";
     }
 }
