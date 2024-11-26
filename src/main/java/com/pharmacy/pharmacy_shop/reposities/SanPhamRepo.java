@@ -12,7 +12,7 @@ import java.util.List;
 
 @Repository
 
-public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
+public interface SanPhamRepo extends JpaRepository<SanPham, String> {
 
     @Query(value = "select t.* from SanPham as t where t.Type = :type", nativeQuery = true)
     List<SanPham> getSanPhamByType(String type);
@@ -24,6 +24,9 @@ public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
     // Lấy sản phẩm theo ten
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham LIKE %:tenSanPham%")
     List<SanPham> findAllByTenSanPham(String tenSanPham);
+
+    // Lấy sản phẩm theo số lượng
+    // Dành cho mục đích phân trang
 
     // Lấy sản phẩm theo khoảng giá được chọn
     @Query("SELECT sp FROM SanPham sp WHERE "
@@ -38,4 +41,6 @@ public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
             int giaMin,
             int giaMax,
              String priceRange);
+
+    List<SanPham> id(String id);
 }

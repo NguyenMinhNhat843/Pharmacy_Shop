@@ -5,9 +5,13 @@ import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.reposities.SanPhamRepo;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SanPhamImpl implements SanPhamService {
@@ -25,9 +29,22 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public SanPham getSanPhamById(int id) {
-        return null;
+    public SanPham getSanPhamById(String id) {
+        Optional<SanPham> optionalSanPham = sanPhamRepo.findById(id);
+        if (optionalSanPham.isPresent()) {
+            return optionalSanPham.get();
+        } else {
+            return null;
+        }
     }
+
+    // Phân trang sản phẩm
+    @Override
+    public Page<SanPham> getSanPhamPage(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize); // Lưu ý là trang bắt đầu từ 0
+        return sanPhamRepo.findAll(pageable); // Dùng repository để lấy phân trang
+    }
+
 
     @Override
     public void addSanPham(SanPham sanPham) {
