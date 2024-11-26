@@ -27,20 +27,4 @@ public class SanPhamController {
         return "index";
     }
 
-    @GetMapping("/Detail_Product")
-    public String getProductDetail(@RequestParam("id") String id, Model model) {
-        // Lấy sản phẩm từ Service
-        SanPham sanPham = sanPhamService.getSanPhamById(id);
-
-        // Kiểm tra log server
-        System.out.println("Product ID: " + id);
-        System.out.println("Product: " + sanPham);
-
-        // Thêm sản phẩm vào model
-        model.addAttribute("sanPham", sanPham);
-
-        // Điều hướng đến `Detail_Product.html`
-        return "Detail_Product";
-    }
-
 }

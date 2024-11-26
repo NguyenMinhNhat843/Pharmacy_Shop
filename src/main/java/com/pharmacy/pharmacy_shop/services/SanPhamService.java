@@ -15,4 +15,6 @@ public interface SanPhamService {
     public void addSanPham(SanPham sanPham);
     public void updateSanPham(SanPham sanPham);
     public void deleteSanPham(SanPham sanPham);
+    public List<SanPham> findSimilarProducts(String type, String excludeId);
+//    public List<SanPham> getSameBrandProducts(String brand, String currentProductId);
 }

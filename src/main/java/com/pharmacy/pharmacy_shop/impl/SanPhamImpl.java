@@ -45,4 +45,14 @@ public class SanPhamImpl implements SanPhamService {
     public void deleteSanPham(SanPham sanPham) {
 
     }
+
+    @Override
+    public List<SanPham> findSimilarProducts(String type, String excludeId) {
+        return sanPhamRepo.findByTypeIdAndIdNot(type, excludeId);
+    }
+
+//    @Override
+//    public List<SanPham> getSameBrandProducts(String brand, String currentProductId) {
+//        return sanPhamRepo.findByBrandAndIdNot(brand, currentProductId);
+//    }
 }
