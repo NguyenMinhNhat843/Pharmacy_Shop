@@ -71,9 +71,21 @@
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
                 <div class="d-flex align-items-center justify-content-center">
+                    <!-- Khu vực tên và avatar -->
                     <span class="pe-3">Nguyen Minh Nhat</span>
                     <div class="" style="height: 40px">
                         <img class="w-100 h-100 rounded-circle" src="../static/images_avatar/avatar_1.png" th:src="@{/images_avatar/avatar_1.png}" alt="avatar"/>
+                    </div>
+
+                    <!-- Submenu - Dropdown -->
+                    <div class="dropdown">
+                        <button class="btn btn-link dropdown-toggle" type="button" id="userDropdownButton" data-bs-toggle="dropdown" aria-expanded="false" style="border: none; background: none;">
+                            <span class="d-none">User Menu</span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdownButton">
+                            <li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+                            <li><a class="dropdown-item" href="/logout" th:ref="@{/pharmacy/login}">Đăng xuất</a></li>
+                        </ul>
                     </div>
                 </div>
             </form>
