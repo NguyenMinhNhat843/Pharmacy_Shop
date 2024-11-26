@@ -1,3 +1,4 @@
+
 package com.pharmacy.pharmacy_shop.services;
 
 
@@ -19,8 +20,7 @@ public interface SanPhamService {
     public List<SanPham> getSanPhamByType(String type);
     public List<SanPham> getSanPhamByTen(String tenSanPham,String type);
 
-    public List<SanPham> filterProducts(String type,Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder);
-
+    public List<SanPham> filterProducts(String tenSanPham,String type,Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder);
 
 
 

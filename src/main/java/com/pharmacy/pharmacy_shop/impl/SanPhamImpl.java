@@ -1,3 +1,4 @@
+
 package com.pharmacy.pharmacy_shop.impl;
 
 import com.pharmacy.pharmacy_shop.entity.Account;
@@ -7,7 +8,10 @@ import com.pharmacy.pharmacy_shop.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SanPhamImpl implements SanPhamService {
@@ -55,14 +59,67 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public List<SanPham> filterProducts(String type, Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder) {
+    public List<SanPham> filterProducts(String tenSanPham,String type, Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder) {
 
-        // Gán giá trị mặc định nếu cần
-        if (minPrice == null) minPrice = 0;
-        if (maxPrice == null) maxPrice = Integer.MAX_VALUE;
+        List<SanPham> filteredProducts = getSanPhamByType(type); // Lấy sản phẩm theo loại
 
-        return sanPhamRepo.findAllByGiaBanBetweenAndPriceRange(type, minPrice, maxPrice,
-                priceRange != null && !priceRange.isEmpty() ? priceRange.get(0) : null, sortOrder);
+        // Lọc theo từ khóa tìm kiếm (nếu có)
+        if (tenSanPham != null && !tenSanPham.isEmpty()) {
+            filteredProducts = filteredProducts.stream()
+                    .filter(p -> p.getTenSanPham().toLowerCase().contains(tenSanPham.toLowerCase()))
+                    .collect(Collectors.toList());
+        }
+
+        // Lọc theo khoảng giá
+        filteredProducts = filteredProducts.stream()
+                .filter(p -> p.getGiaBan() >= minPrice && p.getGiaBan() <= maxPrice)
+                .collect(Collectors.toList());
+
+        // Lọc theo priceRange
+        // Lọc theo các khoảng giá đã chọn trong priceRange
+        if (priceRange != null && !priceRange.isEmpty()) {
+            for (String range : priceRange) {
+                if (range == null) {
+                    continue;  // Bỏ qua phần tử null nếu có
+                }
+                switch (range) {
+                    case "under100000":
+                        filteredProducts = filteredProducts.stream()
+                                .filter(p -> p.getGiaBan() < 100)
+                                .collect(Collectors.toList());
+                        break;
+                    case "100000-300000":
+                        filteredProducts = filteredProducts.stream()
+                                .filter(p -> p.getGiaBan() >= 100 && p.getGiaBan() <= 300)
+                                .collect(Collectors.toList());
+                        break;
+                    case "300000-500000":
+                        filteredProducts = filteredProducts.stream()
+                                .filter(p -> p.getGiaBan() >= 300 && p.getGiaBan() <= 500)
+                                .collect(Collectors.toList());
+                        break;
+                    case "over500000":
+                        filteredProducts = filteredProducts.stream()
+                                .filter(p -> p.getGiaBan() > 500)
+                                .collect(Collectors.toList());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
+        // Sắp xếp theo giá nếu sortOrder được cung cấp
+        if ("asc".equals(sortOrder)) {
+            filteredProducts.sort(Comparator.comparing(SanPham::getGiaBan));
+        } else if ("desc".equals(sortOrder)) {
+            filteredProducts.sort(Comparator.comparing(SanPham::getGiaBan).reversed());
+        }
+
+        return filteredProducts;
     }
+
+
 
 }
