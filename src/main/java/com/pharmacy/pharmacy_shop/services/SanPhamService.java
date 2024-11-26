@@ -15,9 +15,10 @@ import java.util.List;
 @Service
 public interface SanPhamService {
     public List<SanPham> getAllSanPham();
+    public long getSoLuongSanPham();
     public List<SanPham> getSanPhamBanChay();
     public SanPham getSanPhamById(String id);
-    public Page<SanPham> getSanPhamPage(int pageNumber, int pageSize);
+    public List<SanPham> getSanPhamTheoTrang(int pageNumber, int pageSize);
     public void addSanPham(SanPham sanPham);
     public void updateSanPham(SanPham sanPham);
     public void deleteSanPham(String id);

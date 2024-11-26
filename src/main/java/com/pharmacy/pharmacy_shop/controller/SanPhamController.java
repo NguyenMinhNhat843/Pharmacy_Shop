@@ -22,7 +22,7 @@ public class SanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
 
-    @GetMapping("/quanly/sanpham")
+    @GetMapping("/quanly/sanpham/search")
     public String loadSanPham(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<SanPham> sanphams;
         SanPham sanpham = new SanPham();
@@ -38,19 +38,19 @@ public class SanPhamController {
         }
 
         model.addAttribute("sanphams", sanphams);
-        return "Manager"; // Trang quản lý sản phẩm
+        return "Manager";
     }
 
-    @GetMapping("/quanly/sanpham/list")
-    public String loadSanPhamPage(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        int pageSize = 10; // Mỗi trang hiển thị 10 sản phẩm
-        Page<SanPham> sanPhamPage = sanPhamService.getSanPhamPage(page, pageSize);
+    @GetMapping("quanly/sanpham/list")
+    public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        int pageSize = 10;
+        List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);
 
-        model.addAttribute("sanphams", sanPhamPage.getContent()); // Danh sách sản phẩm của trang hiện tại
+        long totalPage = sanPhamService.getSoLuongSanPham() / pageSize + 1;
+
+        model.addAttribute("sanphams", sanphams);
         model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", sanPhamPage.getTotalPages());
-        model.addAttribute("totalItems", sanPhamPage.getTotalElements());
-
+        model.addAttribute("totalPages", totalPage);
         return "Manager";
     }
 

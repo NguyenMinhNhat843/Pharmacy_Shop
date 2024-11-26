@@ -25,8 +25,9 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
     List<SanPham> findAllByTenSanPham(String type,String tenSanPham);
 
 
-    // Lấy sản phẩm theo số lượng
-    // Dành cho mục đích phân trang
+    // Phân trang sản phẩm
+    @Query(value = "select * from SanPham order by id offset :start_row rows fetch next :page_size rows only", nativeQuery = true)
+    public List<SanPham> findSanPhamTheoTrang(int start_row, int page_size);
 
     // Lấy sản phẩm theo khoảng giá được chọn
     @Query(value = "SELECT * FROM SanPham sp WHERE "

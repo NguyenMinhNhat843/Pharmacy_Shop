@@ -62,16 +62,18 @@
 
         <!-- Main Content -->
         <div class="main-content" style="flex: 1">
-            <!-- Header -->
-            <form action="/pharmacy/quanly/sanpham" method="GET" class="pb-3 d-flex align-items-center justify-content-between">
-                <div class="input-group mb-3 w-50">
+            <!-- Start: ==== Header ==== -->
+            <div class="pb-3 d-flex align-items-center justify-content-between">
+                <!-- Search San pham -->
+                <form action="/pharmacy/quanly/sanpham/search" method="GET" id="searchForm" class="input-group mb-3 w-50">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <i class="fa-solid fa-house"></i>
-                    <input type="text" name="keyword" placeholder="search by id..." class="form-control p-2" aria-label="Text input with checkbox">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
+                    <input type="text" name="keyword" id="keyword" placeholder="search by id..." class="form-control p-2" aria-label="Text input with checkbox">
+                    <button type="submit" id="btn_submit_searchForm" class="btn btn-primary">Search</button>
+                </form>
+
+                <!-- Khu vực tên và avatar -->
                 <div class="d-flex align-items-center justify-content-center">
-                    <!-- Khu vực tên và avatar -->
                     <span class="pe-3">Nguyen Minh Nhat</span>
                     <div class="" style="height: 40px">
                         <img class="w-100 h-100 rounded-circle" src="../static/images_avatar/avatar_1.png" th:src="@{/images_avatar/avatar_1.png}" alt="avatar"/>
@@ -88,7 +90,8 @@
                         </ul>
                     </div>
                 </div>
-            </form>
+            </div>
+
 
             <!-- Nút "Tạo mới sản phẩm" -->
             <div class="d-flex justify-content-between align-items-center mb-4">
@@ -179,7 +182,7 @@
                 <!-- Table -->
                 <div class="card">
                     <div class="card-body">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="productTable">
                             <thead>
                             <tr>
                                 <th>
@@ -196,7 +199,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="sanpham: ${sanphams}">
+                            <tr th:each="sanpham: ${sanphams}" style="cursor: pointer">
                                 <td>
                                     <input class="productCheckbox" style="width: 20px; height: 20px" type="checkbox"
                                            th:value="${sanpham.id}"
@@ -244,6 +247,21 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Search Form Submit With AJAX -->
+    <script>
+        document.getElementById("btn_submit_searchForm").addEventListener("click", function() {
+            var keyword = document.getElementById("keyword").value;
+            var currentPage = 1; // Chỉnh sửa để hỗ trợ phân trang
+
+            // Gửi yêu cầu AJAX
+            fetch(`/pharmacy/quanly/sanpham/list?keyword=${keyword}&page=${currentPage}`)
+                .then(response => response.text())
+                .then(data => {
+                    // Cập nhật lại nội dung của bảng và phân trang
+                    document.getElementById("productTable").innerHTML = data;
+                });
+        });
+    </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const selectAllCheckbox = document.getElementById("selectAll");

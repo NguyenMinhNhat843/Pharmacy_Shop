@@ -24,6 +24,12 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
+    public long getSoLuongSanPham() {
+        long count  = sanPhamRepo.count();
+        return count;
+    }
+
+    @Override
     public List<SanPham> getSanPhamBanChay() {
         return sanPhamRepo.findAllOrderBySoLuongDaBanDesc();
     }
@@ -38,11 +44,11 @@ public class SanPhamImpl implements SanPhamService {
         }
     }
 
-    // Phân trang sản phẩm
     @Override
-    public Page<SanPham> getSanPhamPage(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber - 1, pageSize); // Lưu ý là trang bắt đầu từ 0
-        return sanPhamRepo.findAll(pageable); // Dùng repository để lấy phân trang
+    public List<SanPham> getSanPhamTheoTrang(int pageNumber, int pageSize) {
+        int start_row = (pageNumber - 1) * pageSize;
+        List<SanPham> sanPhams = sanPhamRepo.findSanPhamTheoTrang(start_row, pageSize);
+        return sanPhams;
     }
 
 
