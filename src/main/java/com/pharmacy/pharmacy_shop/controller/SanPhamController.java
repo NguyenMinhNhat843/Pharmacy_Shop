@@ -31,35 +31,44 @@ public class SanPhamController {
     public String getProductsByType(@RequestParam("type") String typeId, Model model) {
         List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
         model.addAttribute("products", products);
+        model.addAttribute("selectedType", typeId);
         return "ListProduct";
     }
 
     @GetMapping("/type/search")
-    public String searchProduct(@RequestParam("keyword") String search, Model model) {
-        List<SanPham> products = sanPhamService.getSanPhamByTen(search);
+    public String searchProduct(@RequestParam("type") String typeId,@RequestParam("keyword") String search,  Model model) {
+        List<SanPham> products = sanPhamService.getSanPhamByTen(typeId,search);
         model.addAttribute("products", products);
+        model.addAttribute("search", search);
+        model.addAttribute("selectedType", typeId);
         return "ListProduct";
     }
 
     @GetMapping("/type/filter")
-    public String filterProducts(@RequestParam(value = "giaMin", required = false) Integer  giaMin,
+    public String filterProducts(@RequestParam("type") String typeId,
+                                 @RequestParam(value = "giaMin", required = false) Integer  giaMin,
                                  @RequestParam(value = "giaMax", required = false) Integer  giaMax,
-                                 @RequestParam(value = "priceRange", required = false) String priceRange,
+                                 @RequestParam(value = "priceRange", required = false) String priceRange
+                               ,
                                  Model model) {
 
-
+        System.out.println("Type ID: " + typeId);
+        System.out.println("Gia Min: " + giaMin);
+        System.out.println("Gia Max: " + giaMax);
+        System.out.println("Price Range: " + priceRange);
         // Sử dụng giá trị mặc định nếu giaMin hoặc giaMax là null
         // Giá trị mặc định dùng cho xử lý logic
         int filterGiaMin = (giaMin != null) ? giaMin : 0;
         int filterGiaMax = (giaMax != null) ? giaMax : 10000000;
         // Sử dụng giá trị mặc định nếu minPrice hoặc maxPrice là null
 
-        List<SanPham> filteredProducts = sanPhamService.filterProducts(filterGiaMin , filterGiaMax  ,  Collections.singletonList(priceRange));
+        List<SanPham> filteredProducts = sanPhamService.filterProducts(typeId,filterGiaMin, filterGiaMax, Collections.singletonList(priceRange));
         // Giữ lại giá trị của các filter đã chọn
         model.addAttribute("products", filteredProducts);
         model.addAttribute("priceRange", priceRange);
         model.addAttribute("giaMin", giaMin);
         model.addAttribute("giaMax", giaMax);
+        model.addAttribute("selectedType", typeId);
       //  model.addAttribute("priceRange", priceRange);
         return "ListProduct";
     }

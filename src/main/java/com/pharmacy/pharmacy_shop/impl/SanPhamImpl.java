@@ -50,18 +50,18 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public List<SanPham> getSanPhamByTen(String tenSanPham) {
-        return sanPhamRepo.findAllByTenSanPham(tenSanPham);
+    public List<SanPham> getSanPhamByTen( String type,String tenSanPham) {
+        return sanPhamRepo.findAllByTenSanPham(type,tenSanPham);
     }
 
     @Override
-    public List<SanPham> filterProducts(Integer minPrice, Integer maxPrice, List<String> priceRange) {
+    public List<SanPham> filterProducts(String type,Integer minPrice, Integer maxPrice, List<String> priceRange) {
 
         // Gán giá trị mặc định nếu cần
         if (minPrice == null) minPrice = 0;
         if (maxPrice == null) maxPrice = Integer.MAX_VALUE;
 
-        return sanPhamRepo.findAllByGiaBanBetweenAndPriceRange(minPrice, maxPrice,
+        return sanPhamRepo.findAllByGiaBanBetweenAndPriceRange(type,minPrice, maxPrice,
                 priceRange != null && !priceRange.isEmpty() ? priceRange.get(0) : null);
     }
 }

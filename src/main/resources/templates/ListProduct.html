@@ -16,8 +16,10 @@
         <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
             <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
         </a>
-        <form class="d-flex flex-grow-1"action="/home/type/search" method="get">
+        <form class="d-flex flex-grow-1" action="/home/type/search" method="get">
+            <input type="hidden" name="type" th:value="${selectedType}" />
             <input type="text" class="form-control me-2" placeholder="Search..." name="keyword"/>
+
             <input class="btn btn-outline-success" type="submit" value="Search"/>
         </form>
         <div class="d-flex w-[20]">
@@ -43,7 +45,7 @@
         <a href="/home/type?type=TP006" class="nav-link pe-3">Tim mạch</a>
         <a href="/home/type?type=TP007" class="nav-link pe-3">Xương khớp</a>
         <a href="/home/type?type=TP008" class="nav-link pe-3">Thuốc kê đơn</a>
-        <a href="/home/type?type=TP009" class="nav-link pe-3">Thuốc cho bé</a>
+        <a href="/home/type?type=TP009" clas    s="nav-link pe-3">Thuốc cho bé</a>
         <a href="/home/type?type=TP010" class="nav-link pe-3">Mẹ và Bé</a>
     </div>
 </div>
@@ -125,6 +127,8 @@
                             <a href="#" class="clear-filter" onclick="resetForm(event)">Thiết lập lại</a>
                         </div>
                         <form method="get" action="/home/type/filter" id="filterForm">
+                            <input type="hidden" name="type" th:value="${selectedType}" />
+
                             <!-- Khoảng giá -->
                             <div class="filter-section">
                                 <div class="rentPrice">
@@ -228,6 +232,34 @@
         // Bỏ chọn tất cả các checkbox
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(checkbox => checkbox.checked = false);
+    }
+
+    // Hàm xử lý khi người dùng tìm kiếm
+    function submitSearchForm(event) {
+        event.preventDefault(); // Ngừng hành động mặc định của form (không reload trang)
+        var keyword = document.querySelector('input[name="keyword"]').value;
+        var type = document.getElementById('type').value;
+        var url = `/home/type?type=${type}&keyword=${keyword}`;
+        window.location.href = url; // Thay đổi đường dẫn trang
+    }
+
+    // Hàm xử lý khi người dùng áp dụng bộ lọc
+    function submitFilterForm(event) {
+        event.preventDefault(); // Ngừng hành động mặc định của form (không reload trang)
+
+        var giaMin = document.getElementById('giaMin').value;
+        var giaMax = document.getElementById('giaMax').value;
+        var priceRange = [];
+
+        // Lấy tất cả các checkbox đã chọn
+        document.querySelectorAll('input[name="priceRange"]:checked').forEach(function(checkbox) {
+            priceRange.push(checkbox.value);
+        });
+
+        var type = document.getElementById('type').value;
+
+        var url = `/home/type/filter?type=${type}&giaMin=${giaMin}&giaMax=${giaMax}&priceRange=${priceRange.join(',')}`;
+        window.location.href = url; // Thay đổi đường dẫn trang
     }
 </script>
 </body>
