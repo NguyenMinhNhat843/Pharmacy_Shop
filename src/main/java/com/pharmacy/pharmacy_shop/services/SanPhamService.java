@@ -20,7 +20,7 @@ public interface SanPhamService {
     public Page<SanPham> getSanPhamPage(int pageNumber, int pageSize);
     public void addSanPham(SanPham sanPham);
     public void updateSanPham(SanPham sanPham);
-    public void deleteSanPham(SanPham sanPham);
+    public void deleteSanPham(String id);
     public List<SanPham> getSanPhamByType(String type);
     public List<SanPham> getSanPhamByTen(String tenSanPham);
 

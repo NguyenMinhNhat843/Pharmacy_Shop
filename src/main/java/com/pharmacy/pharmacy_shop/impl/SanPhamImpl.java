@@ -48,7 +48,7 @@ public class SanPhamImpl implements SanPhamService {
 
     @Override
     public void addSanPham(SanPham sanPham) {
-
+        sanPhamRepo.save(sanPham);
     }
 
     @Override
@@ -57,8 +57,8 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public void deleteSanPham(SanPham sanPham) {
-
+    public void deleteSanPham(String id) {
+        sanPhamRepo.deleteById(id);
     }
 
     @Override

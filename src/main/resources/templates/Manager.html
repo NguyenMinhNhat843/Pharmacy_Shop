@@ -78,7 +78,6 @@
                 </div>
             </form>
 
-            <!-- Sub Header -->
             <!-- Nút "Tạo mới sản phẩm" -->
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2>Sản Phẩm</h2>
@@ -86,96 +85,93 @@
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">Tạo mới sản phẩm</button>
             </div>
 
-            <!-- Modal tạo mới sản phẩm -->
-            <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
+            <!-- Modal: Tạo mới sản phẩm -->
+            <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="labelModalCreateProduct" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="createProductModalLabel">Tạo Mới Sản Phẩm</h5>
+                            <h5 class="modal-title" id="labelModalCreateProduct">Tạo Mới Sản Phẩm</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <!-- Form tạo mới sản phẩm -->
-                            <form id="createProductForm">
+                            <form action="/pharmacy/quanly/sanpham/add" method="POST" enctype="multipart/form-data" id="formCreateProduct">
                                 <div class="mb-3">
-                                    <label for="productName" class="form-label">Tên Sản Phẩm</label>
-                                    <input type="text" class="form-control" id="productName" required>
+                                    <label for="inputProductName" class="form-label">Tên Sản Phẩm</label>
+                                    <input type="text" class="form-control" id="inputProductName" name="name" placeholder="Nhập tên sản phẩm" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="productPrice" class="form-label">Giá Sản Phẩm</label>
-                                    <input type="number" class="form-control" id="productPrice" required>
+                                    <label for="inputProductPrice" class="form-label">Giá Sản Phẩm</label>
+                                    <input type="number" class="form-control" id="inputProductPrice" name="price" placeholder="Nhập giá sản phẩm" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="productQuantity" class="form-label">Số Lượng</label>
-                                    <input type="number" class="form-control" id="productQuantity" required>
+                                    <label for="inputProductQuantity" class="form-label">Số Lượng</label>
+                                    <input type="number" class="form-control" id="inputProductQuantity" name="quantity" placeholder="Nhập số lượng" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="productImage" class="form-label">Hình Ảnh</label>
-                                    <input type="file" class="form-control" id="productImage" accept="image/*" required>
-                                    <small id="imagePreviewText" class="form-text text-muted">Chọn ảnh từ máy tính.</small>
+                                    <label for="inputProductImage" class="form-label">Hình Ảnh</label>
+                                    <input type="file" class="form-control" id="inputProductImage" name="image" accept="image/*" required>
+                                    <small id="previewImageText" class="form-text text-muted">Chọn ảnh từ máy tính.</small>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="productCategory" class="form-label">Loại Sản Phẩm</label>
-                                    <select class="form-select" id="productCategory" required>
-                                        <!-- Các loại sản phẩm sẽ được load từ backend -->
-                                        <option value="1">Loại 1</option>
-                                        <option value="2">Loại 2</option>
+                                    <label for="selectProductCategory" class="form-label">Loại Sản Phẩm</label>
+                                    <select class="form-select" id="selectProductCategory" name="category" required>
+                                        <option value="TP001">Thuốc kê đơn</option>
+                                        <option value="TP002">Thốc không kê đơn</option>
+                                        <option value="TP003">Thực phẩm chức năng</option>
+                                        <option value="TP004">Dụng cụ y tế</option>
                                     </select>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                            <button type="submit" class="btn btn-primary" form="createProductForm">Tạo mới</button>
+                            <button type="submit" class="btn btn-primary" form="formCreateProduct">Tạo mới</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Statistics -->
-            <div class="row mb-4">
-                <div class="col-md-3">
-                    <div class="card p-3 text-center">
-                        <h5>Tổng số sản phẩm</h5>
-                        <p class="fw-bold">48</p>
+            <div>
+                <!-- Statistics -->
+                <div class="row mb-4">
+                    <div class="col-md-3">
+                        <div class="card p-3 text-center">
+                            <h5>Tổng số sản phẩm</h5>
+                            <p class="fw-bold">48</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 text-center">
+                            <h5>Số lượng đã bán</h5>
+                            <p class="fw-bold">493</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 text-center">
+                            <h5>Tổng sản phẩm còn lại</h5>
+                            <p class="fw-bold">6</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card p-3 text-center">
+                            <h5>Tổng sản phẩm</h5>
+                            <p class="fw-bold">359</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="card p-3 text-center">
-                        <h5>Số lượng đã bán</h5>
-                        <p class="fw-bold">493</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card p-3 text-center">
-                        <h5>Tổng sản phẩm còn lại</h5>
-                        <p class="fw-bold">6</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card p-3 text-center">
-                        <h5>Tổng sản phẩm</h5>
-                        <p class="fw-bold">359</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Loc theo dieu kien -->
-            <form action="" method="" class="pb-3 pt-3">
-                <div>
-                    <button class="btn btn-primary" type="submit">Xóa theo danh sách đã chọn</button>
-                </div>
-            </form>
+                <!-- Xoa danh sach da chon -->
+                <button class="btn btn-primary" id="deleteSelected" type="submit">Xóa theo danh sách đã chọn</button>
 
-            <!-- Table -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="">
+                <!-- Table -->
+                <div class="card">
+                    <div class="card-body">
                         <table class="table table-hover">
                             <thead>
                             <tr>
                                 <th>
-                                    <input style="width: 20px; height: 20px" type="checkbox" />
+                                    <input id="selectAll" style="width: 20px; height: 20px" type="checkbox" />
                                 </th>
                                 <th>Id</th>
                                 <th>Hình ảnh</th>
@@ -188,51 +184,104 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="sanpham: ${sanphams}">
-                                    <td>
-                                        <input style="width: 20px; height: 20px" type="checkbox" />
-                                    </td>
-                                    <td th:text="${sanpham.id}">Product Name</td>
-                                    <td>
-                                        <img th:src="${sanpham.image}" alt="Product Image" style="width: 100px; height: auto;" />
-                                    </td>
-                                    <td th:text="${sanpham.tenSanPham}">Order Date</td>
-                                    <td th:text="${sanpham.giaBan}">Order Total</td>
-                                    <td th:text="${sanpham.soLuongDaBan}">Payment Status</td>
-                                    <td th:text="${sanpham.soLuongConLai}">Items Count</td>
-                                    <td th:text="${sanpham.soLuongDaBan + sanpham.soLuongConLai}">Delivery Method</td>
-                                    <td th:text="${sanpham.type.id}">Delivery Method</td>
-                                </tr>
+                            <tr th:each="sanpham: ${sanphams}">
+                                <td>
+                                    <input class="productCheckbox" style="width: 20px; height: 20px" type="checkbox"
+                                           th:value="${sanpham.id}"
+                                    />
+                                </td>
+                                <td th:text="${sanpham.id}">Product id</td>
+                                <td>
+                                    <img th:src="${sanpham.image}" alt="Product Image" style="width: 100px; height: auto;" />
+                                </td>
+                                <td th:text="${sanpham.tenSanPham}">name</td>
+                                <td th:text="${sanpham.giaBan}">price</td>
+                                <td th:text="${sanpham.soLuongDaBan}">so luong</td>
+                                <td th:text="${sanpham.soLuongConLai}">so luong con lai</td>
+                                <td th:text="${sanpham.soLuongDaBan + sanpham.soLuongConLai}">tong so luong</td>
+                                <td th:text="${sanpham.type.id}">loai sp</td>
+                            </tr>
                             </tbody>
                         </table>
-                    </div>
 
-                    <!-- Pagination -->
-                    <div class="pagination-container mt-4">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <!-- Previous Button -->
-                                <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
-                                    <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${currentPage - 1})}" tabindex="-1">Previous</a>
-                                </li>
+                        <!-- Pagination -->
+                        <div class="pagination-container mt-4">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <!-- Previous Button -->
+                                    <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
+                                        <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${currentPage - 1})}" tabindex="-1">Previous</a>
+                                    </li>
 
-                                <!-- Page Numbers -->
-                                <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
-                                    th:class="${i == currentPage} ? 'active' : ''">
-                                    <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${i})}" th:text="${i}"></a>
-                                </li>
+                                    <!-- Page Numbers -->
+                                    <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
+                                        th:class="${i == currentPage} ? 'active' : ''">
+                                        <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${i})}" th:text="${i}"></a>
+                                    </li>
 
-                                <!-- Next Button -->
-                                <li class="page-item" th:class="${currentPage == totalPages} ? 'disabled' : ''">
-                                    <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${currentPage + 1})}">Next</a>
-                                </li>
-                            </ul>
-                        </nav>
+                                    <!-- Next Button -->
+                                    <li class="page-item" th:class="${currentPage == totalPages} ? 'disabled' : ''">
+                                        <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${currentPage + 1})}">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const selectAllCheckbox = document.getElementById("selectAll");
+            const productCheckboxes = document.querySelectorAll(".productCheckbox");
+            const deleteButton = document.getElementById("deleteSelected");
+
+            console.log(productCheckboxes);
+
+            // Chọn tất cả hoặc bỏ chọn
+            selectAllCheckbox.addEventListener("change", function () {
+                const isChecked = selectAllCheckbox.checked;
+                productCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                });
+            });
+
+            // Xử lý xóa các sản phẩm đã chọn
+            deleteButton.addEventListener("click", function () {
+                const selectedIds = Array.from(productCheckboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                if (selectedIds.length === 0) {
+                    alert("Vui lòng chọn ít nhất một sản phẩm để xóa!");
+                    return;
+                }
+
+                if (confirm("Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?")) {
+                    fetch("/pharmacy/quanly/sanpham/delete", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(selectedIds),
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                alert("Xóa thành công!");
+                                location.reload(); // Tải lại trang
+                            } else {
+                                alert("Có lỗi xảy ra khi xóa!");
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("Có lỗi xảy ra!");
+                        });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
