@@ -24,20 +24,28 @@ public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
     @Query(value = "SELECT * FROM SanPham sp WHERE sp.tenSanPham LIKE %:tenSanPham% AND type = :type", nativeQuery = true)
     List<SanPham> findAllByTenSanPham(String type,String tenSanPham);
 
+
     // Lấy sản phẩm theo khoảng giá được chọn
     @Query(value = "SELECT * FROM SanPham sp WHERE "
-            + "(:giaMin IS NULL OR sp.giaBan  >= :giaMin) AND "
-            + "(:giaMax IS NULL OR sp.giaBan  <= :giaMax) AND "
+            + "(:giaMin IS NULL OR sp.giaBan >= :giaMin) AND "
+            + "(:giaMax IS NULL OR sp.giaBan <= :giaMax) AND "
             + "(:priceRange IS NULL OR "
-            + "(sp.giaBan  < 100 AND :priceRange = 'under100000') OR "
-            + "(sp.giaBan  BETWEEN 100 AND 300 AND :priceRange = '100000-300000') OR "
-            + "(sp.giaBan  BETWEEN 300 AND 500 AND :priceRange = '300000-500000') OR "
-            + "(sp.giaBan  > 500 AND :priceRange = 'over500000')) AND "
-            + "sp.Type = :type", nativeQuery = true)
+            + "(sp.giaBan < 100 AND :priceRange = 'under100000') OR "
+            + "(sp.giaBan BETWEEN 100 AND 300 AND :priceRange = '100000-300000') OR "
+            + "(sp.giaBan BETWEEN 300 AND 500 AND :priceRange = '300000-500000') OR "
+            + "(sp.giaBan > 500 AND :priceRange = 'over500000')) AND "
+            + "sp.Type = :type "
+            + "ORDER BY "
+            + "CASE WHEN :sortOrder = 'asc' THEN sp.giaBan END ASC, "
+            + "CASE WHEN :sortOrder = 'desc' THEN sp.giaBan END DESC",
+            nativeQuery = true)
         List<SanPham> findAllByGiaBanBetweenAndPriceRange(
             String type,
             int giaMin,
             int giaMax,
-             String priceRange
+            String priceRange,
+            String sortOrder
             );
+
+
 }
