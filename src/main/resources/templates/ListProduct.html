@@ -11,45 +11,8 @@
     <link rel="stylesheet" th:href="@{/static/css/index.css}">
 </head>
 <body>
-<!-- Header section -->
-<div class="container-fluid bg-body-tertiary">
-    <nav class="container d-flex py-2 align-items-center">
-        <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
-            <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
-        </a>
-        <form class="d-flex flex-grow-1" action="/pharmacy/type/filter" method="get" >
-            <input type="hidden" name="type" th:value="${selectedType}" />
-            <input type="text" class="form-control me-2" placeholder="Search..." name="keyword" th:value="${search}"/>
-
-            <input class="btn btn-outline-success" type="submit" value="Search"/>
-        </form>
-        <div class="d-flex w-[20]">
-            <a class="nav-link ps-3" href="login.html">Đăng nhập</a>
-            <div class="d-flex justify-content-center align-items-center ps-3">
-                <i class="fa-solid fa-cart-shopping pe-1"></i>
-                <a class="nav-link" href="./Cart.html">Giỏ hàng</a>
-            </div>
-        </div>
-    </nav>
-</div>
-
-<!-- Danh muc section -->
-
-<div class="w-100 py-3 bg-success text-white">
-    <div class="container d-flex">
-        <!-- Cập nhật lại liên kết theo đúng đường dẫn controller -->
-        <a href="/pharmacy/type?type=TP001" class="nav-link pe-3">Thực phẩm chức năng</a>
-        <a href="/pharmacy/type?type=TP002" class="nav-link pe-3">Thuốc không kê đơn</a>
-        <a href="/pharmacy/type?type=TP003" class="nav-link pe-3">Dụng cụ y tế</a>
-        <a href="/pharmacy/type?type=TP004" class="nav-link pe-3">Sản phẩm chăm sóc sức khỏe</a>
-        <a href="/pharmacy/type?type=TP005" class="nav-link pe-3">Tiểu đường</a>
-        <a href="/pharmacy/type?type=TP006" class="nav-link pe-3">Tim mạch</a>
-        <a href="/pharmacy/type?type=TP007" class="nav-link pe-3">Xương khớp</a>
-        <a href="/pharmacy/type?type=TP008" class="nav-link pe-3">Thuốc kê đơn</a>
-        <a href="/pharmacy/type?type=TP009" class="nav-link pe-3">Thuốc cho bé</a>
-        <a href="/pharmacy/type?type=TP010" class="nav-link pe-3">Mẹ và Bé</a>
-    </div>
-</div>
+<!-- Sử dụng fragment header -->
+<div th:replace="fragment/Header :: header(${account})"></div>
 
 <!-- Body        -->
 <div class="container">

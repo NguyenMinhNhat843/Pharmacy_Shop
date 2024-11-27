@@ -1,8 +1,10 @@
 package com.pharmacy.pharmacy_shop.controller;
 
+import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.entity.LoaiSanPham;
 import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,12 +23,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/pharmacy")
+@RequestMapping("")
 public class SanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
 
-    @GetMapping("/quanly/sanpham/search")
+    @GetMapping("/pharmacy/quanly/sanpham/search")
     public String loadSanPham(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<SanPham> sanphams;
         SanPham sanpham = new SanPham();
@@ -45,7 +47,7 @@ public class SanPhamController {
         return "Manager";
     }
 
-    @GetMapping("quanly/sanpham/list")
+    @GetMapping("/pharmacyquanly/sanpham/list")
     public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 10;
         List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);
@@ -58,7 +60,7 @@ public class SanPhamController {
         return "Manager";
     }
 
-    @PostMapping("/quanly/sanpham/add")
+    @PostMapping("/pharmacy/quanly/sanpham/add")
     public String addSanPham(
         @RequestParam("name") String name,
         @RequestParam("price") float price,
@@ -85,7 +87,7 @@ public class SanPhamController {
         return "redirect:/pharmacy/quanly/sanpham/list";
     }
 
-    @PostMapping("/quanly/sanpham/delete")
+    @PostMapping("/pharmacy/quanly/sanpham/delete")
     @ResponseBody
     public ResponseEntity<?> deleteSelectedProducts(@RequestBody List<String> selectedIds) {
         System.out.println("=================================================");
@@ -101,11 +103,18 @@ public class SanPhamController {
         }
     }
 
-    @GetMapping("")
-    public String loadSanPham(Model model) {
+    @GetMapping("/home")
+    public String loadSanPham(Model model, HttpSession session) {
+        // Lấy thông tin account từ session
+        Account account = (Account) session.getAttribute("loggedInUser");
+
+        // Lấy danh sách sản phẩm
         List<SanPham> sanphams = sanPhamService.getSanPhamBanChay().subList(0, 4);
         System.out.println(sanphams);
+
+        // Truyền dữ liệu vào model
         model.addAttribute("sanphams", sanphams);
+        model.addAttribute("account", account); // Truyền account vào model
         return "index";
     }
 

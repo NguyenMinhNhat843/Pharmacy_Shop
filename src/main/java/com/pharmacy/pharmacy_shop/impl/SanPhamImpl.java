@@ -42,14 +42,8 @@ public class SanPhamImpl implements SanPhamService {
 
     @Override
     public SanPham getSanPhamById(String id) {
-        Optional<SanPham> optionalSanPham = sanPhamRepo.findById(id);
-        if (optionalSanPham.isPresent()) {
-            return optionalSanPham.get();
-        } else {
-            return null;
-        }
-//        return sanPhamRepo.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + id));
+        return sanPhamRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + id));
     }
 
 
