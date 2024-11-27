@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 
@@ -23,7 +24,7 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
 
     // Lấy sản phẩm theo ten
     @Query(value = "SELECT * FROM SanPham sp WHERE sp.tenSanPham LIKE %:tenSanPham% AND type = :type", nativeQuery = true)
-    List<SanPham> findAllByTenSanPham(String type,String tenSanPham);
+    List<SanPham> findAllByTenSanPham(String type, String tenSanPham);
 
 
     // Phân trang sản phẩm
@@ -53,9 +54,20 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
             String priceRange,
             String sortOrder
     );
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.type.id = :typeId AND sp.id <> :id")
     List<SanPham> findByTypeIdAndIdNot(@Param("typeId") String typeId, @Param("id") String id);
 
     // Lấy danh sách sản phẩm cùng thương hiệu dựa vào brand (ngoại trừ sản phẩm hiện tại)
 //    List<SanPham> findByBrandAndIdNot(String brand, String id);
+
+    // thống kê có bao nhiêu sản phẩm
+    @Query(value = "select count(*) from SanPham", nativeQuery = true)
+    int countSanPham();
+    
+    // thống kê 3 san pham ban chay theo tên và số lượng đã bán
+    @Query(value = "SELECT TOP 3 tenSanPham, soLuongDaBan FROM SanPham ORDER BY soLuongDaBan DESC", nativeQuery = true)
+    List<Object[]> getSanPhamBanChay();
+
+
 }

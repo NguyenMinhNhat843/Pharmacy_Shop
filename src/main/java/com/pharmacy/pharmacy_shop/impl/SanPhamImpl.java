@@ -10,10 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Collectors;
 import java.util.Optional;
@@ -154,8 +151,16 @@ public class SanPhamImpl implements SanPhamService {
         return sanPhamRepo.findByTypeIdAndIdNot(type, excludeId);
     }
 
-//    @Override
-//    public List<SanPham> getSameBrandProducts(String brand, String currentProductId) {
-//        return sanPhamRepo.findByBrandAndIdNot(brand, currentProductId);
-//    }
+    @Override
+    public Integer getTongSoLuongSanPham() {
+        return sanPhamRepo.countSanPham();
+    }
+
+    @Override
+    public Map<String, Integer> getTopSanPhamBanChay() {
+        List<SanPham> sanPhams = sanPhamRepo.findAllOrderBySoLuongDaBanDesc();
+        return sanPhams.stream()
+                .limit(3)
+                .collect(Collectors.toMap(SanPham::getTenSanPham, SanPham::getSoLuongDaBan));
+    }
 }
