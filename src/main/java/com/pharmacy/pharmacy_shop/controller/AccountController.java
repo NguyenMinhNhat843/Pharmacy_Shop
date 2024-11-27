@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.regex.Pattern;
+
 
 @Controller
 public class AccountController {
@@ -152,4 +154,54 @@ public class AccountController {
         return "check_email";  // Trả về trang để hiển thị kết quả (check_email.html)
     }
 
+    // Hiển thị trang đăng ký
+    @GetMapping("/register")
+    public String showRegistrationPage() {
+        return "register";  // Tên trang HTML
+    }
+
+    // Xử lý form đăng ký
+    @PostMapping("/register")
+    public String processRegistration(@RequestParam("name") String name,
+                                      @RequestParam("email") String email,
+                                      @RequestParam("password") String password,
+                                      @RequestParam("repeatPassword") String repeatPassword,
+                                      Model model) {
+
+        // Kiểm tra xem mật khẩu có khớp không
+        if (!password.equals(repeatPassword)) {
+            model.addAttribute("error", "Passwords do not match.");
+            return "register";
+        }
+
+        // Kiểm tra độ dài và tính hợp lệ của mật khẩu
+        if (password.length() < 6 || !password.matches(".*[a-z].*") || !password.matches(".*[A-Z].*")) {
+            model.addAttribute("error", "Password must be at least 6 characters long and contain both uppercase and lowercase letters.");
+            return "register";
+        }
+
+        // Kiểm tra định dạng email
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@(gmail\\.com|yahoo\\.com|email\\.com)$";
+        if (!Pattern.matches(emailRegex, email)) {
+            model.addAttribute("error", "Email must be a valid Gmail, Yahoo, or Email address.");
+            return "register";
+        }
+
+        // Kiểm tra xem email đã tồn tại chưa
+        if (accountService.findByUsername(email) != null) {
+            model.addAttribute("error", "Email is already registered.");
+            return "register";
+        }
+
+        // Tạo tài khoản mới
+        Account account = new Account();
+        account.setUsername(email);
+        account.setPassword(password);
+        account.setType("custom"); // Mật khẩu nên được mã hóa trước khi lưu vào DB
+        accountService.save(account);
+
+        // Chuyển hướng đến trang đăng nhập sau khi đăng ký thành công
+        model.addAttribute("message", "Registration successful! Please login.");
+        return "redirect:/login";
+    }
 }
