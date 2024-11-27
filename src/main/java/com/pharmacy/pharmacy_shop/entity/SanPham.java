@@ -33,6 +33,11 @@ public class SanPham {
     @Column(nullable = false, name = "soLuongConLai")
     private Integer soLuongConLai;
 
+    private  String moTa;
+
+    private  String thanhPhan;
+    private  String cachSuDung;
+    private  String luuY;
     @ManyToOne
     @JoinColumn(name = "Type")
     private LoaiSanPham type;

@@ -2,6 +2,14 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
 }
+
+.logo_landing {
+    object-fit: cover;
+    height: 40px;
+    width: 100%;
+    object-fit: fill
+}
+
 .container_css {
     max-width: 1200px;
     margin: 0 auto;
@@ -142,55 +150,112 @@ body {
     margin-top: 5px;
 }
 /* Product Carousel */
+/* Tổng thể cho phần "Sản phẩm tương tự" */
 .carousel-section {
     margin-top: 40px;
 }
+
 .carousel-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 15px;
 }
+
+/* Wrapper của carousel (phần cuộn ngang) */
+.carousel-wrapper {
+    display: flex;
+    overflow-x: auto; /* Cho phép cuộn ngang */
+    white-space: nowrap; /* Các sản phẩm nằm ngang liên tiếp */
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    scrollbar-width: thin; /* Thanh cuộn nhỏ (Firefox) */
+    scrollbar-color: #bbb #f9f9f9; /* Màu thanh cuộn */
+}
+
+.carousel-wrapper::-webkit-scrollbar {
+    height: 8px; /* Chiều cao thanh cuộn */
+}
+
+.carousel-wrapper::-webkit-scrollbar-thumb {
+    background-color: #bbb; /* Màu của thanh cuộn */
+    border-radius: 5px;
+}
+
+.carousel-wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #999; /* Màu khi hover */
+}
+
+/* Bố cục các sản phẩm trong carousel */
 .carousel {
     display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    padding-bottom: 10px;
+    gap: 15px; /* Khoảng cách giữa các sản phẩm */
+    padding: 10px 5px;
+    max-width: 100%; /* Đảm bảo carousel không vượt khung */
+    overflow: hidden; /* Ẩn các sản phẩm ngoài khung */
 }
+
+/* Thiết kế mỗi thẻ sản phẩm (card) */
 .product-card {
-    width: 180px;
+    flex: 0 0 calc(100% / 6 - 15px); /* Chiều rộng mỗi sản phẩm (chia đều 6 sản phẩm) */
+    max-width: calc(100% / 6 - 15px); /* Đảm bảo sản phẩm không bị quá kích thước */
     background-color: #f9f9f9;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     padding: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-.product-card img {
+
+/* Hình ảnh sản phẩm */
+.product-image {
     width: 100%;
+    height: auto;
     border-radius: 8px;
+    margin-bottom: 10px;
 }
+
+/* Tiêu đề sản phẩm */
 .product-card-title {
     font-size: 14px;
-    margin-top: 10px;
     color: #333;
+    font-weight: bold;
+    margin: 5px 0;
 }
+
+/* Giá sản phẩm */
 .product-card-price {
-    color: #f00;
     font-size: 16px;
-    margin-top: 5px;
+    color: #e53935; /* Màu đỏ */
+    margin: 5px 0;
 }
+
+/* Giá giảm (discount) */
 .product-card-discount {
     font-size: 14px;
     color: #999;
     text-decoration: line-through;
-    margin-top: 5px;
+    margin-bottom: 10px;
 }
-.btn-select {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 8px 10px;
-    font-size: 14px;
-    background-color: #007bff;
+
+/* Nút "Chọn sản phẩm" */
+.buy-btn {
+    background-color: #0056b3;
     color: #fff;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
     border-radius: 5px;
-    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buy-btn:hover {
+    background-color: #004494;
+}
+
+.custom-btn{
+
 }

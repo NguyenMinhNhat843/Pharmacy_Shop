@@ -9,12 +9,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+=======
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+>>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/pharmacy")
@@ -105,6 +112,7 @@ public class SanPhamController {
         return "index";
     }
 
+<<<<<<< HEAD
     @GetMapping("/type")
     public String getProductsByType(@RequestParam("type") String typeId, Model model) {
         List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
@@ -142,3 +150,6 @@ public class SanPhamController {
 
 
 }
+=======
+}
+>>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
