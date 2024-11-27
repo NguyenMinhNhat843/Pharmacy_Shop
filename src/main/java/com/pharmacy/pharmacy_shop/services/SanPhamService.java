@@ -19,7 +19,6 @@ public interface SanPhamService {
     public long getSoLuongSanPham();
     public List<SanPham> getSanPhamBanChay();
     public SanPham getSanPhamById(String id);
-<<<<<<< HEAD
     public List<SanPham> getSanPhamTheoTrang(int pageNumber, int pageSize);
     public void addSanPham(SanPham sanPham);
     public void updateSanPham(SanPham sanPham);
@@ -31,11 +30,6 @@ public interface SanPhamService {
 
 
 
-=======
-    public void addSanPham(SanPham sanPham);
-    public void updateSanPham(SanPham sanPham);
-    public void deleteSanPham(SanPham sanPham);
     public List<SanPham> findSimilarProducts(String type, String excludeId);
 //    public List<SanPham> getSameBrandProducts(String brand, String currentProductId);
->>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
 }

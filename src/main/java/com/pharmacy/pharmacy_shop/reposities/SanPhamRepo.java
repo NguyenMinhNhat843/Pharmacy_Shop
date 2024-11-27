@@ -12,20 +12,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-<<<<<<< HEAD
 
 public interface SanPhamRepo extends JpaRepository<SanPham, String> {
     @Query(value = "select t.* from SanPham as t where t.Type = :type", nativeQuery = true)
     List<SanPham> getSanPhamByType(String type);
 
-=======
-public interface SanPhamRepo extends JpaRepository<SanPham, String> {
->>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
     // Lấy sản phẩm bán chạy
     @Query("SELECT sp FROM SanPham sp ORDER BY sp.soLuongDaBan DESC")
     List<SanPham> findAllOrderBySoLuongDaBanDesc();
 
-<<<<<<< HEAD
     // Lấy sản phẩm theo ten
     @Query(value = "SELECT * FROM SanPham sp WHERE sp.tenSanPham LIKE %:tenSanPham% AND type = :type", nativeQuery = true)
     List<SanPham> findAllByTenSanPham(String type,String tenSanPham);
@@ -58,11 +53,9 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
             String priceRange,
             String sortOrder
     );
-=======
     @Query("SELECT sp FROM SanPham sp WHERE sp.type.id = :typeId AND sp.id <> :id")
     List<SanPham> findByTypeIdAndIdNot(@Param("typeId") String typeId, @Param("id") String id);
 
     // Lấy danh sách sản phẩm cùng thương hiệu dựa vào brand (ngoại trừ sản phẩm hiện tại)
 //    List<SanPham> findByBrandAndIdNot(String brand, String id);
->>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
 }

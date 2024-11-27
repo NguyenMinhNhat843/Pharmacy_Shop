@@ -13,20 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.util.Optional;
-=======
 import java.util.stream.Collectors;
->>>>>>> d097267143f4bcbc200423e3088efb0baa000d9f
-=======
 import java.util.stream.Collectors;
 import java.util.Optional;
->>>>>>> ab54b0c92793f0f71e52015101a539e4bd3474a0
-=======
 import java.util.Optional;
->>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
 
 @Service
 public class SanPhamImpl implements SanPhamService {
@@ -51,17 +42,14 @@ public class SanPhamImpl implements SanPhamService {
 
     @Override
     public SanPham getSanPhamById(String id) {
-<<<<<<< HEAD
         Optional<SanPham> optionalSanPham = sanPhamRepo.findById(id);
         if (optionalSanPham.isPresent()) {
             return optionalSanPham.get();
         } else {
             return null;
         }
-=======
-        return sanPhamRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + id));
->>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
+//        return sanPhamRepo.findById(id)
+//                .orElseThrow(() -> new RuntimeException("Không tìm thấy sản phẩm với ID: " + id));
     }
 
 
@@ -89,7 +77,6 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-<<<<<<< HEAD
     public List<SanPham> getSanPhamByType(String type) {
         return sanPhamRepo.getSanPhamByType(type);
     }
@@ -163,7 +150,6 @@ public class SanPhamImpl implements SanPhamService {
 
 
 
-=======
     public List<SanPham> findSimilarProducts(String type, String excludeId) {
         return sanPhamRepo.findByTypeIdAndIdNot(type, excludeId);
     }
@@ -172,5 +158,4 @@ public class SanPhamImpl implements SanPhamService {
 //    public List<SanPham> getSameBrandProducts(String brand, String currentProductId) {
 //        return sanPhamRepo.findByBrandAndIdNot(brand, currentProductId);
 //    }
->>>>>>> a426ca16b58c81cbd026c1eb282aba3cf6d552fc
 }
