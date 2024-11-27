@@ -17,7 +17,7 @@
         <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
             <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
         </a>
-        <form class="d-flex flex-grow-1" action="/home/type/filter" method="get" >
+        <form class="d-flex flex-grow-1" action="/pharmacy/type/filter" method="get" >
             <input type="hidden" name="type" th:value="${selectedType}" />
             <input type="text" class="form-control me-2" placeholder="Search..." name="keyword" th:value="${search}"/>
 
@@ -38,16 +38,16 @@
 <div class="w-100 py-3 bg-success text-white">
     <div class="container d-flex">
         <!-- Cập nhật lại liên kết theo đúng đường dẫn controller -->
-        <a href="/home/type?type=TP001" class="nav-link pe-3">Thực phẩm chức năng</a>
-        <a href="/home/type?type=TP002" class="nav-link pe-3">Thuốc không kê đơn</a>
-        <a href="/home/type?type=TP003" class="nav-link pe-3">Dụng cụ y tế</a>
-        <a href="/home/type?type=TP004" class="nav-link pe-3">Sản phẩm chăm sóc sức khỏe</a>
-        <a href="/home/type?type=TP005" class="nav-link pe-3">Tiểu đường</a>
-        <a href="/home/type?type=TP006" class="nav-link pe-3">Tim mạch</a>
-        <a href="/home/type?type=TP007" class="nav-link pe-3">Xương khớp</a>
-        <a href="/home/type?type=TP008" class="nav-link pe-3">Thuốc kê đơn</a>
-        <a href="/home/type?type=TP009" class="nav-link pe-3">Thuốc cho bé</a>
-        <a href="/home/type?type=TP010" class="nav-link pe-3">Mẹ và Bé</a>
+        <a href="/pharmacy/type?type=TP001" class="nav-link pe-3">Thực phẩm chức năng</a>
+        <a href="/pharmacy/type?type=TP002" class="nav-link pe-3">Thuốc không kê đơn</a>
+        <a href="/pharmacy/type?type=TP003" class="nav-link pe-3">Dụng cụ y tế</a>
+        <a href="/pharmacy/type?type=TP004" class="nav-link pe-3">Sản phẩm chăm sóc sức khỏe</a>
+        <a href="/pharmacy/type?type=TP005" class="nav-link pe-3">Tiểu đường</a>
+        <a href="/pharmacy/type?type=TP006" class="nav-link pe-3">Tim mạch</a>
+        <a href="/pharmacy/type?type=TP007" class="nav-link pe-3">Xương khớp</a>
+        <a href="/pharmacy/type?type=TP008" class="nav-link pe-3">Thuốc kê đơn</a>
+        <a href="/pharmacy/type?type=TP009" class="nav-link pe-3">Thuốc cho bé</a>
+        <a href="/pharmacy/type?type=TP010" class="nav-link pe-3">Mẹ và Bé</a>
     </div>
 </div>
 
@@ -65,7 +65,7 @@
                         <h2 style="padding-top: 15px">Bộ lọc</h2>
                         <a href="#" class="clear-filter" onclick="resetForm(event)">Thiết lập lại</a>
                     </div>
-                    <form method="get" action="/home/type/filter" id="filterForm">
+                    <form method="get" action="/pharmacy/type/filter" id="filterForm">
                         <input type="hidden" name="type" th:value="${selectedType}" />
                         <input type="hidden" name="keyword" th:value="${search}" />
                         <!-- Khoảng giá -->
@@ -96,7 +96,7 @@
             <main class="product-grid">
                 <div class="sort-options">
                     <label class="labelSort">Sắp xếp theo:</label>
-                    <form id="sortForm" method="get" action="/home/type/filter">
+                    <form id="sortForm" method="get" action="/pharmacy/type/filter">
                         <input type="hidden" name="giaMin" th:value="${giaMin != null ? giaMin : ''}">
                         <input type="hidden" name="giaMax" th:value="${giaMax != null ? giaMax : ''}">
                         <input type="hidden" name="priceRange" th:value="${priceRange != null ? priceRange : ''}">
