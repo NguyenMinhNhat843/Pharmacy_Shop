@@ -6,12 +6,16 @@ import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.reposities.SanPhamRepo;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class SanPhamImpl implements SanPhamService {
@@ -24,18 +28,37 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
+    public long getSoLuongSanPham() {
+        long count  = sanPhamRepo.count();
+        return count;
+    }
+
+    @Override
     public List<SanPham> getSanPhamBanChay() {
         return sanPhamRepo.findAllOrderBySoLuongDaBanDesc();
     }
 
     @Override
-    public SanPham getSanPhamById(int id) {
-        return null;
+    public SanPham getSanPhamById(String id) {
+        Optional<SanPham> optionalSanPham = sanPhamRepo.findById(id);
+        if (optionalSanPham.isPresent()) {
+            return optionalSanPham.get();
+        } else {
+            return null;
+        }
     }
 
     @Override
-    public void addSanPham(SanPham sanPham) {
+    public List<SanPham> getSanPhamTheoTrang(int pageNumber, int pageSize) {
+        int start_row = (pageNumber - 1) * pageSize;
+        List<SanPham> sanPhams = sanPhamRepo.findSanPhamTheoTrang(start_row, pageSize);
+        return sanPhams;
+    }
 
+
+    @Override
+    public void addSanPham(SanPham sanPham) {
+        sanPhamRepo.save(sanPham);
     }
 
     @Override
@@ -44,8 +67,8 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
-    public void deleteSanPham(SanPham sanPham) {
-
+    public void deleteSanPham(String id) {
+        sanPhamRepo.deleteById(id);
     }
 
     @Override

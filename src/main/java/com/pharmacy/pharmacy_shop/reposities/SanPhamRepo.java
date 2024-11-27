@@ -12,8 +12,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
 
+public interface SanPhamRepo extends JpaRepository<SanPham, String> {
     @Query(value = "select t.* from SanPham as t where t.Type = :type", nativeQuery = true)
     List<SanPham> getSanPhamByType(String type);
 
@@ -25,6 +25,10 @@ public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
     @Query(value = "SELECT * FROM SanPham sp WHERE sp.tenSanPham LIKE %:tenSanPham% AND type = :type", nativeQuery = true)
     List<SanPham> findAllByTenSanPham(String type,String tenSanPham);
 
+
+    // Phân trang sản phẩm
+    @Query(value = "select * from SanPham order by id offset :start_row rows fetch next :page_size rows only", nativeQuery = true)
+    public List<SanPham> findSanPhamTheoTrang(int start_row, int page_size);
 
     // Lấy sản phẩm theo khoảng giá được chọn
     @Query(value = "SELECT * FROM SanPham sp WHERE "
@@ -49,8 +53,6 @@ public interface SanPhamRepo extends JpaRepository<SanPham, Long> {
             String priceRange,
             String sortOrder
     );
-
-
 
 
 }
