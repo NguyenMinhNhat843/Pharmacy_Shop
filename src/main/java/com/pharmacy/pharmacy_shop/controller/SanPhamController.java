@@ -12,9 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/pharmacy")
@@ -103,20 +101,40 @@ public class SanPhamController {
         System.out.println(sanphams);
         model.addAttribute("sanphams", sanphams);
         return "index";
-    }
 
-    @GetMapping("/type")
-    public String getProductsByType(@RequestParam("type") String typeId, Model model) {
+    }
+    @GetMapping("/type/{typeOrSlug}")
+    public String getProductsByType(@PathVariable("typeOrSlug") String typeOrSlug, Model model) {
+        // Tạo map ánh xạ slug sang mã sản phẩm
+        Map<String, String> typeMap = new HashMap<>();
+        typeMap.put("thuc-pham-chuc-nang", "TP001");
+        typeMap.put("thuoc-khong-ke-don", "TP002");
+        typeMap.put("dung-cu-y-te", "TP003");
+        typeMap.put("san-pham-cham-soc-suc-khoe", "TP004");
+        typeMap.put("tieu-duong", "TP005");
+        typeMap.put("tim-mach", "TP006");
+        typeMap.put("xuong-khop", "TP007");
+        typeMap.put("thuoc-ke-don", "TP008");
+        typeMap.put("thuoc-cho-be", "TP009");
+        typeMap.put("me-va-be", "TP010");
+
+        String typeId = typeMap.getOrDefault(typeOrSlug, typeOrSlug);
+
+        // Tìm kiếm sản phẩm theo typeId
         List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
+
         model.addAttribute("products", products);
-        model.addAttribute("selectedType", typeId);
-        return "ListProduct";
+        model.addAttribute("selectedType", typeOrSlug); // Truyền slug hoặc mã vào model
+
+        return "ListProduct"; // trả về view ListProduct
     }
 
 
 
-    @GetMapping("/type/filter")
-    public String filterProducts(@RequestParam("type") String typeId,
+
+
+    @GetMapping("/search")
+    public String filterProducts(@RequestParam(value = "type", required = false) String typeOrSlug,
                                  @RequestParam(value = "keyword", required = false) String search,
                                  @RequestParam(value = "giaMin", required = false) Integer  giaMin,
                                  @RequestParam(value = "giaMax", required = false) Integer  giaMax,
@@ -127,7 +145,23 @@ public class SanPhamController {
         int filterGiaMin = (giaMin != null) ? giaMin : 0;
         int filterGiaMax = (giaMax != null) ? giaMax : 10000000;
 
-        // Sử dụng giá trị mặc định nếu minPrice hoặc maxPrice là null
+        // Ánh xạ từ slug về mã typeId
+        Map<String, String> typeMap = new HashMap<>();
+        typeMap.put("thuc-pham-chuc-nang", "TP001");
+        typeMap.put("thuoc-khong-ke-don", "TP002");
+        typeMap.put("dung-cu-y-te", "TP003");
+        typeMap.put("san-pham-cham-soc-suc-khoe", "TP004");
+        typeMap.put("tieu-duong", "TP005");
+        typeMap.put("tim-mach", "TP006");
+        typeMap.put("xuong-khop", "TP007");
+        typeMap.put("thuoc-ke-don", "TP008");
+        typeMap.put("thuoc-cho-be", "TP009");
+        typeMap.put("me-va-be", "TP010");
+
+
+
+        String typeId = typeMap.getOrDefault(typeOrSlug, null);
+
 
         List<SanPham> filteredProducts = sanPhamService.filterProducts(search,typeId,filterGiaMin, filterGiaMax, Collections.singletonList(priceRange), sortOrder);
         // Giữ lại giá trị của các filter đã chọn
@@ -135,10 +169,16 @@ public class SanPhamController {
         model.addAttribute("priceRange", priceRange);
         model.addAttribute("giaMin", giaMin);
         model.addAttribute("giaMax", giaMax);
-        model.addAttribute("selectedType", typeId);
+        model.addAttribute("selectedType", typeOrSlug);
         model.addAttribute("search", search);
+        System.out.println("Selected Type ID: " + typeId);
+        model.addAttribute("sortOrder", sortOrder);
+
+
         return "ListProduct";
     }
+
+
 
 
 }
