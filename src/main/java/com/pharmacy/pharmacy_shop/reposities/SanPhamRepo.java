@@ -1,3 +1,4 @@
+
 package com.pharmacy.pharmacy_shop.reposities;
 
 import com.pharmacy.pharmacy_shop.entity.Account;
@@ -31,6 +32,7 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
 
     // Lấy sản phẩm theo khoảng giá được chọn
     @Query(value = "SELECT * FROM SanPham sp WHERE "
+            + "(sp.tenSanPham LIKE %:tenSanPham%) AND "
             + "(:giaMin IS NULL OR sp.giaBan >= :giaMin) AND "
             + "(:giaMax IS NULL OR sp.giaBan <= :giaMax) AND "
             + "(:priceRange IS NULL OR "
@@ -44,6 +46,7 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
             + "CASE WHEN :sortOrder = 'desc' THEN sp.giaBan END DESC",
             nativeQuery = true)
     List<SanPham> findAllByGiaBanBetweenAndPriceRange(
+            String tenSanPham,
             String type,
             int giaMin,
             int giaMax,
