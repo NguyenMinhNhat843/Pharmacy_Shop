@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 public class AccountController {
 
     @Autowired
-    private  AccountService accountService;
+    private AccountService accountService;
 
     // ============== View
     @Autowired
@@ -47,8 +47,7 @@ public class AccountController {
         } else if (account != null && account.getType().equals("custom")) {
             session.setAttribute("loggedInUser", account);
             return "redirect:/pharmacy/home";
-        }
-        else {
+        } else {
             model.addAttribute("error", "Invalid username or password");
             return "login"; // Quay lại trang login
         }
@@ -131,7 +130,6 @@ public class AccountController {
             return "reset_password";  // Quay lại trang nếu không tìm thấy tài khoản
         }
     }
-
 
 
     @GetMapping("/resend-reset-link")

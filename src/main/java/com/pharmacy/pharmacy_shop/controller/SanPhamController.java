@@ -50,7 +50,8 @@ public class SanPhamController {
 
     // ======================== ListProduct theo type
     @GetMapping("/type/{typeOrSlug}")
-    public String getProductsByType(@PathVariable("typeOrSlug") String typeOrSlug, Model model) {
+    public String getProductsByType(@PathVariable("typeOrSlug") String typeOrSlug,
+                                    Model model) {
         // Tạo map ánh xạ slug sang mã sản phẩm
         Map<String, String> typeMap = new HashMap<>();
         typeMap.put("thuc-pham-chuc-nang", "TP001");
@@ -160,6 +161,8 @@ public class SanPhamController {
                                  @RequestParam(value = "giaMax", required = false) Integer  giaMax,
                                  @RequestParam(value = "priceRange", required = false) String priceRange,
                                  @RequestParam(value = "sortOrder", required = false) String sortOrder,
+                                 @RequestParam(value = "page", defaultValue = "0") int page,
+                                 @RequestParam(value = "size", defaultValue = "10") int size,
                                  Model model) {
 
         int filterGiaMin = (giaMin != null) ? giaMin : 0;

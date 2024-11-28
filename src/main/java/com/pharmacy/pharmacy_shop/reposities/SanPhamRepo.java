@@ -4,6 +4,8 @@ package com.pharmacy.pharmacy_shop.reposities;
 import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.entity.SanPham;
 import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +19,11 @@ import java.util.Map;
 public interface SanPhamRepo extends JpaRepository<SanPham, String> {
     @Query(value = "select t.* from SanPham as t where t.Type = :type", nativeQuery = true)
     List<SanPham> getSanPhamByType(String type);
+
+    @Query(value = "SELECT t.* FROM SanPham AS t WHERE t.Type = :type",
+            countQuery = "SELECT COUNT(*) FROM SanPham AS t WHERE t.Type = :type",
+            nativeQuery = true)
+    Page<SanPham> getSanPhamByTypePage(String type, Pageable pageable);
 
     // Lấy sản phẩm bán chạy
     @Query("SELECT sp FROM SanPham sp ORDER BY sp.soLuongDaBan DESC")

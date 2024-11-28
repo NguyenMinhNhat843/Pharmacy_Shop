@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.PageRequest;
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Service
 public interface SanPhamService {
     public List<SanPham> getAllSanPham();
     public long getSoLuongSanPham();
@@ -24,7 +25,15 @@ public interface SanPhamService {
     public void updateSanPham(SanPham sanPham);
     public void deleteSanPham(String id);
     public List<SanPham> getSanPhamByType(String type);
-    public List<SanPham> getSanPhamByTen(String tenSanPham,String type);
+
+    public Page<SanPham> getSanPhamByTypePage(String type, Pageable pageable);
+
+    //    @Override
+    //    public List<SanPham> getSanPhamByType(String type) {
+    //        return sanPhamRepo.getSanPhamByType(type);
+    //    }
+
+    public List<SanPham> getSanPhamByTen(String tenSanPham, String type);
 
     public List<SanPham> filterProducts(String tenSanPham,String type,Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder);
 
