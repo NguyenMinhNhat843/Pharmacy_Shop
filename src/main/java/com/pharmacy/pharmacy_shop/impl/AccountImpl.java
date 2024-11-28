@@ -15,4 +15,15 @@ public class AccountImpl implements AccountService {
     public Account findByUsernameAndPassword(String username, String password) {
         return accountRepository.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public Account findByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
+
+    @Override
+    public void save(Account account) {
+        accountRepository.save(account);
+    }
+
 }

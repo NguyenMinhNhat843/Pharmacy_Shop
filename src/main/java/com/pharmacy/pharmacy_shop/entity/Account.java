@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.UUID;
+
 @Entity
 @Table(name = "Account")
 @AllArgsConstructor
@@ -24,7 +26,12 @@ public class Account {
     @Column(nullable = false, length = 20)
     private String type;
 
-    // Getters and setters
+    @PrePersist
+    public void prePersist() {
+        if (this.id == null) {
+            this.id = UUID.randomUUID().toString();  // Tạo ID tự động bằng UUID
+        }
+    }
 }
 
 

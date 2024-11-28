@@ -38,7 +38,7 @@
         <div class="options">
 <!--            <label><input type="checkbox" name="rememberMe"> Remember me</label>-->
             <label></label>
-            <a href="./ForgotPassword_1.html" style="font-weight: bold;">Forgot password</a>
+            <a th:href="@{/forgot-password}" style="font-weight: bold;">Forgot password</a>
         </div>
         <button type="submit" class="btn">Sign In</button>
     </form>
@@ -47,10 +47,10 @@
 
     <div class="social-login">
         <button>
-            <img th:src="@{/image/google-icon.png}" alt="Google"> Google
+            <img th:src="@{/images_login/google-icon.png}" alt="Google"> Google
         </button>
         <button>
-            <img th:src="@{/image/apple-icon.png}" alt="Apple"> Apple
+            <img th:src="@{/images_login/apple-icon.png}" alt="Apple"> Apple
         </button>
     </div>
 
