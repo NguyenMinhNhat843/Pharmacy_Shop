@@ -11,9 +11,56 @@
     <link rel="stylesheet" th:href="@{/static/css/index.css}">
 </head>
 <body>
+<<<<<<< HEAD
 <!-- Sử dụng fragment header -->
 <div th:replace="fragment/Header :: header(${account})"></div>
 
+=======
+<!-- Header section -->
+<div class="container-fluid bg-body-tertiary">
+    <nav class="container d-flex py-2 align-items-center">
+        <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
+            <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
+        </a>
+        <form class="d-flex flex-grow-1" action="/pharmacy/search" method="get" >
+            <input type="text" class="form-control me-2" placeholder="Search..." name="keyword" th:value="${search}"/>
+            <input type="hidden" name="type" th:value="${selectedType}"/>
+
+            <input class="btn btn-outline-success" type="submit" value="Search"/>
+        </form>
+        <!-- Form tìm kiếm toàn cục -->
+
+        <div class="d-flex w-[20]">
+            <a class="nav-link ps-3" href="./Login.html">Đăng nhập</a>
+            <div class="d-flex justify-content-center align-items-center ps-3">
+                <i class="fa-solid fa-cart-shopping pe-1"></i>
+                <a class="nav-link" href="./Cart.html">Giỏ hàng</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Danh muc section -->
+
+<div class="w-100 py-3 bg-success text-white">
+    <div class="container d-flex">
+        <!-- Liên kết sử dụng slug -->
+        <div class="container d-flex">
+            <!-- Liên kết sử dụng slug -->
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuc-pham-chuc-nang')">Thực phẩm chức năng</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-khong-ke-don')">Thuốc không kê đơn</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('dung-cu-y-te')">Dụng cụ y tế</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('san-pham-cham-soc-suc-khoe')">Sản phẩm chăm sóc sức khỏe</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('tieu-duong')">Tiểu đường</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('tim-mach')">Tim mạch</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('xuong-khop')">Xương khớp</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-ke-don')">Thuốc kê đơn</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-cho-be')">Thuốc cho bé</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('me-va-be')">Mẹ và Bé</a>
+        </div>
+    </div>
+</div>
+>>>>>>> 9491a61467ff1b8fcdc489969c3f222d4e2fa20a
 <!-- Body        -->
 <div class="container">
     <div class="breadcrumb">
@@ -28,9 +75,10 @@
                         <h2 style="padding-top: 15px">Bộ lọc</h2>
                         <a href="#" class="clear-filter" onclick="resetForm(event)">Thiết lập lại</a>
                     </div>
-                    <form method="get" action="/pharmacy/type/filter" id="filterForm">
+                    <form method="get" action="/pharmacy/search" id="filterForm">
                         <input type="hidden" name="type" th:value="${selectedType}" />
                         <input type="hidden" name="keyword" th:value="${search}" />
+
                         <!-- Khoảng giá -->
                         <div class="filter-section">
                             <div class="rentPrice">
@@ -45,10 +93,10 @@
                         <!-- Các checkbox lựa chọn theo khoảng giá -->
                         <div class="filter-section">
                             <div class="checkbox-group">
-                                <label><input type="checkbox" name="priceRange[]" value="under100000" th:checked="${priceRange != null && priceRange.contains('under100000')}"> Dưới 100.000 đ</label>
-                                <label><input type="checkbox" name="priceRange[]" value="100000-300000" th:checked="${priceRange != null && priceRange.contains('100000-300000')}"> 100.000 đ - 300.000 đ</label>
-                                <label><input type="checkbox" name="priceRange[]" value="300000-500000" th:checked="${priceRange != null && priceRange.contains('300000-500000')}"> 300.000 đ - 500.000 đ</label>
-                                <label><input type="checkbox" name="priceRange[]" value="over500000" th:checked="${priceRange != null && priceRange.contains('over500000')}"> Trên 500.000 đ</label>
+                                <label><input class="price-checkbox" type="checkbox" name="priceRange[]" value="under100000" th:checked="${priceRange != null && priceRange.contains('under100000')}"> Dưới 100.000 đ</label>
+                                <label><input class="price-checkbox" type="checkbox" name="priceRange[]" value="100000-300000" th:checked="${priceRange != null && priceRange.contains('100000-300000')}"> 100.000 đ - 300.000 đ</label>
+                                <label><input class="price-checkbox" type="checkbox" name="priceRange[]" value="300000-500000" th:checked="${priceRange != null && priceRange.contains('300000-500000')}"> 300.000 đ - 500.000 đ</label>
+                                <label><input class="price-checkbox" type="checkbox" name="priceRange[]" value="over500000" th:checked="${priceRange != null && priceRange.contains('over500000')}"> Trên 500.000 đ</label>
                             </div>
                         </div>
                     </form>
@@ -59,12 +107,13 @@
             <main class="product-grid">
                 <div class="sort-options">
                     <label class="labelSort">Sắp xếp theo:</label>
-                    <form id="sortForm" method="get" action="/pharmacy/type/filter">
+                    <form id="sortForm" method="get" action="/pharmacy/search">
+                        <input type="hidden" name="keyword" th:value="${search}">
                         <input type="hidden" name="giaMin" th:value="${giaMin != null ? giaMin : ''}">
                         <input type="hidden" name="giaMax" th:value="${giaMax != null ? giaMax : ''}">
                         <input type="hidden" name="priceRange" th:value="${priceRange != null ? priceRange : ''}">
                         <input type="hidden" name="type" th:value="${selectedType}">
-                        <input type="hidden" name="keyword" th:value="${search}">
+
 
                         <!-- Các nút sắp xếp -->
                         <button type="submit" name="sortOrder" value="desc" class="sort-btn">Giá giảm dần</button>
@@ -150,7 +199,7 @@
         event.preventDefault(); // Ngừng hành động mặc định của form (không reload trang)
         var keyword = document.querySelector('input[name="keyword"]').value;
         var type = document.querySelector('input[name="type"]').value; // Lấy giá trị từ input hidden
-        var url = `/home/type/filter?type=${type}&keyword=${keyword}`; // Xây dựng URL
+        var url = `/pharmacy/search?type=${type}&keyword=${keyword}`; // Xây dựng URL
         window.location.href = url; // Thay đổi đường dẫn trang
     }
 
@@ -172,6 +221,24 @@
         var url = `/home/type/filter?type=${type}&giaMin=${giaMin}&giaMax=${giaMax}&priceRange=${priceRange.join(',')}`;
         window.location.href = url; // Thay đổi đường dẫn trang
     }
+
+    document.querySelectorAll('.price-checkbox').forEach(function(checkbox) {
+        checkbox.addEventListener('click', function() {
+            document.querySelectorAll('.price-checkbox').forEach(function(cb) {
+                if (cb !== checkbox) {
+                    cb.checked = false; // Uncheck the other checkboxes
+                }
+            });
+        });
+    });
+
+    function setCategory(typeOrSlug) {
+        // Cập nhật URL cho danh mục đã chọn
+        window.location.href = "/pharmacy/type/" + typeOrSlug; // Thay đổi URL của trang hiện tại
+    }
+
+
+
 </script>
 </body>
 </html>

@@ -29,6 +29,7 @@ public interface SanPhamService {
     public List<SanPham> filterProducts(String tenSanPham,String type,Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder);
 
 
+    public List<SanPham> searchProducts(String tenSanPham);
 
     public List<SanPham> findSimilarProducts(String type, String excludeId);
 //    public List<SanPham> getSameBrandProducts(String brand, String currentProductId);

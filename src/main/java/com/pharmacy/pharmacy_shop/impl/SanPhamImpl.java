@@ -5,19 +5,11 @@ import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.reposities.SanPhamRepo;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Collectors;
-import java.util.Optional;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class SanPhamImpl implements SanPhamService {
@@ -83,13 +75,48 @@ public class SanPhamImpl implements SanPhamService {
     @Override
     public List<SanPham> filterProducts(String tenSanPham,String type, Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder) {
 
-        List<SanPham> filteredProducts = getSanPhamByType(type); // Lấy sản phẩm theo loại
+
+        Map<String, String> slugToTypeIdMap  = new HashMap<>();
+        slugToTypeIdMap.put("thuc-pham-chuc-nang", "TP001");
+        slugToTypeIdMap.put("thuoc-khong-ke-don", "TP002");
+        slugToTypeIdMap.put("dung-cu-y-te", "TP003");
+        slugToTypeIdMap.put("san-pham-cham-soc-suc-khoe", "TP004");
+        slugToTypeIdMap.put("tieu-duong", "TP005");
+        slugToTypeIdMap.put("tim-mach", "TP006");
+        slugToTypeIdMap.put("xuong-khop", "TP007");
+        slugToTypeIdMap.put("thuoc-ke-don", "TP008");
+        slugToTypeIdMap.put("thuoc-cho-be", "TP009");
+        slugToTypeIdMap.put("me-va-be", "TP010");
+        //Lấy sản phẩm theo loại
+        List<SanPham> filteredProducts = (type != null && !type.isEmpty())
+                ? sanPhamRepo.findAllByTenSanPham(type, tenSanPham)
+                : sanPhamRepo.findAllSanPhamByName(tenSanPham);
+//        List<SanPham> filteredProducts = sanPhamRepo.findAll();         // Lấy tất cả sản phẩm
+       // List<SanPham> filteredProducts = sanPhamRepo.findAll();
+
+       // List<SanPham> filteredProducts = sanPhamRepo.findAllByTenSanPham(type, tenSanPham);
+
+        //List<SanPham> filteredProducts = new ArrayList<>();
+
+        // Lấy Sản phẩm theo loại
+        //List<SanPham> filteredProducts = sanPhamRepo.findAllByGiaBanBetweenAndPriceRange(tenSanPham, type, minPrice, maxPrice, priceRange != null && !priceRange.isEmpty() ? priceRange.get(0) : null, sortOrder);
+
 
         // Lọc theo từ khóa tìm kiếm (nếu có)
         if (tenSanPham != null && !tenSanPham.isEmpty()) {
             filteredProducts = filteredProducts.stream()
                     .filter(p -> p.getTenSanPham().toLowerCase().contains(tenSanPham.toLowerCase()))
                     .collect(Collectors.toList());
+        }
+
+        // Lọc theo loại sản phẩm (nếu có)
+        if (type != null && !type.isEmpty()) {
+            String typeId = slugToTypeIdMap.get(type);
+            if (typeId != null) {
+                filteredProducts = filteredProducts.stream()
+                        .filter(p -> p.getType() != null && p.getType().equals(typeId))
+                        .collect(Collectors.toList());
+            }
         }
 
         // Lọc theo khoảng giá
@@ -107,22 +134,22 @@ public class SanPhamImpl implements SanPhamService {
                 switch (range) {
                     case "under100000":
                         filteredProducts = filteredProducts.stream()
-                                .filter(p -> p.getGiaBan() < 100)
+                                .filter(p -> p.getGiaBan() < 100000)
                                 .collect(Collectors.toList());
                         break;
                     case "100000-300000":
                         filteredProducts = filteredProducts.stream()
-                                .filter(p -> p.getGiaBan() >= 100 && p.getGiaBan() <= 300)
+                                .filter(p -> p.getGiaBan() >= 100000 && p.getGiaBan() <= 300000)
                                 .collect(Collectors.toList());
                         break;
                     case "300000-500000":
                         filteredProducts = filteredProducts.stream()
-                                .filter(p -> p.getGiaBan() >= 300 && p.getGiaBan() <= 500)
+                                .filter(p -> p.getGiaBan() >= 300000 && p.getGiaBan() <= 500000)
                                 .collect(Collectors.toList());
                         break;
                     case "over500000":
                         filteredProducts = filteredProducts.stream()
-                                .filter(p -> p.getGiaBan() > 500)
+                                .filter(p -> p.getGiaBan() > 500000)
                                 .collect(Collectors.toList());
                         break;
                     default:
@@ -131,15 +158,22 @@ public class SanPhamImpl implements SanPhamService {
             }
         }
 
-
+//
         // Sắp xếp theo giá nếu sortOrder được cung cấp
-        if ("asc".equals(sortOrder)) {
+        if ("asc".equalsIgnoreCase(sortOrder)) {
             filteredProducts.sort(Comparator.comparing(SanPham::getGiaBan));
-        } else if ("desc".equals(sortOrder)) {
+        } else if ("desc".equalsIgnoreCase(sortOrder)) {
             filteredProducts.sort(Comparator.comparing(SanPham::getGiaBan).reversed());
         }
 
+
+
         return filteredProducts;
+    }
+
+    @Override
+    public List<SanPham> searchProducts(String tenSanPham) {
+        return sanPhamRepo.findAllSanPhamByName(tenSanPham);
     }
 
 
