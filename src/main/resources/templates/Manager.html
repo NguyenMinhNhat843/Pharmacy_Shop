@@ -46,7 +46,6 @@
     </style>
 </head>
 <body>
-<!-- Header section -->
 <div class="container-fluid bg-body-tertiary p-0">
         <!-- side bar -->
         <nav class="sidebar">
@@ -229,19 +228,19 @@
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="inputProductPrice" class="form-label">Giá Sản Phẩm</label>
-                                                            <input type="number"  th:value="${sanpham.giaBan} class="form-control" id="inputProductPrice_Update" name="price" placeholder="Nhập giá sản phẩm" required>
+                                                            <input type="number"  th:value="${sanpham.giaBan}" class="form-control" id="inputProductPrice_Update" name="price" placeholder="Nhập giá sản phẩm" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="inputProductQuantity" class="form-label">Số Lượng đã bán</label>
-                                                            <input type="number"  th:value="${sanpham.soLuongDaBan} class="form-control" id="inputProductQuantity_Update" name="quantity" placeholder="Nhập số lượng" required>
+                                                            <input type="number"  th:value="${sanpham.soLuongDaBan}" class="form-control" id="inputProductQuantity_Update" name="quantity" placeholder="Nhập số lượng" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="inputProductQuantity" class="form-label">Số Lượng còn lại</label>
-                                                            <input type="number"  th:value="${sanpham.soLuongConLai} class="form-control" id="inputProductQuantity_Update" name="quantity" placeholder="Nhập số lượng" required>
+                                                            <input type="number"  th:value="${sanpham.soLuongConLai}" class="form-control" id="SoLuongConLai_Update" name="quantity" placeholder="Nhập số lượng" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="inputProductQuantity" class="form-label">Tổng số lượng</label>
-                                                            <input type="number"  th:value="${sanpham.soLuongDaBan + sanpham.soLuongConLai  } class="form-control" id="inputProductQuantity_Update" name="quantity" placeholder="Nhập số lượng" required>
+                                                            <input type="number"  th:value="${sanpham.soLuongDaBan + sanpham.soLuongConLai}" class="form-control" id="TongSoLuong_Update" name="quantity" placeholder="Nhập số lượng" required>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="inputProductImage" class="form-label">Hình Ảnh</label>
@@ -261,7 +260,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                                    <button type="submit" class="btn btn-primary" form="formCreateProduct">Tạo mới</button>
+                                                    <button type="submit" class="btn btn-primary" form="formCreateProduct">Cập nhật</button>
                                                 </div>
                                             </div>
                                         </div>

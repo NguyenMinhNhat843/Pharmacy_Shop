@@ -83,6 +83,7 @@ public class SanPhamController {
     // ======================================= View: Quan Ly SAn Pham
     @GetMapping("/quanly/sanpham/list")
     public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        System.out.println("======================== List sản phẩm ==============");
         int pageSize = 10;
         List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);
         long soLuongSanPham = sanPhamService.getSoLuongSanPham();
@@ -94,6 +95,7 @@ public class SanPhamController {
         model.addAttribute("sanphams", sanphams);
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPage);
+        System.out.println(sanphams);
         return "Manager";
     }
 
@@ -138,7 +140,7 @@ public class SanPhamController {
         tp.setId(category);
         sp.setType(tp);
 
-        System.out.println(sp);
+//        System.out.println(sp);
         sanPhamService.addSanPham(sp);
 
         return "redirect:/quanly/sanpham/list";
@@ -147,8 +149,8 @@ public class SanPhamController {
     @PostMapping("/quanly/sanpham/delete")
     @ResponseBody
     public ResponseEntity<?> deleteSelectedProducts(@RequestBody List<String> selectedIds) {
-        System.out.println("=================================================");
-        System.out.println(selectedIds);
+//        System.out.println("=================================================");
+//        System.out.println(selectedIds);
         try {
             for (String id : selectedIds) {
                 sanPhamService.deleteSanPham(id);
