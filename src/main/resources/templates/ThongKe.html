@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Thống kê</title>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2D3748;
+            color: white;
+            position: fixed;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #4A5568;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .card-custom {
+            width: 100%;
+            max-width: 550px;
+        }
+
+        /* Container cho các card */
+        .stats-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .cards-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-evenly;
+        }
+
+        .col-md-6 {
+            flex: 1 1 calc(50% - 20px);
+        }
+	</style>
+</head>
+<body>
+<div class="container-fluid bg-body-tertiary p-0">
+	<nav class="sidebar">
+		<a href="#" th:href="@{/pharmacy/quanly/sanpham/list}">Quản Lý Sản Phẩm</a>
+		<a href="#" th:href="@{/orders}">Quản lý Hóa đơn</a>
+		<a href="#" th:href="@{/products}">Quản Lý Khách Hàng</a>
+		<a href="#" th:href="@{/thongKe}">Thống Kê</a>
+	</nav>
+
+	<div class="d-flex justify-content-between">
+		<div class="main-content" style="flex: 1">
+			<div class="pb-3 d-flex align-items-center justify-content-between">
+				<h1>Thống kê</h1>
+
+				<!-- Khu vực tên và avatar -->
+				<div class="d-flex align-items-center justify-content-center">
+					<span class="pe-3">Nguyen Minh Nhat</span>
+					<div class="" style="height: 40px">
+						<img class="w-100 h-100 rounded-circle" src="../static/images_avatar/avatar_1.png" th:src="@{/images_avatar/avatar_1.png}" alt="avatar"/>
+					</div>
+
+					<!-- Submenu - Dropdown -->
+					<div class="dropdown">
+						<button class="btn btn-link dropdown-toggle" type="button" id="userDropdownButton" data-bs-toggle="dropdown" aria-expanded="false" style="border: none; background: none;">
+							<span class="d-none">User Menu</span>
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="userDropdownButton">
+							<li><a class="dropdown-item" href="/profile">Thông tin cá nhân</a></li>
+							<li><a class="dropdown-item" href="/login" th:ref="@{/login}">Đăng xuất</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<!-- Div chứa card tổng số sản phẩm -->
+			<div class="stats-container">
+				<div class="cards-flex">
+					<!-- Card Tổng số sản phẩm -->
+					<div class="col-md-6 card-custom">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Tổng số sản phẩm</h3>
+								<p class="fw-bold" th:text="${tongSoLuongSanPham}"></p>
+							</div>
+						</div>
+					</div>
+
+					<!-- Card Tổng số tiền các đơn hàng -->
+					<div class="col-md-6 card-custom">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="card-title">Tổng số tiền các đơn hàng</h3>
+								<p class="fw-bold" th:text="${tongTienTatCaDonHang}"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Các card còn lại, ví dụ Top 3 sản phẩm bán chạy và Số lượng đơn hàng theo tháng/năm -->
+				<div class="cards-flex">
+					<!-- Card Top 3 sản phẩm bán chạy -->
+					<div class="col-md-6 card-custom">
+						<div class="card mt-4">
+							<div class="card-header">
+								<h3>Top 3 sản phẩm bán chạy</h3>
+							</div>
+							<div class="card-body">
+								<table class="table table-bordered">
+									<thead>
+									<tr>
+										<th>Tên sản phẩm</th>
+										<th>Số lượng đã bán</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr th:each="entry : ${topSanPham}">
+										<td th:text="${entry.key}"></td>
+										<td th:text="${entry.value}"></td>
+									</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+					<!-- Card số lượng đơn hàng theo tháng và năm -->
+					<div class="col-md-6 card-custom">
+						<div class="card mt-4">
+							<div class="card-header">
+								<h3>Số lượng đơn hàng theo tháng và năm</h3>
+							</div>
+							<div class="card-body">
+								<form id="orderCountForm">
+									<div class="row">
+										<div class="col-md-4">
+											<label for="month">Tháng</label>
+											<select id="month" class="form-select">
+												<option value="1">Tháng 1</option>
+												<option value="2">Tháng 2</option>
+												<option value="3">Tháng 3</option>
+												<option value="4">Tháng 4</option>
+												<option value="5">Tháng 5</option>
+												<option value="6">Tháng 6</option>
+												<option value="7">Tháng 7</option>
+												<option value="8">Tháng 8</option>
+												<option value="9">Tháng 9</option>
+												<option value="10">Tháng 10</option>
+												<option value="11">Tháng 11</option>
+												<option value="12">Tháng 12</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<label for="year">Năm</label>
+											<select id="year" class="form-select">
+												<option value="2024">2024</option>
+												<option value="2023">2023</option>
+												<option value="2022">2022</option>
+											</select>
+										</div>
+										<div class="col-md-4">
+											<button type="submit" class="btn btn-primary mt-4">Lấy số lượng</button>
+										</div>
+									</div>
+								</form>
+								<div id="orderCountResult" class="mt-3">
+									<p>Số lượng đơn hàng: <span id="orderCount">0</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#orderCountForm').on('submit', function (event) {
+            event.preventDefault();
+
+            // Lấy giá trị tháng và năm
+            var month = $('#month').val();
+            var year = $('#year').val();
+
+            // Gửi yêu cầu AJAX đến API
+            $.ajax({
+                url: '/thongKe/countOrder',
+                type: 'GET',
+                data: {month: month, year: year},
+                success: function (response) {
+                    // Hiển thị số lượng đơn hàng
+                    $('#orderCount').text(response);
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra khi lấy số lượng đơn hàng.');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

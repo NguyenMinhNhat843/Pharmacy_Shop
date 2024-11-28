@@ -11,9 +11,9 @@ import java.awt.print.Pageable;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-@Service
 public interface SanPhamService {
     public List<SanPham> getAllSanPham();
     public long getSoLuongSanPham();
@@ -33,4 +33,8 @@ public interface SanPhamService {
 
     public List<SanPham> findSimilarProducts(String type, String excludeId);
 //    public List<SanPham> getSameBrandProducts(String brand, String currentProductId);
+
+    public Integer getTongSoLuongSanPham();
+
+    public Map<String, Integer> getTopSanPhamBanChay();
 }
