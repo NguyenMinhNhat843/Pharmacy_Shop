@@ -35,6 +35,9 @@ public class ChiTietSanPhamController {
         // 2. Lấy sản phẩm chi tiết
         SanPham sanPham = sanPhamService.getSanPhamById(id);
         System.out.println(sanPham);
+        System.out.println("Mô Tả: " + sanPham.getMoTa()); // Kiểm tra xem Mô Tả có được trả về không
+        System.out.println("Lưu Ý: " + sanPham.getLuuY()); // Kiểm tra xem Lưu Ý có được trả về không
+        System.out.println("Thành Phần: " + sanPham.getThanhPhan());
         if (sanPham == null) {
             logger.warn("Product with ID {} not found", id);
             model.addAttribute("errorMessage", "Sản phẩm không tồn tại hoặc đã bị xóa.");

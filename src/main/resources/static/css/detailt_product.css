@@ -66,19 +66,28 @@ body {
 .tab-section {
     display: flex;
     gap: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #ddd;
     margin-top: 20px;
     padding-bottom: 10px;
 }
+
 .tab {
     cursor: pointer;
     padding: 10px;
     color: #666;
+    font-weight: normal;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
 }
+
+.tab:hover {
+    color: #333;
+}
+
 .tab.active {
     font-weight: bold;
     color: #333;
-    border-bottom: 2px solid #333;
+    border-color: #333; /* Đổi màu viền dưới khi active */
 }
 .tab-content {
     margin-top: 20px;
