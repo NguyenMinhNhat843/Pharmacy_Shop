@@ -34,10 +34,12 @@
             <div class="input-group">
                 <label for="password" style="font-weight: bold;">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('password', this)">👁️</span>
             </div>
             <div class="input-group">
                 <label for="repeat-password" style="font-weight: bold;">Repeat Password</label>
                 <input type="password" id="repeat-password" name="repeatPassword" placeholder="Enter your password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('repeat-password', this)">👁️</span>
             </div>
             <button type="submit" class="btn">Sign Up</button>
         </form>
@@ -56,5 +58,18 @@
             Already have an account? <a th:href="@{/login}" style="font-weight: bold;">Sign In</a>
         </div>
     </div>
+    <script>
+        // Hàm thay đổi độ hiển thị mật khẩu (ẩn/hiện)
+        function togglePasswordVisibility(id, icon) {
+            const passwordField = document.getElementById(id);
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.innerHTML = "🙈";  // Đổi biểu tượng mắt khi mật khẩu hiển thị
+            } else {
+                passwordField.type = "password";
+                icon.innerHTML = "👁️";  // Đổi biểu tượng mắt khi mật khẩu bị ẩn
+            }
+        }
+    </script>
 </body>
 </html>
