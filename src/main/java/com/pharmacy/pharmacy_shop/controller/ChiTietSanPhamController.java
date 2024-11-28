@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -59,7 +60,28 @@ public class ChiTietSanPhamController {
         model.addAttribute("account", account);
         model.addAttribute("sanPham", sanPham);
         model.addAttribute("similarProducts", similarProducts);
-//       model.addAttribute("sameBrandProducts", sameBrandProducts);
+//      model.addAttribute("sameBrandProducts", sameBrandProducts);
+
+        //  Lưu các sản phầm đã xem vào session
+        List<SanPham> recentlyViewedProducts = (List<SanPham>) session.getAttribute("recentlyViewedProducts");
+        if (recentlyViewedProducts == null) {
+            recentlyViewedProducts = new ArrayList<>();
+        }
+
+
+        // Kiểm tra xem sản phẩm đã có trong danh sách chưa, nếu chưa thì thêm vào
+        if (recentlyViewedProducts.stream().noneMatch(p -> p.getId().equals(sanPham.getId()))) {
+            recentlyViewedProducts.add(0, sanPham); // Thêm sản phẩm vào đầu danh sách
+            if (recentlyViewedProducts.size() > 5) {
+                recentlyViewedProducts.remove(recentlyViewedProducts.size() - 1); // Giới hạn 5 sản phẩm
+            }
+        }
+
+        // Lưu danh sách vào session
+        session.setAttribute("recentlyViewedProducts", recentlyViewedProducts);
+        model.addAttribute("recentlyViewedProducts", recentlyViewedProducts); // Truyền danh sách vừa xem vào giao diện
+
+
 
         logger.info("Product details loaded successfully for ID: {}", id);
 
