@@ -43,10 +43,10 @@ public class AccountController {
         if (account != null && account.getType().equals("admin")) {
             session.setAttribute("loggedInUser", account);
             // Điều hướng đến trang chính (dashboard hoặc trang khác)
-            return "redirect:/pharmacy/quanly/sanpham/list";
+            return "redirect:/quanly/sanpham/list";
         } else if (account != null && account.getType().equals("custom")) {
             session.setAttribute("loggedInUser", account);
-            return "redirect:/pharmacy/home";
+            return "redirect:/home";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login"; // Quay lại trang login

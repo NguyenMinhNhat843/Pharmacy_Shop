@@ -1,6 +1,7 @@
 package com.pharmacy.pharmacy_shop.reposities;
 
 import com.pharmacy.pharmacy_shop.entity.Account;
+import com.pharmacy.pharmacy_shop.entity.DonHang;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,11 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 
 @Repository
-public interface DonHangRepo extends JpaRepository<Account, Integer> {
+public interface DonHangRepo extends JpaRepository<DonHang, String> {
+    // AutoGenID
+    @Query(value = "SELECT TOP 1 * FROM DonHang ORDER BY id DESC;\n", nativeQuery = true)
+    DonHang findDonHangWithIDMax();
+
     @Query(value = "SELECT COUNT(*) FROM DonHang dh WHERE MONTH(dh.ngayTaoHoaDon) = :month AND YEAR(dh.ngayTaoHoaDon) = :year", nativeQuery = true)
     Long countOrdersByMonthAndYear(int month, int year);
     

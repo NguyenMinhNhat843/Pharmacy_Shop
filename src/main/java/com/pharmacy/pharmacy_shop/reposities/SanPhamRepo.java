@@ -25,6 +25,10 @@ public interface SanPhamRepo extends JpaRepository<SanPham, String> {
             nativeQuery = true)
     Page<SanPham> getSanPhamByTypePage(String type, Pageable pageable);
 
+    // Lấy tổng số lượng sản sanr phẩm đã bán
+    @Query(value = "select sum(soLuongDaBan) as soLuongDaBan from SanPham\n", nativeQuery = true)
+    long getSoLuongDaBan();
+
     // Lấy sản phẩm bán chạy
     @Query("SELECT sp FROM SanPham sp ORDER BY sp.soLuongDaBan DESC")
     List<SanPham> findAllOrderBySoLuongDaBanDesc();

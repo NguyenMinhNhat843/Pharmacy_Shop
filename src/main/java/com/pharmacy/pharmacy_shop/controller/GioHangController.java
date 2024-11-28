@@ -43,9 +43,12 @@ public class GioHangController {
                     .mapToDouble(item -> item.getSanPham().getGiaBan().doubleValue() * item.getSoLuong())
                     .sum();
 
+            // Đưa tổng tiền vào session
+            session.setAttribute("totalAmount", totalAmount);
+
+            model.addAttribute("account", account);
             model.addAttribute("cartItems", cartItems);
             model.addAttribute("totalAmount", totalAmount);
-            model.addAttribute("cartItems", cartItems);
         }
 
         return "Cart";
