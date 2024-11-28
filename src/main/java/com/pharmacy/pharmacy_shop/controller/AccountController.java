@@ -2,6 +2,7 @@ package com.pharmacy.pharmacy_shop.controller;
 
 import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.services.AccountService;
+import jakarta.servlet.http.HttpSession;
 import com.pharmacy.pharmacy_shop.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,8 +19,9 @@ import java.util.regex.Pattern;
 public class AccountController {
 
     @Autowired
-    private  AccountService accountService;
+    private AccountService accountService;
 
+    // ============== View
     @Autowired
     private EmailService emailService;
 
@@ -28,17 +30,22 @@ public class AccountController {
         return "login"; // Tên của file HTML trong thư mục templates
     }
 
+    // =============== login
     @PostMapping("/login")
     public String processLogin(
             @RequestParam("email") String username,
             @RequestParam("password") String password,
-            Model model) {
+            Model model,
+            HttpSession session) {
 
         Account account = accountService.findByUsernameAndPassword(username, password);
 
-        if (account != null) {
-            model.addAttribute("message", "Login successful");
+        if (account != null && account.getType().equals("admin")) {
+            session.setAttribute("loggedInUser", account);
             // Điều hướng đến trang chính (dashboard hoặc trang khác)
+            return "redirect:/pharmacyquanly/sanpham/list";
+        } else if (account != null && account.getType().equals("custom")) {
+            session.setAttribute("loggedInUser", account);
             return "redirect:/home";
         } else {
             model.addAttribute("error", "Invalid username or password");
@@ -123,7 +130,6 @@ public class AccountController {
             return "reset_password";  // Quay lại trang nếu không tìm thấy tài khoản
         }
     }
-
 
 
     @GetMapping("/resend-reset-link")

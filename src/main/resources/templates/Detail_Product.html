@@ -10,37 +10,8 @@
     <link rel="stylesheet" th:href="@{/static/css/index.css}">
 </head>
 <body>
-
-<!-- Header section -->
-        <div class="container-fluid bg-body-tertiary">
-            <nav class="container d-flex py-2 align-items-center">
-                <a th:href="@{/home}" class="logo_wrap d-flex justify-content-center align-items-center">
-                    <img alt="logo" th:src="@{/images_other/logo.png}" class="logo_landing" />
-                </a>
-                <form class="d-flex flex-grow-1">
-                    <input type="text" class="form-control me-2" placeholder="Search..." />
-                    <input class="btn btn-outline-success" type="submit" value="Search" />
-                </form>
-                <div class="d-flex w-[20]">
-                    <a class="nav-link ps-3" href="login.html">Đăng nhập</a>
-                    <div class="d-flex justify-content-center align-items-center ps-3">
-                        <i class="fa-solid fa-cart-shopping pe-1"></i>
-                        <a class="nav-link" href="./Cart.html">Giỏ hàng</a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-        <!-- Danh muc section -->
-        <div class="w-100 py-3 bg-success text-white">
-            <div class="container d-flex ">
-                <a href="#" class="nav-link pe-3">Thuốc xương khớp</a>
-                <a href="#" class="nav-link pe-3">Thuốc tim mạch</a>
-                <a href="#" class="nav-link pe-3">Thuốc Cho bé</a>
-                <a href="#" class="nav-link pe-3">Thực phẩm bổ sung</a>
-                <a href="#" class="nav-link pe-3">Dụng cụ y tế</a>
-            </div>
-        </div>
+        <!-- Sử dụng fragment header -->
+        <div th:replace="fragment/Header :: header(${account})"></div>
 
         <!-- Body        -->
         <div class="container_css my-5">
@@ -102,19 +73,17 @@
 
             <!-- Tab Navigation for Description, Details, etc. -->
             <div class="tab-section">
-                <div class="tab active" id="tab-description" th:data-content="${sanPham.moTa}">Mô tả</div>
-                <div class="tab" id="tab-ingredients" th:data-content="${sanPham.thanhPhan}">Thành phần</div>
-                <div class="tab" id="tab-usage" th:data-content="${sanPham.cachSuDung}">Cách sử dụng</div>
-                <div class="tab" id="tab-notes" th:data-content="${sanPham.luuY}">Lưu ý</div>
+                <div class="tab active" onclick="showTab('description')">Mô tả</div>
+                <div class="tab" onclick="showTab('ingredients')">Thành phần</div>
+                <div class="tab" onclick="showTab('usage')">Cách sử dụng</div>
+                <div class="tab" onclick="showTab('notes')">Lưu ý</div>
             </div>
 
             <!-- Tab Contents -->
             <div class="tab-content" id="tab-content">
+                <!-- Nội dung mặc định là "Mô tả" -->
                 <p th:text="${sanPham.moTa != null ? sanPham.moTa : 'Không có thông tin mô tả'}"></p>
             </div>
-
-
-
 
 
             <!-- Questions & Answers Section -->
@@ -270,50 +239,32 @@
             // }
 
             // Hàm xử lý chuyển đổi nội dung tab
-            window.addEventListener('load', function () {
-                // Hàm xử lý chuyển đổi nội dung tab
-                function showTab(tabId) {
-                    console.log('Tab clicked:', tabId);  // Kiểm tra tab có được click không
+            function showTab(tabName) {
+                // Map dữ liệu từ backend vào nội dung các tab
+                const tabData = {
+                    description: '[[${sanPham.moTa}]]',
+                    ingredients: '[[${sanPham.thanhPhan}]]',
+                    usage: '[[${sanPham.cachSuDung}]]',
+                    notes: '[[${sanPham.luuY}]]',
+                };
 
-                    // Lấy nội dung từ data-content của tab đã click
-                    const content = document.getElementById(tabId).getAttribute('data-content') || 'Nội dung không có sẵn';
+                // Cập nhật nội dung tab
+                const content = tabData[tabName] || 'Nội dung không có sẵn';
+                document.getElementById("tab-content").innerHTML = `<p>${content}</p>`;
 
-                    // Cập nhật nội dung tab
-                    document.getElementById("tab-content").innerHTML = `<p>${content}</p>`;
-
-                    // Thay đổi trạng thái active của tab
-                    document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-                    document.getElementById(tabId).classList.add('active');
-                }
-
-                // Gán sự kiện click cho từng tab
-                document.getElementById('tab-description').addEventListener('click', function() {
-                    showTab('tab-description');
-                });
-                document.getElementById('tab-ingredients').addEventListener('click', function() {
-                    showTab('tab-ingredients');
-                });
-                document.getElementById('tab-usage').addEventListener('click', function() {
-                    showTab('tab-usage');
-                });
-                document.getElementById('tab-notes').addEventListener('click', function() {
-                    showTab('tab-notes');
-                });
-
-                // Mặc định hiển thị tab "Mô tả" khi trang tải
-                showTab('tab-description');
-            });
-
-
-
-
-
+                // Thay đổi trạng thái active của tab
+                document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+                event.target.classList.add('active');
+            }
 
 
             // Hàm thêm sản phẩm vào giỏ hàng
             function addToCart() {
                 alert("Sản phẩm đã được thêm vào giỏ hàng!");
             }
+
+            // Khi trang web tải xong, gọi hàm loadProductData để hiển thị dữ liệu
+            window.onload = loadProductData;
             // Tự động cuộn ngang khi số sản phẩm > 6
             window.onload = function () {
                 const carousel = document.querySelector('.carousel');

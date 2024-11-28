@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/articles.css">
+    <link rel="stylesheet" href="../static/css/index.css">
+</head>
+<body>
+<!-- Header section -->
+<div class="container-fluid bg-body-tertiary">
+    <nav class="container d-flex py-2 align-items-center">
+        <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
+            <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
+        </a>
+        <form class="d-flex flex-grow-1" action="/pharmacy/search" method="get" >
+            <input type="text" class="form-control me-2" placeholder="Search..." name="keyword" th:value="${search}"/>
+            <input type="hidden" name="type" th:value="${selectedType}"/>
+
+            <input class="btn btn-outline-success" type="submit" value="Search"/>
+        </form>
+        <!-- Form tìm kiếm toàn cục -->
+
+        <div class="d-flex w-[20]">
+            <a class="nav-link ps-3" href="./Login.html">Đăng nhập</a>
+            <div class="d-flex justify-content-center align-items-center ps-3">
+                <i class="fa-solid fa-cart-shopping pe-1"></i>
+                <a class="nav-link" href="./Cart.html">Giỏ hàng</a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Danh muc section -->
+
+<div class="w-100 py-3 bg-success text-white">
+    <div class="container d-flex">
+        <!-- Liên kết sử dụng slug -->
+        <div class="container d-flex">
+            <!-- Liên kết sử dụng slug -->
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuc-pham-chuc-nang')">Thực phẩm chức năng</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-khong-ke-don')">Thuốc không kê đơn</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('dung-cu-y-te')">Dụng cụ y tế</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('san-pham-cham-soc-suc-khoe')">Sản phẩm chăm sóc sức khỏe</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('tieu-duong')">Tiểu đường</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('tim-mach')">Tim mạch</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('xuong-khop')">Xương khớp</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-ke-don')">Thuốc kê đơn</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-cho-be')">Thuốc cho bé</a>
+            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('me-va-be')">Mẹ và Bé</a>
+        </div>
+    </div>
+</div>
+<!-- Body        -->
+<div class="main-content">
+    <h2 class="article-header">Nguyên tắc uống thuốc đúng cách: Hướng dẫn từ A đến Z cho mọi người</h2>
+    <hr  width="100%" align="center" style="padding-top: 10px;margin-top: 10px" />
+    <div class="date-button">
+        <p class="article-date">Ngày 19/06/2024</p>
+        <div class="font-size-buttons">
+            <button onclick="setDefaultFontSize()">Đặt mặc định</button>
+            <button onclick="setLargeFontSize()">Phóng to</button>
+            <button onclick="setSmallFontSize()">Thu nhỏ</button>
+        </div>
+    </div>
+
+
+    <div class="article-text">
+        <p>Uống thuốc đúng cách là một phần quan trọng trong quá trình điều trị bệnh, giúp đảm bảo hiệu quả điều trị của bệnh nhân và tránh được những tác dụng phụ không mong muốn. Tuy nhiên, không phải ai cũng hiểu rõ về cách uống thuốc sao cho đúng và an toàn. Bài viết này sẽ cung cấp những thông tin chi tiết và hướng dẫn cụ thể để bạn có thể uống thuốc một cách hiệu quả và an toàn nhất, từ việc tuần thủ chỉ dẫn của bác sĩ đến những lưu ý khi tự uống thuốc tại nhà.</p>
+    </div>
+
+    <div class="quote">
+        <p>Uống thuốc đúng cách là một phần quan trọng trong quá trình điều trị bệnh, giúp đảm bảo hiệu quả điều trị của bệnh nhân và tránh được những tác dụng phụ không mong muốn.</p>
+    </div>
+    <div class="rating-container">
+        <div class="rating-header">Đánh giá độ hữu ích của bài viết</div>
+        <div class="emoji-buttons">
+            <div class="emoji-button">
+                <span class="emoji-icon">😞</span>
+                <span class="emoji-label">Thất vọng</span>
+            </div>
+            <div class="emoji-button">
+                <span class="emoji-icon">😟</span>
+                <span class="emoji-label">Không hữu ích</span>
+            </div>
+            <div class="emoji-button">
+                <span class="emoji-icon">😐</span>
+                <span class="emoji-label">Bình thường</span>
+            </div>
+            <div class="emoji-button">
+                <span class="emoji-icon">😊</span>
+                <span class="emoji-label">Hữu ích</span>
+            </div>
+            <div class="emoji-button">
+                <span class="emoji-icon">😍</span>
+                <span class="emoji-label">Rất hữu ích</span>
+            </div>
+        </div>
+    </div>
+    <div class="quote">
+        <p class="quote_info">Thông tin và sản phẩm gợi ý trong bài viết chỉ mang tính chất tham khảo, vui lòng liên hệ với Bác sĩ, Dược sĩ hoặc chuyên viên y tế để được tư vấn cụ thể</p>
+    </div>
+
+    <div class="card">
+        <div class="card_info">
+            <img src="avatar.jpg" alt="Avatar" class="avatar">
+            <div class="inner_info">
+                <p class="inner_info_work">Dược sĩ Đại học</p>
+                <h4 style="font-weight: 700">Nguyễn Tuấn Trịnh</h4>
+                <p style="color: forestgreen"><span class="check_circle">✔</span> Đã kiểm duyệt nội dung</p>
+            </div>
+        </div>
+
+        <div class="info">
+            <p>Từng làm ở Viện ISDS, nhiều năm cộng tác với CDC Thái Nguyên triển khai dự án phòng chống HIV/AIDS, 2 năm cộng tác với WHO.</p>
+            <a href="#" >Xem thêm thông tin ></a>
+        </div>
+    </div>
+    <div class="product_ever_seen">
+        <h3 class="ever_seen_title">Sản phầm vừa xem</h3>
+        <div class="list_prodcut">
+            <a href="#" class="product-card">
+                <img " alt="Product Image" >
+                <h3 class="product-title">Viên uống Nature Gift 15 Days Hỗ trợ giảm cân (Hộp 60 viên)</h3>
+                <p class="price" >735.000đ / hộp</p>
+                <div class="span-text">
+                    <span class="heart-icon"><i class="fas fa-heart"></i></span>
+                    <span th:text="${product.soLuongConLai}">0</span> |
+                    <span th:text="${product.soLuongDaBan}">0</span> Đã bán
+                </div>
+                <button class="buy-btn">Chọn sản phẩm</button>
+            </a>
+            <a href="#" class="product-card">
+                <img " alt="Product Image">
+                <h3 class="product-title">Viên uống Nature Gift 15 Days Hỗ trợ giảm cân (Hộp 60 viên)</h3>
+                <p class="price" >735.000đ / hộp</p>
+                <div class="span-text">
+                    <span class="heart-icon"><i class="fas fa-heart"></i></span>
+                    <span th:text="${product.soLuongConLai}">0</span> |
+                    <span th:text="${product.soLuongDaBan}">0</span> Đã bán
+                </div>
+                <button class="buy-btn">Chọn sản phẩm</button>
+            </a>
+            <a href="#" class="product-card">
+                <img " alt="Product Image">
+                <h3 class="product-title">Viên uống Nature Gift 15 Days Hỗ trợ giảm cân (Hộp 60 viên)</h3>
+                <p class="price" >735.000đ / hộp</p>
+                <div class="span-text">
+                    <span class="heart-icon"><i class="fas fa-heart"></i></span>
+                    <span th:text="${product.soLuongConLai}">0</span> |
+                    <span th:text="${product.soLuongDaBan}">0</span> Đã bán
+                </div>
+                <button class="buy-btn">Chọn sản phẩm</button>
+            </a>
+        </div>
+    </div>
+
+</div>
+<!--    Footer    -->
+<div class="bg-success p-5 d-flex justify-content-center">
+    <div class="row gap-2 container text-white">
+        <div class="col">
+            <img src="../image/10.png" alt="logo" class="pb-2"/>
+            <p>123 Gò Vấp, đường Nguyễn Minh Nhật</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">0123456789</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">abc@gmail.com</a></p>
+        </div>
+        <div class="col">
+            <p class="fw-bold">Liên kết nhanh</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Home</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">About</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Services</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Carees</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Contact</a></p>
+        </div>
+        <div class="col">
+            <p class="fw-bold">Services</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Medical</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Operation</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Laboratary</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">ICU</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Patient Ward</a></p>
+        </div>
+        <div class="col">
+            <p class="fw-bold">Social Link</p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">FaceBook</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Instagram</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Twitter</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">youtube</a></p>
+            <p><a href="#" class="text-white link-underline link-underline-opacity-0">Pinterest</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setCategory(typeOrSlug) {
+        // Cập nhật URL cho danh mục đã chọn
+        window.location.href = "/pharmacy/type/" + typeOrSlug; // Thay đổi URL của trang hiện tại
+    }
+
+    // Hàm để thay đổi kích thước font chữ
+    function setDefaultFontSize() {
+        document.querySelector('.article-text').classList.remove('large-font', 'small-font');
+    }
+
+    function setLargeFontSize() {
+        document.querySelector('.article-text').classList.add('large-font');
+        document.querySelector('.article-text').classList.remove('small-font');
+    }
+
+    function setSmallFontSize() {
+        document.querySelector('.article-text').classList.add('small-font');
+        document.querySelector('.article-text').classList.remove('large-font');
+    }
+</script>
+</body>
+</html>

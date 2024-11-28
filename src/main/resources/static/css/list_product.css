@@ -12,13 +12,19 @@ body {
 
 .breadcrumb {
     margin: 10px 10px;
-    font-size: 12px;
+    font-size: 15px;
     background-color: #f9f9f9;
+}
+.breadcrumb section_title {
+    font-size: 15px;
+    color: #000;
+    font-weight: bold;
 }
 
 .breadcrumb a {
     text-decoration: none;
     color: #000;
+    font-size: 15px;
 }
 
 .categories {
@@ -62,6 +68,7 @@ body {
 
 .header-sort {
     display: flex;
+    text-align: center;
     justify-content: space-between;
     align-items: center;
     text-align: center;
@@ -76,13 +83,14 @@ body {
 }
 
 .filter-sidebar {
-    width: 180px;
+    width: 250px;
     flex-shrink: 0;
     padding: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #fff;
     height: 600px;
+
 }
 
 .rentPrice {
@@ -100,10 +108,11 @@ body {
 
 .filter-section {
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .price-input, .brand-input {
-    width: 90%;
+    width: 100%;
     padding: 8px;
     margin-bottom: 10px;
     border: 1px solid #ddd;
@@ -153,6 +162,7 @@ body {
     margin-bottom: 8px;
     font-size: 0.9rem;
     color: grey;
+    gap: 0 10px;
 }
 
 .show-more {
