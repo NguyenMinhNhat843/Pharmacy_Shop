@@ -154,7 +154,7 @@ public class SanPhamController {
 
 
 
-    @GetMapping("/search")
+    @GetMapping("/pharmacy/search")
     public String filterProducts(@RequestParam(value = "type", required = false) String typeOrSlug,
                                  @RequestParam(value = "keyword", required = false) String search,
                                  @RequestParam(value = "giaMin", required = false) Integer  giaMin,

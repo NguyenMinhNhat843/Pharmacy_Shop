@@ -78,7 +78,7 @@
                 <div class="products" id="product-list">
                     <!-- Lặp qua các sản phẩm -->
                     <div th:each="product, iterStat : ${products}">
-                        <div th:if="${iterStat.index < 10}" class="product-card">
+                        <a th:if="${iterStat.index < 10}" class="product-card" th:href="@{/Detail_Product(id=${product.id})}" >
                             <img th:src="@{${product.image}}" alt="Product Image">
                             <h3 class="product-title" th:text="${product.tenSanPham}"></h3>
                             <p class="price" th:text="${product.giaBan} + ' đ/Hộp'"></p>
@@ -88,10 +88,10 @@
                                 <span th:text="${product.soLuongDaBan}">0</span> Đã bán
                             </div>
                             <button class="buy-btn">Chọn sản phẩm</button>
-                        </div>
+                        </a>
 
                         <!-- Các sản phẩm ẩn cho đến khi nhấn "Xem thêm" -->
-                        <div th:if="${iterStat.index >= 10}" class="product-card more-products" style="display: none;">
+                        <a th:if="${iterStat.index >= 10}" class="product-card more-products" style="display: none;" th:href="@{/Detail_Product(id=${product.id})}">
                             <img th:src="@{${product.image}}" alt="Product Image">
                             <h3 class="product-title" th:text="${product.tenSanPham}"></h3>
                             <p class="price" th:text="${product.giaBan} + ' đ/Hộp'"></p>
@@ -101,7 +101,7 @@
                                 <span th:text="${product.soLuongDaBan}">0</span> Đã bán
                             </div>
                             <button class="buy-btn">Chọn sản phẩm</button>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="load-more">

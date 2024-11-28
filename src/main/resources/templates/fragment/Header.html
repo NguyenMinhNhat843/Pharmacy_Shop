@@ -9,8 +9,10 @@
                 >
                     <img alt="logo" th:src="@{/images_other/logo.png}" class="logo_landing h-100" />
                 </a>
-                <form class="d-flex flex-grow-1">
-                    <input type="text" class="form-control me-2" placeholder="Search..."/>
+                 <form class="d-flex flex-grow-1" action="/pharmacy/search" method="get" >
+                    <input type="text" class="form-control me-2" placeholder="Search..." name="keyword" th:value="${search}"/>
+                    <input type="hidden" name="type" th:value="${selectedType}"/>
+
                     <input class="btn btn-outline-success" type="submit" value="Search"/>
                 </form>
                 <!-- Kiểm tra nếu account không null -->
