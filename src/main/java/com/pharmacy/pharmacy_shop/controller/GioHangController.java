@@ -101,4 +101,6 @@ public class GioHangController {
         model.addAttribute("msg", "Product added to cart successfully.");
         return "redirect:/cart/view";
     }
+
+    
 }
