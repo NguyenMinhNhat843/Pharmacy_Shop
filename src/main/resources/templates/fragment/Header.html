@@ -4,8 +4,10 @@
     <div th:fragment="header(account)">
         <div class="container-fluid bg-body-tertiary p-0">
             <nav class="container d-flex py-2 align-items-center">
-                <a th:href="@{/home}" class="logo_wrap d-flex justify-content-center align-items-center">
-                    <img alt="logo" th:src="@{/images_other/logo.png}" class="logo_landing" />
+                <a th:href="@{/home}" class="logo_wrap d-flex justify-content-center align-items-center"
+                    style="height: 50px; width: 100px"
+                >
+                    <img alt="logo" th:src="@{/images_other/logo.png}" class="logo_landing h-100" />
                 </a>
                 <form class="d-flex flex-grow-1">
                     <input type="text" class="form-control me-2" placeholder="Search..."/>
@@ -21,7 +23,7 @@
                     <a class="nav-link ps-3" th:href="@{/login}">Đăng nhập</a>
                     <div class="d-flex justify-content-center align-items-center ps-3">
                         <i class="fa-solid fa-cart-shopping pe-1"></i>
-                        <a class="nav-link" href="" th:ref="@{/cart/view}">Giỏ hàng</a>
+                        <a class="nav-link" th:href="@{/cart/view}">Giỏ hàng</a>
                     </div>
                 </div>
             </nav>
@@ -29,11 +31,20 @@
             <!-- Danh muc section -->
             <div class="w-100 py-3 bg-success text-white">
                 <div class="container d-flex ">
-                    <a href="#" class="nav-link pe-3">Thuốc xương khớp</a>
-                    <a href="#" class="nav-link pe-3">Thuốc tim mạch</a>
-                    <a href="#" class="nav-link pe-3">Thuốc Cho bé</a>
-                    <a href="#" class="nav-link pe-3">Thực phẩm bổ sung</a>
-                    <a href="#" class="nav-link pe-3">Dụng cụ y tế</a>
+                    <!-- Liên kết sử dụng slug -->
+                    <div class="container d-flex">
+                        <!-- Liên kết sử dụng slug -->
+                        <a th:href="@{/type/thuc-pham-chuc-nang}" class="nav-link pe-3">Thực phẩm chức năng</a>
+                        <a th:href="@{/type/thuoc-khong-ke-don}" class="nav-link pe-3">Thuốc không kê đơn</a>
+                        <a th:href="@{/type/dung-cu-y-te}" class="nav-link pe-3">Dụng cụ y tế</a>
+                        <a th:href="@{/type/san-pham-cham-soc-suc-khoe}" class="nav-link pe-3">Sản phẩm chăm sóc sức khỏe</a>
+                        <a th:href="@{/type/tieu-duong}" class="nav-link pe-3">Tiểu đường</a>
+                        <a th:href="@{/type/tim-mach}" class="nav-link pe-3">Tim mạch</a>
+                        <a th:href="@{/type/xuong-khop}" class="nav-link pe-3">Xương khớp</a>
+                        <a th:href="@{/type/thuoc-ke-don}" class="nav-link pe-3">Thuốc kê đơn</a>
+<!--                        <a th:href="@{/type/thuoc-cho-be}" class="nav-link pe-3">Thuốc cho bé</a>-->
+<!--                        <a th:href="@{/type/me-va-be}" class="nav-link pe-3">Mẹ và Bé</a>-->
+                    </div>
                 </div>
             </div>
         </div>

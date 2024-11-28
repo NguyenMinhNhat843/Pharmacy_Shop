@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Thanh toán</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<!-- Sử dụng fragment header -->
+<div th:replace="fragment/Header :: header(${account})"></div>
+
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Thanh toán</h1>
+
+  <!-- Form thông tin nhận hàng -->
+  <form action="/checkout" method="post">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Thông tin nhận hàng</h3>
+        <div class="mb-3">
+          <label for="fullname" class="form-label">Họ và tên</label>
+          <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Nhập họ và tên" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Nhập email" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Số điện thoại</label>
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Địa chỉ nhận hàng</label>
+          <textarea id="address" name="address" class="form-control" rows="3" placeholder="Nhập địa chỉ" required></textarea>
+        </div>
+      </div>
+
+      <!-- Danh sách sản phẩm -->
+      <div class="col-md-6">
+        <h3>Danh sách sản phẩm</h3>
+        <div class="cart-items">
+          <!-- Duyệt qua từng sản phẩm trong giỏ hàng -->
+          <div th:each="item : ${cartItems}" class="d-flex justify-content-between align-items-center border-bottom py-2">
+            <div class="product-info">
+              <img th:src="${item.sanPham.image}" alt="Ảnh sản phẩm" class="img-thumbnail me-2" style="width: 50px; height: 50px;">
+              <span th:text="${item.sanPham.tenSanPham}"></span>
+            </div>
+            <div class="product-price">
+              <p th:text="${item.soLuong} + ' x ' + ${item.sanPham.giaBan} + ' đ'"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tổng tiền -->
+        <div class="mt-4">
+          <h4>Tổng tiền: <span th:text="${totalAmount} + ' đ'"></span></h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nút hoàn tất thanh toán -->
+    <div class="mt-4 text-center">
+      <button type="submit" class="btn btn-primary btn-lg">Hoàn tất thanh toán</button>
+    </div>
+  </form>
+</div>
+
+<!-- Sử dụng fragment footer -->
+<div th:replace="fragment/Footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

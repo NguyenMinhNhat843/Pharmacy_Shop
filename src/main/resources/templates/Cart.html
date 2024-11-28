@@ -46,7 +46,6 @@
                             <p class="product-name" th:text="${item.sanPham.tenSanPham}"></p>
                         </div>
                     </div>
-<!--                    <div class="price" th:text="${#numbers.formatDecimal(item.sanPham.giaBan, 0, 'POINT', 'COMMA')} + ' đ'"></div>-->
                     <div class="price" th:text="${item.sanPham.giaBan} + ' đ'"></div>
                     <div class="quantity">
                         <button>-</button>
@@ -54,30 +53,11 @@
                         <button>+</button>
                     </div>
                     <div class="total">
-<!--                        <p th:text="${#numbers.formatDecimal(item.sanPham.giaBan * item.soLuong, 0, 'POINT', 'COMMA')} + ' đ'"></p>-->
                         <p th:text="${item.sanPham.giaBan * item.soLuong} + ' đ'"></p>
                         <button class="delete-item">🗑</button>
                     </div>
                 </div>
             </div>
-
-            <!-- Quà tặng (nếu có) -->
-<!--            <div class="gift-section" th:if="${cartItems[0]?.quaTang != null}">-->
-<!--                <h3>Quà tặng</h3>-->
-<!--                <div class="gift-item" th:each="item : ${cartItems}">-->
-<!--                    <img th:src="${item.quaTang.hinhAnh}" alt="Quà tặng"/>-->
-<!--                    <div class="gift-info">-->
-<!--                        <p class="gift-name" th:text="${item.quaTang.tenSanPham}"></p>-->
-<!--                        <p class="unit">Đơn vị: <span th:text="${item.quaTang.donViTinh}"></span></p>-->
-<!--                    </div>-->
-<!--                    <div class="quantity-gift">-->
-<!--                        <p th:text="'x' + ${item.quaTang.soLuong}"></p>-->
-<!--                    </div>-->
-<!--                    <div class="total-gift">-->
-<!--                        <p>0 đ</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
         </div>
 
         <!-- Cột tóm tắt -->
@@ -98,12 +78,41 @@
                 <p>Giảm giá sản phẩm: <span>-</span></p>
                 <p class="total-summary">Tổng tiền: <span th:text="${totalAmount} + ' đ'"></span></p>
             </div>
-            <button class="buy-button">Mua ngay</button>
+            <form action="/thanhtoan" method="POST">
+                <button class="buy-button" th:href="@{/thanhtoan}">Mua ngay</button>
+            </form>
         </div>
     </div>
 </div>
 
 <!-- Sử dụng fragment footer -->
 <div th:replace="fragment/Footer :: footer"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const cartItems = document.querySelectorAll(".cart-item");
+
+        cartItems.forEach((item) => {
+            const btnIncrease = item.querySelector(".quantity button:last-child");
+            const inputQuantity = item.querySelector(".quantity input");
+            const priceElement = item.querySelector(".price");
+            const totalElement = item.querySelector(".total p");
+
+            // Chuyển giá trị giá sản phẩm về dạng số
+            const price = parseInt(priceElement.textContent.replace(" đ", "").replace(",", ""));
+
+            btnIncrease.addEventListener("click", function () {
+                // Tăng số lượng
+                let quantity = parseInt(inputQuantity.value);
+                quantity++;
+                inputQuantity.value = quantity;
+
+                // Cập nhật tổng giá
+                const totalPrice = price * quantity;
+                totalElement.textContent = totalPrice.toLocaleString() + " đ";
+            });
+        });
+    });
+</script>
 </body>
 </html>

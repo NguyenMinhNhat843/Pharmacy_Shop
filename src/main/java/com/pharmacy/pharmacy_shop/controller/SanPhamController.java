@@ -27,6 +27,54 @@ public class SanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
 
+    // ========================= home page view
+    @GetMapping("/home")
+    public String loadSanPham(Model model, HttpSession session) {
+        // Lấy thông tin account từ session
+        Account account = (Account) session.getAttribute("loggedInUser");
+
+        // Lấy danh sách sản phẩm
+        List<SanPham> sanphams = sanPhamService.getSanPhamBanChay();
+        System.out.println(sanphams);
+
+        // Truyền dữ liệu vào model
+        model.addAttribute("banner_3p", sanphams.subList(0, 3));
+        model.addAttribute("sanphambanchay", sanphams.subList(3, 7));
+        model.addAttribute("bannerSPBC", sanphams.subList(7, 10));
+        model.addAttribute("sanphamtotnhat", sanphams.subList(10, 14));
+        model.addAttribute("sanphambannhieunhat", sanphams.subList(14, 18));
+        model.addAttribute("account", account); // Truyền account vào model
+        return "index";
+
+    }
+
+    // ======================== ListProduct theo type
+    @GetMapping("/type/{typeOrSlug}")
+    public String getProductsByType(@PathVariable("typeOrSlug") String typeOrSlug, Model model) {
+        // Tạo map ánh xạ slug sang mã sản phẩm
+        Map<String, String> typeMap = new HashMap<>();
+        typeMap.put("thuc-pham-chuc-nang", "TP001");
+        typeMap.put("thuoc-khong-ke-don", "TP002");
+        typeMap.put("dung-cu-y-te", "TP003");
+        typeMap.put("san-pham-cham-soc-suc-khoe", "TP004");
+        typeMap.put("tieu-duong", "TP005");
+        typeMap.put("tim-mach", "TP006");
+        typeMap.put("xuong-khop", "TP007");
+        typeMap.put("thuoc-ke-don", "TP008");
+        typeMap.put("thuoc-cho-be", "TP009");
+        typeMap.put("me-va-be", "TP010");
+
+        String typeId = typeMap.getOrDefault(typeOrSlug, typeOrSlug);
+
+        // Tìm kiếm sản phẩm theo typeId
+        List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
+
+        model.addAttribute("products", products);
+        model.addAttribute("selectedType", typeOrSlug); // Truyền slug hoặc mã vào model
+
+        return "ListProduct"; // trả về view ListProduct
+    }
+
     @GetMapping("/pharmacy/quanly/sanpham/search")
     public String loadSanPham(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<SanPham> sanphams;
@@ -102,48 +150,6 @@ public class SanPhamController {
         }
     }
 
-    @GetMapping("/home")
-    public String loadSanPham(Model model, HttpSession session) {
-        // Lấy thông tin account từ session
-        Account account = (Account) session.getAttribute("loggedInUser");
-
-        // Lấy danh sách sản phẩm
-        List<SanPham> sanphams = sanPhamService.getSanPhamBanChay().subList(0, 4);
-        System.out.println(sanphams);
-
-        // Truyền dữ liệu vào model
-        model.addAttribute("sanphams", sanphams);
-        model.addAttribute("account", account); // Truyền account vào model
-        return "index";
-
-    }
-    @GetMapping("/type/{typeOrSlug}")
-    public String getProductsByType(@PathVariable("typeOrSlug") String typeOrSlug, Model model) {
-        // Tạo map ánh xạ slug sang mã sản phẩm
-        Map<String, String> typeMap = new HashMap<>();
-        typeMap.put("thuc-pham-chuc-nang", "TP001");
-        typeMap.put("thuoc-khong-ke-don", "TP002");
-        typeMap.put("dung-cu-y-te", "TP003");
-        typeMap.put("san-pham-cham-soc-suc-khoe", "TP004");
-        typeMap.put("tieu-duong", "TP005");
-        typeMap.put("tim-mach", "TP006");
-        typeMap.put("xuong-khop", "TP007");
-        typeMap.put("thuoc-ke-don", "TP008");
-        typeMap.put("thuoc-cho-be", "TP009");
-        typeMap.put("me-va-be", "TP010");
-
-        String typeId = typeMap.getOrDefault(typeOrSlug, typeOrSlug);
-
-        // Tìm kiếm sản phẩm theo typeId
-        List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
-
-        model.addAttribute("products", products);
-        model.addAttribute("selectedType", typeOrSlug); // Truyền slug hoặc mã vào model
-
-        return "ListProduct"; // trả về view ListProduct
-    }
-
-
 
 
 
@@ -191,6 +197,4 @@ public class SanPhamController {
 
         return "ListProduct";
     }
-
-
 }

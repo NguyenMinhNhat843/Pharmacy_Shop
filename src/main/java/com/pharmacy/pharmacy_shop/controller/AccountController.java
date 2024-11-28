@@ -2,11 +2,8 @@ package com.pharmacy.pharmacy_shop.controller;
 
 import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.services.AccountService;
-<<<<<<< HEAD
 import jakarta.servlet.http.HttpSession;
-=======
 import com.pharmacy.pharmacy_shop.services.EmailService;
->>>>>>> 2fdbb2b9af57999af84026029bf1441af462a1c3
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -24,13 +21,10 @@ public class AccountController {
     @Autowired
     private  AccountService accountService;
 
-<<<<<<< HEAD
     // ============== View
-=======
     @Autowired
     private EmailService emailService;
 
->>>>>>> 2fdbb2b9af57999af84026029bf1441af462a1c3
     @GetMapping("/login")
     public String showLoginPage() {
         return "login"; // Tên của file HTML trong thư mục templates

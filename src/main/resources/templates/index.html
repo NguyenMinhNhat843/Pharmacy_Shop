@@ -27,7 +27,7 @@
                 Cải thiện sức khỏe của bạn với thuốc tốt nhất
             </p>
             <div class="">
-                <a href="#" class="btn btn-success me-3 rounded-pill">
+                <a href="#" th:href="@{/Detail_Product(id='SP005')}" class="btn btn-success me-3 rounded-pill">
                     Mua ngay
                     <i class="fa-solid fa-cart-shopping"></i>
                 </a>
@@ -81,17 +81,15 @@
 
     <!-- banner 2 -->
     <div class="container pb-5 d-flex justify-content-between">
-        <a href="./Detail_Product.html" class="banner2 text-white rounded d-flex flex-column justify-content-between">
-            <p class="fw-bold fs-5">Nevia</p>
-            <p class="fw-bold">Sạch sâu từ da mặt, sáng bóng tức thì</p>
-        </a>
-        <a href="./Detail_Product.html" class="banner2 text-white rounded d-flex flex-column justify-content-between">
-            <p class="fw-bold fs-5">Nevia</p>
-            <p class="fw-bold">Sạch sâu từ da mặt, sáng bóng tức thì</p>
-        </a>
-        <a href="./Detail_Product.html" class="banner2 text-white rounded d-flex flex-column justify-content-between">
-            <p class="fw-bold fs-5">Nevia</p>
-            <p class="fw-bold">Sạch sâu từ da mặt, sáng bóng tức thì</p>
+        <a
+                href="./Detail_Product.html"
+                th:href="@{/Detail_Product(id=${p.id})}"
+                th:each="p : ${banner_3p}"
+                class="banner2 text-white rounded d-flex flex-column justify-content-between"
+        >
+            <p class="fw-bold fs-5 text-black overlay-text" th:text="${p.tenSanPham}">Nevia</p>
+            <p class="fw-bold text-black overlay-text" th:text="${p.moTa}">Sạch sâu từ da mặt, sáng bóng tức thì</p>
+<!--            <img class="banner-image" th:src="${p.image}" alt="logo" />-->
         </a>
     </div>
 
@@ -99,13 +97,13 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
             <p class="fw-bold fs-4">Sản Phẩm Bán Chạy</p>
-            <a href="./ListProduct.html">View All</a>
+            <a th:href="@{/type/thuc-pham-chuc-nang}">View All</a>
         </div>
 
         <!-- product card -->
         <div class="row">
             <!-- Lặp qua danh sách sản phẩm -->
-            <div class="mt-3 card product_card col mx-1" th:each="product : ${sanphams}">
+            <div class="mt-3 card product_card col mx-1" th:each="product : ${sanphambanchay}">
                 <a th:href="@{/Detail_Product(id=${product.id})}" style="color: #333">
                     <img class="card-img-top" th:src="${product.image}" alt="logo"/>
                     <div class="card-body">
@@ -164,13 +162,13 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
             <p class="fw-bold fs-4">Đơn hàng tốt nhất cho bạn</p>
-            <a href="./ListProduct.html">View All</a>
+            <a th:href="@{/type/thuc-pham-chuc-nang}">View All</a>
         </div>
 
         <!-- product card -->
         <div class="row">
             <!-- Lặp qua danh sách sản phẩm -->
-            <div class="mt-3 card product_card col mx-1" th:each="product : ${sanphams}">
+            <div class="mt-3 card product_card col mx-1" th:each="product : ${sanphamtotnhat}">
                 <a th:href="@{/Detail_Product(id=${product.id})}" style="color: #333">
                     <img class="card-img-top" th:src="${product.image}" alt="logo"/>
                     <div class="card-body">
@@ -199,13 +197,13 @@
     <div class="container pt-5">
         <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
             <p class="fw-bold fs-4">Sản Phẩm Bán Nhiều Nhất</p>
-            <a href="./ListProduct.html">View All</a>
+            <a th:href="@{/type/thuc-pham-chuc-nang}">View All</a>
         </div>
 
         <!-- product card -->
         <div class="row">
             <!-- Lặp qua danh sách sản phẩm -->
-            <div class="mt-3 card product_card col mx-1" th:each="product : ${sanphams}">
+            <div class="mt-3 card product_card col mx-1" th:each="product : ${sanphambannhieunhat}">
                 <a th:href="@{/Detail_Product(id=${product.id})}" style="color: #333">
                     <img class="card-img-top" th:src="${product.image}" alt="logo"/>
                     <div class="card-body">
@@ -234,7 +232,7 @@
     <div class="container py-5">
         <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
             <p class="fw-bold fs-4">Phản hồi của khách hàng</p>
-            <a href="./List_Product.html">View All</a>
+            <a th:href="@{/type/thuc-pham-chuc-nang}">View All</a>
         </div>
 
         <div class="row gap-2 flex-nowrap pt-3">
@@ -264,7 +262,7 @@
     <div class="container pb-3">
         <div class="d-flex justify-content-between align-items-center pb-2 border-bottom">
             <p class="fw-bold fs-4">Bài viết và mẹo hay</p>
-            <a href="./List_Product.html">View All</a>
+            <a th:href="@{/type/thuc-pham-chuc-nang}">View All</a>
         </div>
 
         <div class="row gap-2 flex-nowrap pt-3">
@@ -300,43 +298,8 @@
         </div>
     </div>
 
-    <!--    Footer    -->
-    <div class="bg-success p-5 d-flex justify-content-center">
-        <div class="row gap-2 container text-white">
-            <div class="col">
-                <img src="../image/10.png" alt="logo" class="pb-2"/>
-                <p>123 Gò Vấp, đường Nguyễn Minh Nhật</p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">0123456789</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">abc@gmail.com</a></p>
-            </div>
-            <div class="col">
-                <p class="fw-bold">Liên kết nhanh</p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Home</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">About</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Services</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Carees</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Contact</a></p>
-            </div>
-            <div class="col">
-                <p class="fw-bold">Services</p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Medical</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Operation</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Laboratary</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">ICU</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Patient Ward</a></p>
-            </div>
-            <div class="col">
-                <p class="fw-bold">Social Link</p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">FaceBook</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Instagram</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Twitter</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">youtube</a></p>
-                <p><a href="#" class="text-white link-underline link-underline-opacity-0">Pinterest</a></p>
-            </div>
-        </div>
-    </div>
+    <!-- Sử dụng fragment footer -->
+    <div th:replace="fragment/Footer :: footer"></div>
 </div>
-
-
 </body>
 </html>

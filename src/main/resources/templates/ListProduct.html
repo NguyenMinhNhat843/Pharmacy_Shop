@@ -11,56 +11,9 @@
     <link rel="stylesheet" th:href="@{/static/css/index.css}">
 </head>
 <body>
-<<<<<<< HEAD
 <!-- Sử dụng fragment header -->
 <div th:replace="fragment/Header :: header(${account})"></div>
 
-=======
-<!-- Header section -->
-<div class="container-fluid bg-body-tertiary">
-    <nav class="container d-flex py-2 align-items-center">
-        <a href="index.html" class="logo_wrap d-flex justify-content-center align-items-center">
-            <img alt="logo" src='../images/logo.jpg' class="logo_landing"/>
-        </a>
-        <form class="d-flex flex-grow-1" action="/pharmacy/search" method="get" >
-            <input type="text" class="form-control me-2" placeholder="Search..." name="keyword" th:value="${search}"/>
-            <input type="hidden" name="type" th:value="${selectedType}"/>
-
-            <input class="btn btn-outline-success" type="submit" value="Search"/>
-        </form>
-        <!-- Form tìm kiếm toàn cục -->
-
-        <div class="d-flex w-[20]">
-            <a class="nav-link ps-3" href="./Login.html">Đăng nhập</a>
-            <div class="d-flex justify-content-center align-items-center ps-3">
-                <i class="fa-solid fa-cart-shopping pe-1"></i>
-                <a class="nav-link" href="./Cart.html">Giỏ hàng</a>
-            </div>
-        </div>
-    </nav>
-</div>
-
-<!-- Danh muc section -->
-
-<div class="w-100 py-3 bg-success text-white">
-    <div class="container d-flex">
-        <!-- Liên kết sử dụng slug -->
-        <div class="container d-flex">
-            <!-- Liên kết sử dụng slug -->
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuc-pham-chuc-nang')">Thực phẩm chức năng</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-khong-ke-don')">Thuốc không kê đơn</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('dung-cu-y-te')">Dụng cụ y tế</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('san-pham-cham-soc-suc-khoe')">Sản phẩm chăm sóc sức khỏe</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('tieu-duong')">Tiểu đường</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('tim-mach')">Tim mạch</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('xuong-khop')">Xương khớp</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-ke-don')">Thuốc kê đơn</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('thuoc-cho-be')">Thuốc cho bé</a>
-            <a href="javascript:void(0)" class="nav-link pe-3" onclick="setCategory('me-va-be')">Mẹ và Bé</a>
-        </div>
-    </div>
-</div>
->>>>>>> 9491a61467ff1b8fcdc489969c3f222d4e2fa20a
 <!-- Body        -->
 <div class="container">
     <div class="breadcrumb">
