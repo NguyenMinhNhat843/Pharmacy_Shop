@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -102,5 +103,51 @@ public class GioHangController {
         return "redirect:/cart/view";
     }
 
-    
+    @PostMapping("/cart/buyNow")
+    public String buyNow(@RequestParam("id") String productId,
+                         @RequestParam("quantity") int quantity,
+                         HttpSession session, Model model,
+                         RedirectAttributes redirectAttributes) {
+
+        // Lấy giỏ hàng từ session
+        List<ChiTietGioHang> cartItems = (List<ChiTietGioHang>) session.getAttribute("cartItems");
+        if (cartItems == null) {
+            cartItems = new ArrayList<>();
+            session.setAttribute("cartItems", cartItems);
+        }
+
+        // Lấy sản phẩm từ DB theo productId
+        SanPham sanPham = sanPhamService.getSanPhamById(productId);
+
+        // Kiểm tra nếu sản phẩm đã có trong giỏ hàng
+        boolean found = false;
+        for (ChiTietGioHang item : cartItems) {
+            if (item.getSanPham().getId().equals(productId)) {
+                // Nếu đã có thì tăng số lượng lên
+                item.setSoLuong(item.getSoLuong() + quantity);
+                found = true;
+                break;
+            }
+        }
+
+        // Nếu sản phẩm chưa có trong giỏ, tạo mới
+        if (!found) {
+            ChiTietGioHang newItem = new ChiTietGioHang();
+            newItem.setSanPham(sanPham);
+            newItem.setSoLuong(quantity);
+            cartItems.add(newItem);
+        }
+
+        // Cập nhật giỏ hàng trong session
+        session.setAttribute("cartItems", cartItems);
+
+
+        // Thêm thông báo thành công vào FlashAttributes
+        redirectAttributes.addFlashAttribute("msg", "Product added to cart successfully.");
+
+        // Quay lại trang chi tiết sản phẩm sau khi thêm vào giỏ hàng
+        return "redirect:/Detail_Product?id=" + productId;
+    }
+
+
 }
