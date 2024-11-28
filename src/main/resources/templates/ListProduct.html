@@ -57,8 +57,10 @@
 </div>
 <!-- Body        -->
 <div class="container">
-    <div class="breadcrumb">
-        <a href="#">Trang chủ</a> &gt; <span>Thực phẩm chức năng</span>
+    <div class="breadcrumb" style="gap: 0 10px">
+        <a href="#" style="font-size: 20px">Trang chủ</a>
+        <span style="font-size: 20px"> > </span>
+        <span th:text="${selectedType}" style="font-size: 20px"></span>
     </div>
 
     <div class="main_section">
@@ -114,10 +116,10 @@
                         <button type="submit" name="sortOrder" value="asc" class="sort-btn">Giá tăng dần</button>
                     </form>
                 </div>
-                <div class="products">
+                <div class="products" id="product-list">
                     <!-- Lặp qua các sản phẩm -->
-                    <div th:each="product : ${products}">
-                        <a href="#" class="product-card">
+                    <div th:each="product, iterStat : ${products}">
+                        <div th:if="${iterStat.index < 10}" class="product-card">
                             <img th:src="@{${product.image}}" alt="Product Image">
                             <h3 class="product-title" th:text="${product.tenSanPham}"></h3>
                             <p class="price" th:text="${product.giaBan} + ' đ/Hộp'"></p>
@@ -127,11 +129,24 @@
                                 <span th:text="${product.soLuongDaBan}">0</span> Đã bán
                             </div>
                             <button class="buy-btn">Chọn sản phẩm</button>
-                        </a>
+                        </div>
+
+                        <!-- Các sản phẩm ẩn cho đến khi nhấn "Xem thêm" -->
+                        <div th:if="${iterStat.index >= 10}" class="product-card more-products" style="display: none;">
+                            <img th:src="@{${product.image}}" alt="Product Image">
+                            <h3 class="product-title" th:text="${product.tenSanPham}"></h3>
+                            <p class="price" th:text="${product.giaBan} + ' đ/Hộp'"></p>
+                            <div class="span-text">
+                                <span class="heart-icon"><i class="fas fa-heart"></i></span>
+                                <span th:text="${product.soLuongConLai}">0</span> |
+                                <span th:text="${product.soLuongDaBan}">0</span> Đã bán
+                            </div>
+                            <button class="buy-btn">Chọn sản phẩm</button>
+                        </div>
                     </div>
                 </div>
                 <div class="load-more">
-                    <button class="view-more-btn">Xem thêm</button>
+                    <button class="view-more-btn" onclick="loadMoreProducts()">Xem thêm</button>
                 </div>
             </main>
         </div>
@@ -230,6 +245,22 @@
         // Cập nhật URL cho danh mục đã chọn
         window.location.href = "/pharmacy/type/" + typeOrSlug; // Thay đổi URL của trang hiện tại
     }
+
+    function loadMoreProducts() {
+        // Lấy tất cả các sản phẩm bị ẩn
+        const hiddenProducts = document.querySelectorAll('.more-products[style="display: none;"]');
+
+        // Hiển thị 10 sản phẩm tiếp theo
+        for (let i = 0; i < 10 && i < hiddenProducts.length; i++) {
+            hiddenProducts[i].style.display = 'block';
+        }
+
+        // Kiểm tra nếu không còn sản phẩm nào bị ẩn thì ẩn nút "Xem thêm"
+        if (hiddenProducts.length <= 10) {
+            document.querySelector('.view-more-btn').style.display = 'none';
+        }
+    }
+
 
 
 

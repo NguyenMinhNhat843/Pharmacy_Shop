@@ -1,21 +1,18 @@
 
 package com.pharmacy.pharmacy_shop.impl;
 
-import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.reposities.SanPhamRepo;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Pageable;
 import java.util.*;
 
 import java.util.stream.Collectors;
 
-import java.util.stream.Collectors;
 import java.util.Optional;
 
 @Service
@@ -72,15 +69,24 @@ public class SanPhamImpl implements SanPhamService {
         sanPhamRepo.deleteById(id);
     }
 
-    @Override
+
+        @Override
     public List<SanPham> getSanPhamByType(String type) {
         return sanPhamRepo.getSanPhamByType(type);
     }
 
     @Override
+    public Page<SanPham> getSanPhamByTypePage(String type, Pageable pageable) {
+        return sanPhamRepo.getSanPhamByTypePage(type, pageable);
+    }
+
+
+    @Override
     public List<SanPham> getSanPhamByTen(String type, String tenSanPham) {
         return sanPhamRepo.findAllByTenSanPham(type, tenSanPham);
     }
+
+
 
     @Override
     public List<SanPham> filterProducts(String tenSanPham,String type, Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder) {
@@ -101,16 +107,6 @@ public class SanPhamImpl implements SanPhamService {
         List<SanPham> filteredProducts = (type != null && !type.isEmpty())
                 ? sanPhamRepo.findAllByTenSanPham(type, tenSanPham)
                 : sanPhamRepo.findAllSanPhamByName(tenSanPham);
-//        List<SanPham> filteredProducts = sanPhamRepo.findAll();         // Lấy tất cả sản phẩm
-       // List<SanPham> filteredProducts = sanPhamRepo.findAll();
-
-       // List<SanPham> filteredProducts = sanPhamRepo.findAllByTenSanPham(type, tenSanPham);
-
-        //List<SanPham> filteredProducts = new ArrayList<>();
-
-        // Lấy Sản phẩm theo loại
-        //List<SanPham> filteredProducts = sanPhamRepo.findAllByGiaBanBetweenAndPriceRange(tenSanPham, type, minPrice, maxPrice, priceRange != null && !priceRange.isEmpty() ? priceRange.get(0) : null, sortOrder);
-
 
         // Lọc theo từ khóa tìm kiếm (nếu có)
         if (tenSanPham != null && !tenSanPham.isEmpty()) {
@@ -128,6 +124,8 @@ public class SanPhamImpl implements SanPhamService {
                         .collect(Collectors.toList());
             }
         }
+
+
 
         // Lọc theo khoảng giá
         filteredProducts = filteredProducts.stream()
@@ -175,6 +173,9 @@ public class SanPhamImpl implements SanPhamService {
         } else if ("desc".equalsIgnoreCase(sortOrder)) {
             filteredProducts.sort(Comparator.comparing(SanPham::getGiaBan).reversed());
         }
+
+        // Phân trang
+
 
 
 
