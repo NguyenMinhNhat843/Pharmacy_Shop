@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo Mới Hóa Đơn</title>
+</head>
+<body>
+<h2>Tạo Mới Hóa Đơn</h2>
+<form action="/pharmacy/quanly/donhang/create" method="post">
+    <label for="id">ID Hóa Đơn</label>
+    <input type="text" name="id" id="id" required/><br/>
+
+    <label for="phuongThucThanhToan">Phương Thức Thanh Toán</label>
+    <input type="text" name="phuongThucThanhToan" required/><br/>
+
+    <label for="tongTien">Tổng Tiền</label>
+    <input type="number" name="tongTien" required/><br/>
+
+    <button type="submit">Tạo</button>
+</form>
+</body>
+</html>

@@ -95,7 +95,7 @@ public class SanPhamController {
         return "Manager";
     }
 
-    @GetMapping("/pharmacyquanly/sanpham/list")
+    @GetMapping("/pharmacy/quanly/sanpham/list")
     public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 10;
         List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);

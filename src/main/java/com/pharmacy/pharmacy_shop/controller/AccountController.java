@@ -43,7 +43,7 @@ public class AccountController {
         if (account != null && account.getType().equals("admin")) {
             session.setAttribute("loggedInUser", account);
             // Điều hướng đến trang chính (dashboard hoặc trang khác)
-            return "redirect:/pharmacyquanly/sanpham/list";
+            return "redirect:/pharmacy/quanly/sanpham/list";
         } else if (account != null && account.getType().equals("custom")) {
             session.setAttribute("loggedInUser", account);
             return "redirect:/home";

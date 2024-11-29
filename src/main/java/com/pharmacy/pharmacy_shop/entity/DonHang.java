@@ -33,5 +33,7 @@ public class DonHang {
     private LocalDateTime ngayTaoHoaDon;
 
     private BigDecimal tongTien;
+
+    private boolean tinhTrang;
 }
 
