@@ -31,6 +31,11 @@ public class SanPhamImpl implements SanPhamService {
     }
 
     @Override
+    public long getTongSoLuongDaBan() {
+        return sanPhamRepo.getSoLuongDaBan();
+    }
+
+    @Override
     public List<SanPham> getSanPhamBanChay() {
         return sanPhamRepo.findAllOrderBySoLuongDaBanDesc();
     }

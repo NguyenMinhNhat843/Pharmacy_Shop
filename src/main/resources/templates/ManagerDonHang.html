@@ -61,8 +61,8 @@
 <!-- Sidebar -->
 <div class="container-fluid bg-body-tertiary p-0">
     <nav class="sidebar">
-        <a href="#" th:href="@{/pharmacy/quanly/sanpham/list}">Quản Lý Sản Phẩm</a>
-        <a href="#" th:href="@{/pharmacy/quanly/donhang/list}">Quản lý Hóa đơn</a>
+        <a href="#" th:href="@{/quanly/sanpham/list}">Quản Lý Sản Phẩm</a>
+        <a href="#" th:href="@{/quanly/donhang/list}">Quản lý Hóa đơn</a>
         <a href="#" th:href="@{/products}">Quản Lý Khách Hàng</a>
         <a href="#" th:href="@{/thongKe}">Thống Kê</a>
     </nav>
@@ -72,7 +72,7 @@
         <div class="main-content" style="flex: 1">
             <div class="pb-3 d-flex align-items-center justify-content-between">
                 <!-- Search Form -->
-                <form action="/pharmacy/quanly/donhang/search" method="GET" class="input-group mb-3 w-50">
+                <form action="/quanly/donhang/search" method="GET" class="input-group mb-3 w-50">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" name="keyword" id="keyword" placeholder="Tìm kiếm theo ID hoặc phương thức thanh toán..." class="form-control p-2" aria-label="Text input with checkbox">
                     <button type="submit" class="btn btn-primary">Tìm kiếm</button>
@@ -104,11 +104,11 @@
                         Lọc theo ngày
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dateFilterDropdown">
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?dateFilter=today">Hôm nay</a></li>
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?dateFilter=thisWeek">Tuần này</a></li>
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?dateFilter=thisMonth">Tháng này</a></li>
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?dateFilter=lastMonth">Tháng trước</a></li>
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?dateFilter=all">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?dateFilter=today">Hôm nay</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?dateFilter=thisWeek">Tuần này</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?dateFilter=thisMonth">Tháng này</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?dateFilter=lastMonth">Tháng trước</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?dateFilter=all">Tất cả</a></li>
                     </ul>
                 </div>
 
@@ -117,9 +117,9 @@
                         Lọc theo thanh toán
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="paymentStatusDropdown">
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?paymentStatus=paid">Đã thanh toán</a></li>
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?paymentStatus=unpaid">Chưa thanh toán</a></li>
-                        <li><a class="dropdown-item" href="/pharmacy/quanly/donhang/list?paymentStatus=all">Tất cả</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?paymentStatus=paid">Đã thanh toán</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?paymentStatus=unpaid">Chưa thanh toán</a></li>
+                        <li><a class="dropdown-item" href="/quanly/donhang/list?paymentStatus=all">Tất cả</a></li>
                     </ul>
                 </div>
             </div>
@@ -176,14 +176,14 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-center">
                         <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
-                            <a class="page-link" th:href="@{/pharmacy/quanly/donhang/list?page={page}(page=${currentPage-1})}" tabindex="-1">Previous</a>
+                            <a class="page-link" th:href="@{/quanly/donhang/list?page={page}(page=${currentPage-1})}" tabindex="-1">Previous</a>
                         </li>
                         <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
                             th:class="${i == currentPage} ? 'active' : ''">
-                            <a class="page-link" th:href="@{/pharmacy/quanly/donhang/list?page={page}(page=${i})}" th:text="${i}"></a>
+                            <a class="page-link" th:href="@{/quanly/donhang/list?page={page}(page=${i})}" th:text="${i}"></a>
                         </li>
                         <li class="page-item" th:class="${currentPage == totalPages} ? 'disabled' : ''">
-                            <a class="page-link" th:href="@{/pharmacy/quanly/donhang/list?page={page}(page=${currentPage+1})}">Next</a>
+                            <a class="page-link" th:href="@{/quanly/donhang/list?page={page}(page=${currentPage+1})}">Next</a>
                         </li>
                     </ul>
                 </nav>

@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/pharmacy/quanly/donhang")
+@RequestMapping("/quanly/donhang")
 public class DonHangController {
 
     @Autowired

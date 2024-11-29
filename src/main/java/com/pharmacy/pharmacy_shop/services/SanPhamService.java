@@ -17,7 +17,11 @@ import java.util.Optional;
 @Service
 public interface SanPhamService {
     public List<SanPham> getAllSanPham();
+
     public long getSoLuongSanPham();
+
+    public long getTongSoLuongDaBan();
+
     public List<SanPham> getSanPhamBanChay();
     public SanPham getSanPhamById(String id);
     public List<SanPham> getSanPhamTheoTrang(int pageNumber, int pageSize);
@@ -28,20 +32,13 @@ public interface SanPhamService {
 
     public Page<SanPham> getSanPhamByTypePage(String type, Pageable pageable);
 
-    //    @Override
-    //    public List<SanPham> getSanPhamByType(String type) {
-    //        return sanPhamRepo.getSanPhamByType(type);
-    //    }
-
     public List<SanPham> getSanPhamByTen(String tenSanPham, String type);
 
     public List<SanPham> filterProducts(String tenSanPham,String type,Integer minPrice, Integer maxPrice, List<String> priceRange, String sortOrder);
 
-
     public List<SanPham> searchProducts(String tenSanPham);
 
     public List<SanPham> findSimilarProducts(String type, String excludeId);
-//    public List<SanPham> getSameBrandProducts(String brand, String currentProductId);
 
     public Integer getTongSoLuongSanPham();
 

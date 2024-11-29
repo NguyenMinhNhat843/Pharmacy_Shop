@@ -43,7 +43,7 @@ public class AccountController {
         if (account != null && account.getType().equals("admin")) {
             session.setAttribute("loggedInUser", account);
             // Điều hướng đến trang chính (dashboard hoặc trang khác)
-            return "redirect:/pharmacy/quanly/sanpham/list";
+            return "redirect:/quanly/sanpham/list";
         } else if (account != null && account.getType().equals("custom")) {
             session.setAttribute("loggedInUser", account);
             return "redirect:/home";
@@ -109,11 +109,10 @@ public class AccountController {
             return "reset_password";  // Quay lại trang nếu mật khẩu không khớp
         }
 
-        // Kiểm tra mật khẩu phải ít nhất 6 ký tự và chứa cả chữ hoa và chữ thường
-        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z]).{6,}$";
-        if (!newPassword.matches(passwordRegex)) {
-            model.addAttribute("error", "Password must be at least 6 characters long and contain both uppercase and lowercase letters.");
-            return "reset_password";  // Quay lại trang nếu mật khẩu không thỏa mãn yêu cầu
+        // Kiểm tra độ dài mật khẩu (ví dụ, phải ít nhất 10 ký tự)
+        if (newPassword.length() < 10) {
+            model.addAttribute("error", "Password must be at least 10 characters long.");
+            return "reset_password";  // Quay lại trang nếu mật khẩu quá ngắn
         }
         System.out.println(username);
         // Tìm tài khoản theo username

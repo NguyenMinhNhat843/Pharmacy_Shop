@@ -51,7 +51,10 @@ public class SanPhamController {
     // ======================== ListProduct theo type
     @GetMapping("/type/{typeOrSlug}")
     public String getProductsByType(@PathVariable("typeOrSlug") String typeOrSlug,
-                                    Model model) {
+                                    Model model, HttpSession session) {
+        // Lấy Account từ Session
+        Account account = (Account) session.getAttribute("loggedInUser");
+
         // Tạo map ánh xạ slug sang mã sản phẩm
         Map<String, String> typeMap = new HashMap<>();
         typeMap.put("thuc-pham-chuc-nang", "TP001");
@@ -95,7 +98,7 @@ public class SanPhamController {
         return "Manager";
     }
 
-    @GetMapping("/pharmacy/quanly/sanpham/list")
+    @GetMapping("/quanly/sanpham/list")
     public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         int pageSize = 10;
         List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);

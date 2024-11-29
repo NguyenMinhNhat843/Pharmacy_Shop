@@ -1,7 +1,9 @@
 package com.pharmacy.pharmacy_shop.controller;
 
+import com.pharmacy.pharmacy_shop.entity.Account;
 import com.pharmacy.pharmacy_shop.entity.SanPham;
 import com.pharmacy.pharmacy_shop.services.SanPhamService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,12 @@ public class ChiTietSanPhamController {
     @Autowired
     private SanPhamService sanPhamService;
 
+    // =========================== View: Detail Product
     @GetMapping("")
-    public String getProductDetail(@RequestParam(value = "id", required = false) String id, Model model) {
+    public String getProductDetail(@RequestParam(value = "id", required = false) String id, Model model, HttpSession session) {
+        // Lấy account từ session
+        Account account = (Account) session.getAttribute("loggedInUser");
+
         // 1. Kiểm tra ID có hợp lệ không
         if (id == null || id.isEmpty()) {
             logger.warn("Product ID is missing in request");
@@ -50,9 +56,10 @@ public class ChiTietSanPhamController {
 //        logger.info("Fetched same-brand products: {} items", sameBrandProducts.size());
 
         // 5. Đưa dữ liệu vào model để hiển thị trên giao diện
+        model.addAttribute("account", account);
         model.addAttribute("sanPham", sanPham);
         model.addAttribute("similarProducts", similarProducts);
-//        model.addAttribute("sameBrandProducts", sameBrandProducts);
+//       model.addAttribute("sameBrandProducts", sameBrandProducts);
 
         logger.info("Product details loaded successfully for ID: {}", id);
 
