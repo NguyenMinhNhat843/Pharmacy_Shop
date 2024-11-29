@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #2D3748;
+    color: white;
+    position: fixed;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #4A5568;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.table-responsive {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.modal-content {
+    padding: 20px;
+}
+.modal-header {
+    background-color: #f8f9fa;
+    padding: 15px;
+}
+.modal-title {
+    font-size: 1.5rem;
+    color: #007bff;
+}
+.modal-body {
+    font-size: 1rem;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-control {
+    padding: 10px;
+    font-size: 1rem;
+}
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+/* Định dạng cho khoảng cách giữa các trường */
+.modal-body form {
+    display: flex;
+    flex-direction: column;
+}
+.form-group input {
+    margin-bottom: 15px; /* Khoảng cách giữa các trường */
+}
+.modal-header .close {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+}
+.table-responsive {
+    max-height: 900px; /* Đặt chiều cao tối đa cho bảng */
+    overflow-y: auto;  /* Hiển thị thanh cuộn dọc khi cần thiết */
+}
+
+/* Tạo border cho các ô trong bảng */
+.table-hover tbody tr {
+    border-bottom: 1px solid #ddd; /* Tạo đường viền dưới mỗi hàng */
+}
+
+/* Tùy chỉnh đường viền khi di chuột qua hàng */
+.table-hover tbody tr:hover {
+    background-color: #f8f9fa; /* Thêm màu nền khi hover lên hàng */
+}
