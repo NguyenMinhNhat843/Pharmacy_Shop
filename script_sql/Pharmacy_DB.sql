@@ -11,7 +11,7 @@ CREATE TABLE Account (
                          type NVARCHAR(20) NOT NULL
 );
 
--- Bảng Phiếu Thông Tin 
+-- Bảng Phiếu Thông Tin
 DROP TABLE IF EXISTS PhieuThongTin;
 CREATE TABLE PhieuThongTin (
                                id NVARCHAR(50) PRIMARY KEY,
@@ -353,7 +353,7 @@ Làm dịu da khô ngứa trong 60s. Công thức 3x phức hợp yến mạch g
 ',N'Người lớn: Uống 250mg, 12 giờ một lần để trị viêm họng, viêm amidan hoặc viêm xong hàm do vi khuẩn nhạy cảm. Uống 250mg hoặc 500mg,Trẻ em: Viêm họng, viêm amidan: uống 20mg/kg/ ngày (tối đa 500mg/ngày) chia thành 2 liều nhỏ. Viêm tai giữa, chốc lở: 30mg/kg/ngày (tối đa 1g/ngày) chia làm 2 liều nhỏ', N'TP008'),
     ('SP060', N'Bột hít phân liều Trelegy Ellipta GSK điều trị bệnh phổi tắc nghẽn mạn tính (30 liều hít)', 790000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/product/20240807083751-0-P27974_1.jpg', 130, 30, 100,
      N'Trelegy Ellipta được chỉ định trong điều trị duy trì để phòng ngừa và làm giảm các triệu chứng có liên quan đến bệnh phổi tắc',N'Sản phẩm này chỉ bán khi có chỉ định của bác sĩ, mọi thông tin trên đây chỉ mang tính chất tham khảo. Vui lòng đọc kĩ thông tin chi tiết ở tờ hướng dẫn sử dẫn của sản phẩm.
-',N'Mỗi liều chưa phóng thích chứa 100 microgam (mcg) fluticasone furoate; 62,5 mcg umeclidinium (tương đương với 74,2 mcg umeclidinium bromide) và 25 mcg vilanterol (dạng trifenatate). 
+',N'Mỗi liều chưa phóng thích chứa 100 microgam (mcg) fluticasone furoate; 62,5 mcg umeclidinium (tương đương với 74,2 mcg umeclidinium bromide) và 25 mcg vilanterol (dạng trifenatate).
 ',N'Trelegy Ellipta chỉ dùng để hít qua miệng. Trelegy Ellipta nên dùng 1 lần mỗi ngày, vào cùng một thời điểm cố định buổi sáng hoặc buổi tối.', N'TP008'),
     ('SP061', N'Đường ăn kiêng MAISUGAR dành cho người ăn kiêng, người bệnh tiểu đường hộp (50 gói x 2g)', 55000, 'https://production-cdn.pharmacity.io/digital/768x768/plain/e-com/images/ecommerce/20240830061738-1-P00169_1.png', 80, 30, 50,
      N'Đường Ăn Kiêng Maisugar là một sản phẩm hỗ trợ kiểm soát đường huyết, thường được sử dụng trong chế độ ăn uống của người bệnh tiểu đường hoặc những người cần kiểm soát lượng đường huyết.
@@ -475,41 +475,40 @@ VALUES
 
 
 
-
-INSERT INTO DonHang (id, idSanPham, idPhieuThongTin, ngayTaoHoaDon, phuongThucThanhToan, tongTien)
+INSERT INTO DonHang (id, idSanPham, idPhieuThongTin, ngayTaoHoaDon, phuongThucThanhToan, tongTien,tinhTrang)
 VALUES
-    ('DH001', 'SP001', 'PT001', '2024-11-10', N'Thanh toán khi nhận hàng', 150000),
-    ('DH002', 'SP002', 'PT002', '2024-11-11', N'Thanh toán qua thẻ', 200000),
-    ('DH003', 'SP003', 'PT003', '2024-11-12', N'Thanh toán qua ví điện tử', 100000),
-    ('DH004', 'SP004', 'PT004', '2024-11-13', N'Thanh toán khi nhận hàng', 0),
-    ('DH005', 'SP005', 'PT005', '2024-11-14', N'Thanh toán qua thẻ', 50000),
-    ('DH006', 'SP006', 'PT006', '2024-11-15', N'Thanh toán khi nhận hàng', 0),
-    ('DH007', 'SP007', 'PT007', '2024-11-16', N'Thanh toán qua thẻ', 250000),
-    ('DH008', 'SP008', 'PT008', '2024-11-17', N'Thanh toán qua ví điện tử', 180000),
-    ('DH009', 'SP009', 'PT009', '2024-11-18', N'Thanh toán khi nhận hàng', 0),
-    ('DH010', 'SP010', 'PT010', '2024-11-19', N'Thanh toán qua thẻ', 120000),
-    ('DH011', 'SP011', 'PT011', '2024-11-20', N'Thanh toán khi nhận hàng', 300000),
-    ('DH012', 'SP012', 'PT012', '2024-11-21', N'Thanh toán qua ví điện tử', 200000),
-    ('DH013', 'SP013', 'PT013', '2024-11-22', N'Thanh toán qua thẻ', 170000),
-    ('DH014', 'SP014', 'PT014', '2024-11-23', N'Thanh toán khi nhận hàng', 0),
-    ('DH015', 'SP015', 'PT015', '2024-11-24', N'Thanh toán qua thẻ', 220000),
-    ('DH016', 'SP016', 'PT016', '2024-11-25', N'Thanh toán qua ví điện tử', 0),
-    ('DH017', 'SP017', 'PT017', '2024-11-26', N'Thanh toán khi nhận hàng', 110000),
-    ('DH018', 'SP018', 'PT018', '2024-11-27', N'Thanh toán qua thẻ', 250000),
-    ('DH019', 'SP019', 'PT019', '2024-11-28', N'Thanh toán qua ví điện tử', 130000),
-    ('DH020', 'SP020', 'PT020', '2024-11-29', N'Thanh toán khi nhận hàng', 0);
-INSERT INTO DonHang (id, idSanPham, idPhieuThongTin, phuongThucThanhToan, ngayTaoHoaDon, tongTien)
+    ('DH001', 'SP001', 'PT001', '2024-11-10', N'Thanh toán khi nhận hàng', 150000,1),
+    ('DH002', 'SP002', 'PT002', '2024-11-11', N'Thanh toán qua thẻ', 200000,1),
+    ('DH003', 'SP003', 'PT003', '2024-11-12', N'Thanh toán qua ví điện tử', 100000,1),
+    ('DH004', 'SP004', 'PT004', '2024-11-13', N'Thanh toán khi nhận hàng', 0,1),
+    ('DH005', 'SP005', 'PT005', '2024-11-14', N'Thanh toán qua thẻ', 50000,1),
+    ('DH006', 'SP006', 'PT006', '2024-11-15', N'Thanh toán khi nhận hàng', 0,1),
+    ('DH007', 'SP007', 'PT007', '2024-11-16', N'Thanh toán qua thẻ', 250000,0),
+    ('DH008', 'SP008', 'PT008', '2024-11-17', N'Thanh toán qua ví điện tử', 180000,0),
+    ('DH009', 'SP009', 'PT009', '2024-11-18', N'Thanh toán khi nhận hàng', 0,1),
+    ('DH010', 'SP010', 'PT010', '2024-11-19', N'Thanh toán qua thẻ', 120000,1),
+    ('DH011', 'SP011', 'PT011', '2024-11-20', N'Thanh toán khi nhận hàng', 300000,1),
+    ('DH012', 'SP012', 'PT012', '2024-11-21', N'Thanh toán qua ví điện tử', 200000,1),
+    ('DH013', 'SP013', 'PT013', '2024-11-22', N'Thanh toán qua thẻ', 170000,0),
+    ('DH014', 'SP014', 'PT014', '2024-11-23', N'Thanh toán khi nhận hàng', 0,1),
+    ('DH015', 'SP015', 'PT015', '2024-11-24', N'Thanh toán qua thẻ', 220000,1),
+    ('DH016', 'SP016', 'PT016', '2024-11-25', N'Thanh toán qua ví điện tử', 0,1),
+    ('DH017', 'SP017', 'PT017', '2024-11-26', N'Thanh toán khi nhận hàng', 110000,1),
+    ('DH018', 'SP018', 'PT018', '2024-11-27', N'Thanh toán qua thẻ', 250000,1),
+    ('DH019', 'SP019', 'PT019', '2024-11-28', N'Thanh toán qua ví điện tử', 130000,1),
+    ('DH020', 'SP020', 'PT020', '2024-11-29', N'Thanh toán khi nhận hàng', 0,1);
+INSERT INTO DonHang (id, idSanPham, idPhieuThongTin, phuongThucThanhToan, ngayTaoHoaDon, tongTien,tinhTrang)
 VALUES
-    ('DH021', 'SP021', 'PT021', N'Thanh toán qua thẻ', '2024-11-30', 500000),
-    ('DH022', 'SP022', 'PT022', N'Thanh toán qua ví điện tử', '2024-12-01', 350000),
-    ('DH023', 'SP023', 'PT023', N'Thanh toán khi nhận hàng', '2024-12-02', 450000),
-    ('DH024', 'SP024', 'PT024', N'Thanh toán qua thẻ', '2024-12-03', 200000),
-    ('DH025', 'SP025', 'PT025', N'Thanh toán qua ví điện tử', '2024-12-04', 300000),
-    ('DH026', 'SP026', 'PT001', N'Thanh toán khi nhận hàng', '2024-12-05', 150000),
-    ('DH027', 'SP027', 'PT002', N'Thanh toán qua thẻ', '2024-12-06', 600000),
-    ('DH028', 'SP028', 'PT003', N'Thanh toán qua ví điện tử', '2024-12-07', 250000),
-    ('DH029', 'SP029', 'PT004', N'Thanh toán khi nhận hàng', '2024-12-08', 100000),
-    ('DH030', 'SP030', 'PT005', N'Thanh toán qua thẻ', '2024-12-09', 700000);
+    ('DH021', 'SP021', 'PT021', N'Thanh toán qua thẻ', '2024-11-30', 500000,1),
+    ('DH022', 'SP022', 'PT022', N'Thanh toán qua ví điện tử', '2024-12-01', 350000,0),
+    ('DH023', 'SP023', 'PT023', N'Thanh toán khi nhận hàng', '2024-12-02', 450000,1),
+    ('DH024', 'SP024', 'PT024', N'Thanh toán qua thẻ', '2024-12-03', 200000,1),
+    ('DH025', 'SP025', 'PT025', N'Thanh toán qua ví điện tử', '2024-12-04', 300000,1),
+    ('DH026', 'SP026', 'PT001', N'Thanh toán khi nhận hàng', '2024-12-05', 150000,1),
+    ('DH027', 'SP027', 'PT002', N'Thanh toán qua thẻ', '2024-12-06', 600000,0),
+    ('DH028', 'SP028', 'PT003', N'Thanh toán qua ví điện tử', '2024-12-07', 250000,0),
+    ('DH029', 'SP029', 'PT004', N'Thanh toán khi nhận hàng', '2024-12-08', 100000,1),
+    ('DH030', 'SP030', 'PT005', N'Thanh toán qua thẻ', '2024-12-09', 700000,1);
 
 
 SELECT id FROM DonHang;
