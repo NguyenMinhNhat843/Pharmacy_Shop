@@ -40,7 +40,7 @@ public class PhieuThongTinController {
 
         // Kiểm tra nếu danh sách tìm kiếm là rỗng và thêm thông báo nếu không tìm thấy kết quả
         if (khachHangs.isEmpty()) {
-            model.addAttribute("message", "Không tìm thấy khách hàng với gmail: " + keyword);
+            model.addAttribute("message", "Không tìm thấy khách hàng với từ khóa : " + keyword);
         }
 
 

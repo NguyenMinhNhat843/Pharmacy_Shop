@@ -33,7 +33,7 @@
                 <form action="/khachhang/search" method="GET"  id="searchForm" class="input-group mb-3 w-50" style="width: 100%; max-width: 700px;">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <i class="fa-solid fa-house"></i>
-                    <input type="text" name="keyword" th:value="${keyword}" id="keyword" placeholder="input email..." class="form-control p-2" aria-label="Text input with checkbox" style="max-width: 800px;">
+                    <input type="text" name="keyword" th:value="${keyword}" id="keyword" placeholder="input email or SDT" class="form-control p-2" aria-label="Text input with checkbox" style="max-width: 800px;">
                     <button type="submit" id="btn_submit_searchForm" class="btn btn-primary">Search</button>
                 </form>
 <!--                &lt;!&ndash; Sort by Name Button &ndash;&gt;-->
@@ -97,7 +97,7 @@
                 <!-- Button trigger modal -->
                 <div th:if="${message != null}" class="alert alert-warning">
                     <span th:text="${message}"></span>
-                    <span class="ms-2">Vui lòng nhập gmail chính xác</span>
+                    <span class="ms-2">Vui lòng nhập chính xác</span>
                 </div>
                 <!-- Table -->
                 <div class="card">

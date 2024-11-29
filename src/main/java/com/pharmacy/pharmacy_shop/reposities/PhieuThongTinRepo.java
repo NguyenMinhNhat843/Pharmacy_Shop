@@ -22,8 +22,8 @@ public interface PhieuThongTinRepo extends JpaRepository<PhieuThongTin, String> 
     List<PhieuThongTin> findPhieuThongTinByIdAndGmail(String id, String gmail);
 
     // Tìm kiếm phiếu thông tin theo gmail
-    @Query(value = "SELECT * FROM PhieuThongTin WHERE email LIKE %:gmail%", nativeQuery = true)
-    List<PhieuThongTin> findPhieuThongTinByGmail(String gmail);
+    @Query(value = "SELECT * FROM PhieuThongTin WHERE email LIKE %:keyword% OR soDienThoai LIKE %:keyword%", nativeQuery = true)
+    List<PhieuThongTin> findPhieuThongTinByGmail(String keyword);
 
 
 }

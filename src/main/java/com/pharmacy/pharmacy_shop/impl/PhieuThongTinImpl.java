@@ -13,7 +13,7 @@ import java.util.List;
 public class PhieuThongTinImpl implements PhieuThongTinService {
     @Autowired
     private PhieuThongTinRepo phieuThongTinRepo;
-    
+
 
     @Override
     public String autoGenId() {
