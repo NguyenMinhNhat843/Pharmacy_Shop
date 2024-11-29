@@ -268,7 +268,7 @@
         <div class="row gap-2 flex-nowrap pt-3">
             <!-- Lặp qua danh sách bài viết (tượng trưng 4 bài viết) -->
             <div class="col bg-dark-subtle rounded p-0" style="width: 25%" th:each="i : ${#numbers.sequence(1, 4)}">
-                <a href="./Article.html" style="color: #333">
+                <a th:href="@{/article}" style="color: #333">
                     <div class="">
                         <img class="w-100 rounded" th:src="@{/images_avatar/avatar_1.png}" alt="avatar"/>
                     </div>

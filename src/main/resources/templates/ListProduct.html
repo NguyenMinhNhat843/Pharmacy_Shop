@@ -22,8 +22,13 @@
         <span style="font-size: 20px"> > </span>
         <span th:text="${selectedType}" style="font-size: 20px"></span>
     </div>
+    <div th:if="${#lists.isEmpty(products)}" class="no_products_message">
+        <img th:src="@{/images_product/cant_find.jpg}" alt="Avatar" class="avatar">
+        <p class="no_products_notification">Không tìm thấy sản phẩm</p>
+        <p class="find_another_product">Hãy thử tìm kiếm từ khóa sản phẩm khác</p>
+    </div>
 
-    <div class="main_section">
+    <div class="main_section"  th:if="${not #lists.isEmpty(products)}">
         <div>
             <aside>
                 <aside class="filter-sidebar">
@@ -59,6 +64,7 @@
                 </aside>
             </aside>
         </div>
+
         <div class="product_list_main">
             <main class="product-grid">
                 <div class="sort-options">
@@ -77,6 +83,7 @@
                     </form>
                 </div>
                 <div class="products" id="product-list">
+
                     <!-- Lặp qua các sản phẩm -->
                     <div th:each="product, iterStat : ${products}">
                         <a th:if="${iterStat.index < 10}" class="product-card" th:href="@{/Detail_Product(id=${product.id})}" >
@@ -105,7 +112,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="load-more">
+                <div class="load-more"  th:if="${not #lists.isEmpty(products)}">
                     <button class="view-more-btn" onclick="loadMoreProducts()">Xem thêm</button>
                 </div>
             </main>

@@ -10,6 +10,27 @@ body {
     max-width: 1500px;
 }
 
+.no_products_message{
+    text-align: center;
+    margin-bottom: 20px;
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 600px;
+    gap: 10px;
+}
+
+.find_another_product {
+    font-size: 1.5rem;
+}
+
+.no_products_notification {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
 .breadcrumb {
     margin: 10px 10px;
     font-size: 15px;
@@ -201,7 +222,7 @@ body {
     color: grey;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: 800px;
+    font-weight: 800;
 }
 
 .sort-btn:hover {
@@ -318,3 +339,5 @@ body {
 .view-more-btn:hover {
     background-color: lightblue;
 }
+
+
