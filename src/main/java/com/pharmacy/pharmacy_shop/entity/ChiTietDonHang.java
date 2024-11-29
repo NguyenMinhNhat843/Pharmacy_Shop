@@ -12,14 +12,16 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class ChiTietDonHang {
+    @EmbeddedId
+    private ChiTietDonHangId id;
 
-    @Id
     @ManyToOne
+    @MapsId("idDonHang")
     @JoinColumn(name = "idDonHang", nullable = false)
     private DonHang donHang;
 
-    @Id
     @ManyToOne
+    @MapsId("idSanPham")
     @JoinColumn(name = "idSanPham", nullable = false)
     private SanPham sanPham;
 
