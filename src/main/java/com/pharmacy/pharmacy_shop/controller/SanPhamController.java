@@ -73,33 +73,13 @@ public class SanPhamController {
         // Tìm kiếm sản phẩm theo typeId
         List<SanPham> products = sanPhamService.getSanPhamByType(typeId);
 
-        model.addAttribute("account", account);
         model.addAttribute("products", products);
         model.addAttribute("selectedType", typeOrSlug); // Truyền slug hoặc mã vào model
 
         return "ListProduct"; // trả về view ListProduct
     }
 
-    // ======================================= View: Quan Ly SAn Pham
-    @GetMapping("/quanly/sanpham/list")
-    public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
-        System.out.println("======================== List sản phẩm ==============");
-        int pageSize = 10;
-        List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);
-        long soLuongSanPham = sanPhamService.getSoLuongSanPham();
-
-        long totalPage = soLuongSanPham / pageSize + 1;
-
-        model.addAttribute("soLuongDaBan", sanPhamService.getTongSoLuongDaBan());
-        model.addAttribute("soLuongSanPham", soLuongSanPham);
-        model.addAttribute("sanphams", sanphams);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", totalPage);
-        System.out.println(sanphams);
-        return "Manager";
-    }
-
-    @GetMapping("/quanly/sanpham/search")
+    @GetMapping("/pharmacy/quanly/sanpham/search")
     public String loadSanPham(@RequestParam(value = "keyword", required = false) String keyword, Model model) {
         List<SanPham> sanphams;
         SanPham sanpham = new SanPham();
@@ -118,8 +98,20 @@ public class SanPhamController {
         return "Manager";
     }
 
+    @GetMapping("/quanly/sanpham/list")
+    public String viewQuanLySanPham(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        int pageSize = 10;
+        List<SanPham> sanphams = sanPhamService.getSanPhamTheoTrang(page, pageSize);
 
-    @PostMapping("/quanly/sanpham/add")
+        long totalPage = sanPhamService.getSoLuongSanPham() / pageSize + 1;
+
+        model.addAttribute("sanphams", sanphams);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPage);
+        return "Manager";
+    }
+
+    @PostMapping("/pharmacy/quanly/sanpham/add")
     public String addSanPham(
         @RequestParam("name") String name,
         @RequestParam("price") float price,
@@ -140,17 +132,17 @@ public class SanPhamController {
         tp.setId(category);
         sp.setType(tp);
 
-//        System.out.println(sp);
+        System.out.println(sp);
         sanPhamService.addSanPham(sp);
 
-        return "redirect:/quanly/sanpham/list";
+        return "redirect:/pharmacy/quanly/sanpham/list";
     }
 
-    @PostMapping("/quanly/sanpham/delete")
+    @PostMapping("/pharmacy/quanly/sanpham/delete")
     @ResponseBody
     public ResponseEntity<?> deleteSelectedProducts(@RequestBody List<String> selectedIds) {
-//        System.out.println("=================================================");
-//        System.out.println(selectedIds);
+        System.out.println("=================================================");
+        System.out.println(selectedIds);
         try {
             for (String id : selectedIds) {
                 sanPhamService.deleteSanPham(id);

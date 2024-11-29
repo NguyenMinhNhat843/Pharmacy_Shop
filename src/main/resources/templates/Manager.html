@@ -46,12 +46,13 @@
     </style>
 </head>
 <body>
+<!-- Header section -->
 <div class="container-fluid bg-body-tertiary p-0">
         <!-- side bar -->
         <nav class="sidebar">
             <a href="#" th:href="@{/quanly/sanpham/list}">Quản Lý Sản Phẩm</a>
-            <a href="#" th:href="@{/quanly/orders}">Quản lý Hóa đơn</a>
             <a href="#" th:href="@{/khachhang}">Quản Lý Khách Hàng</a>
+            <a href="#" th:href="@{/quanly/donhang/list}">Quản lý Hóa đơn</a>
             <a href="#" th:href="@{/thongKe}">Thống Kê</a>
         </nav>
 
@@ -61,7 +62,7 @@
                 <!-- Start: ==== Header ==== -->
                 <div class="pb-3 d-flex align-items-center justify-content-between">
                     <!-- Search San pham -->
-                    <form action="/quanly/sanpham/search" method="GET" id="searchForm" class="input-group mb-3 w-50">
+                    <form action="/pharmacy/quanly/sanpham/search" method="GET" id="searchForm" class="input-group mb-3 w-50">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <i class="fa-solid fa-house"></i>
                         <input type="text" name="keyword" id="keyword" placeholder="search by id..." class="form-control p-2" aria-label="Text input with checkbox">
@@ -105,7 +106,7 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Form tạo mới sản phẩm -->
-                                <form action="/quanly/sanpham/add" method="POST" enctype="multipart/form-data" id="formCreateProduct">
+                                <form action="/pharmacy/quanly/sanpham/add" method="POST" enctype="multipart/form-data" id="formCreateProduct">
                                     <div class="mb-3">
                                         <label for="inputProductName" class="form-label">Tên Sản Phẩm</label>
                                         <input type="text" class="form-control" id="inputProductName" name="name" placeholder="Nhập tên sản phẩm" required>
@@ -148,13 +149,13 @@
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <h5>Tổng số sản phẩm</h5>
-                                <p class="fw-bold" th:text="${soLuongSanPham}" >48</p>
+                                <p class="fw-bold">48</p>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card p-3 text-center">
                                 <h5>Số lượng đã bán</h5>
-                                <p class="fw-bold" th:text="${soLuongDaBan}">493</p>
+                                <p class="fw-bold">493</p>
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -210,66 +211,56 @@
                                     <td th:text="${sanpham.soLuongConLai}">so luong con lai</td>
                                     <td th:text="${sanpham.soLuongDaBan + sanpham.soLuongConLai}">tong so luong</td>
                                     <td th:text="${sanpham.type.id}">loai sp</td>
-
-                                    <!-- Modal: Update sản phẩm -->
-                                    <div class="modal fade" id="updateProduct" tabindex="-1" aria-labelledby="labelModalCreateProduct" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="labelModalUpdateProduct">Thông tin sản phẩm</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <!-- Form tạo mới sản phẩm -->
-                                                    <form action="/quanly/sanpham/update" method="POST" enctype="multipart/form-data" id="formUpdateProduct">
-                                                        <div class="mb-3">
-                                                            <label for="inputProductName" class="form-label">Tên Sản Phẩm</label>
-                                                            <input type="text" th:value="${sanpham.tenSanPham}" class="form-control" id="inputProductName_Update" name="name" placeholder="Nhập tên sản phẩm" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="inputProductPrice" class="form-label">Giá Sản Phẩm</label>
-                                                            <input type="number"  th:value="${sanpham.giaBan}" class="form-control" id="inputProductPrice_Update" name="price" placeholder="Nhập giá sản phẩm" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="inputProductQuantity" class="form-label">Số Lượng đã bán</label>
-                                                            <input type="number"  th:value="${sanpham.soLuongDaBan}" class="form-control" id="inputProductQuantity_Update" name="quantity" placeholder="Nhập số lượng" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="inputProductQuantity" class="form-label">Số Lượng còn lại</label>
-                                                            <input type="number"  th:value="${sanpham.soLuongConLai}" class="form-control" id="SoLuongConLai_Update" name="quantity" placeholder="Nhập số lượng" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="inputProductQuantity" class="form-label">Tổng số lượng</label>
-                                                            <input type="number"  th:value="${sanpham.soLuongDaBan + sanpham.soLuongConLai}" class="form-control" id="TongSoLuong_Update" name="quantity" placeholder="Nhập số lượng" required>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="inputProductImage" class="form-label">Hình Ảnh</label>
-                                                            <input type="file" class="form-control" id="inputProductImage_Update" name="image" accept="image/*" required>
-                                                            <small id="previewImageText_Uppdate" class="form-text text-muted">Chọn ảnh từ máy tính.</small>
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <label for="selectProductCategory" class="form-label">Loại Sản Phẩm</label>
-                                                            <select class="form-select" id="selectProductCategory_Update" name="category" required>
-                                                                <option value="TP001">Thuốc kê đơn</option>
-                                                                <option value="TP002">Thốc không kê đơn</option>
-                                                                <option value="TP003">Thực phẩm chức năng</option>
-                                                                <option value="TP004">Dụng cụ y tế</option>
-                                                            </select>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                                    <button type="submit" class="btn btn-primary" form="formCreateProduct">Cập nhật</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </tr>
                                 </tbody>
                             </table>
 
+                            <!-- Modal: Update sản phẩm -->
+                            <div class="modal fade" id="updateProduct" tabindex="-1" aria-labelledby="labelModalCreateProduct" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="labelModalUpdateProduct">Tạo Mới Sản Phẩm</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Form tạo mới sản phẩm -->
+                                            <form action="/pharmacy/quanly/sanpham/add" method="POST" enctype="multipart/form-data" id="formUpdateProduct">
+                                                <div class="mb-3">
+                                                    <label for="inputProductName" class="form-label">Tên Sản Phẩm</label>
+                                                    <input type="text" class="form-control" id="inputProductName_Update" name="name" placeholder="Nhập tên sản phẩm" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="inputProductPrice" class="form-label">Giá Sản Phẩm</label>
+                                                    <input type="number" class="form-control" id="inputProductPrice_Update" name="price" placeholder="Nhập giá sản phẩm" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="inputProductQuantity" class="form-label">Số Lượng</label>
+                                                    <input type="number" class="form-control" id="inputProductQuantity_Update" name="quantity" placeholder="Nhập số lượng" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="inputProductImage" class="form-label">Hình Ảnh</label>
+                                                    <input type="file" class="form-control" id="inputProductImage_Update" name="image" accept="image/*" required>
+                                                    <small id="previewImageText_Uppdate" class="form-text text-muted">Chọn ảnh từ máy tính.</small>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="selectProductCategory" class="form-label">Loại Sản Phẩm</label>
+                                                    <select class="form-select" id="selectProductCategory_Update" name="category" required>
+                                                        <option value="TP001">Thuốc kê đơn</option>
+                                                        <option value="TP002">Thốc không kê đơn</option>
+                                                        <option value="TP003">Thực phẩm chức năng</option>
+                                                        <option value="TP004">Dụng cụ y tế</option>
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                            <button type="submit" class="btn btn-primary" form="formCreateProduct">Tạo mới</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <!-- Pagination -->
                             <div class="pagination-container mt-4">
@@ -277,18 +268,18 @@
                                     <ul class="pagination justify-content-center">
                                         <!-- Previous Button -->
                                         <li class="page-item" th:class="${currentPage == 1} ? 'disabled' : ''">
-                                            <a class="page-link" th:href="@{/quanly/sanpham/list(page=${currentPage - 1})}" tabindex="-1">Previous</a>
+                                            <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${currentPage - 1})}" tabindex="-1">Previous</a>
                                         </li>
 
                                         <!-- Page Numbers -->
                                         <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}"
                                             th:class="${i == currentPage} ? 'active' : ''">
-                                            <a class="page-link" th:href="@{/quanly/sanpham/list(page=${i})}" th:text="${i}"></a>
+                                            <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${i})}" th:text="${i}"></a>
                                         </li>
 
                                         <!-- Next Button -->
                                         <li class="page-item" th:class="${currentPage == totalPages} ? 'disabled' : ''">
-                                            <a class="page-link" th:href="@{/quanly/sanpham/list(page=${currentPage + 1})}">Next</a>
+                                            <a class="page-link" th:href="@{/pharmacy/quanly/sanpham/list(page=${currentPage + 1})}">Next</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -346,7 +337,7 @@
                 }
 
                 if (confirm("Bạn có chắc chắn muốn xóa các sản phẩm đã chọn?")) {
-                    fetch("/quanly/sanpham/delete", {
+                    fetch("/pharmacy/quanly/sanpham/delete", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
